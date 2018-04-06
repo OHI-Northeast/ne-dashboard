@@ -16,7 +16,8 @@ dashboardPage(
       menuItem("Sense of Place", tabName = "sop", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Local Fishing & Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Food Provision", tabName = "fp", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Coastal Protection & Carbon Storage", tabName = "cpcs", badgeLabel = "draft", badgeColor = "orange")
+      menuItem("Coastal Protection & Carbon Storage", tabName = "cpcs", badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Pressures", tabName = "pressures", badgeLabel = "draft", badgeColor = "orange")
   ),
   width = 350),
   
@@ -113,7 +114,19 @@ dashboardPage(
             
             ## Coastal Protection & Carbon Storage tab title ##
             tab_title_ui(goal_text = "COASTAL PROTECTION & CARBON STORAGE",
-                         commitment_text = "storage of carbon and protection of our coasts from storm damage by living natural habitats"))
+                         commitment_text = "storage of carbon and protection of our coasts from storm damage by living natural habitats")),
+    
+    ## Pressures ##
+    
+    tabItem(tabName = "pressures",
+            
+            ## Pressures tab title ##
+            tab_title_ui(goal_text = "Pressures",
+                         commitment_text = "pressures"),
+    
+            ##map for trash layer ##
+            map_ui(id = "trash_map",
+                   title_text = "Trash pressure layer"))
   )
     )
   )

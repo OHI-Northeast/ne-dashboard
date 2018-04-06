@@ -30,5 +30,12 @@ function(input, output, session) {
                                    "<br>Year:", Year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Wages (2012 $USD)")
+  
+ ## Trash map ##
+  callModule(card_map, "trash_map",
+             data = trash,
+             field = "pressure_score",
+             color_palette = "YlOrRd",
+             legend_title = "Trash Pressure Scores")
 
   }

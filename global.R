@@ -7,6 +7,7 @@ dir_anx <- file.path(dir_M, 'git-annex/neprep')
 
 ## source modules
 source("modules/chart_card.R")
+source("modules/map_card.R")
 
 ## source functions
 source("functions/tab_title.R")
@@ -20,7 +21,7 @@ options(scipen = 999,
 library(tidyverse)
 library(shinydashboard)
 
-## Data sources
+## Data sources (change this to be organized by goal and then alphabetically?)
 
 # NOEP data for livelihoods & economies, tourism & recreation
 noep_data <- readxl::read_excel(file.path(dir_anx, '_raw_data/NOEP/New_England_ocean_series.xlsx'), sheet = "ENOW") %>%
@@ -31,6 +32,6 @@ noep_data <- readxl::read_excel(file.path(dir_anx, '_raw_data/NOEP/New_England_o
          !is.na(Wages_2012),
          !is.na(GDP_2012))
 
-#select employ
-noep_emp <- noep_data %>%
-  select(Year, State, County, Employment)
+# Trash pressure layer
+
+trash <- read_csv("~/github/ne-prep/prep/cw/scores/trash.csv")

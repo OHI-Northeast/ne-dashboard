@@ -3,6 +3,18 @@ function(input, output, session) {
   
   
   ## Livelihoods & Economies ##
+  
+  ## L&E Score map ##
+  callModule(card_map, "le_scores_map",
+             data = le_scores,
+             field = "score",
+             color_palette = "YlOrRd",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "dimension",
+             popup_add_field_title = "Dimension:")
+  
+  ### Employment chart
   callModule(card_plot, "le_emp",
              df = noep_data,
              x = "Year",
@@ -17,6 +29,7 @@ function(input, output, session) {
              xaxis_label = "Year",
              yaxis_label = "Number of jobs")
   
+  ### Wages
   callModule(card_plot, "le_wages",
              df = noep_data,
              x = "Year",

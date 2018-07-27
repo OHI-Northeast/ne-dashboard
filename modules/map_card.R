@@ -137,7 +137,7 @@ map_ui <- function(id,
 #' @param input autofilled by shiny.
 #' @param output autofilled by shiny.
 #' @param session character, must be the exact same as the id passed to the card_ui function.
-#' @param data name of Spatial DataFrame to be mapped. 
+#' @param data name of dataset to be mapped by the OHI regions. 
 #' @param field character, this field is set up to handle one of two scenarios - the map changes
 #' based on user input or it doesn't.
 #' \itemize{
@@ -166,31 +166,35 @@ card_map <- function(input,
                      popup_add_field = NA,
                      popup_add_field_title = NA) {
   
+  #attach data to rgn shapefile
+  data_shp <- rgns_leaflet %>%
+    full_join(data)
+  
   if (field != "input") {
     output$plot <- renderLeaflet({
       # get color pal
       pal <- colorNumeric(palette = color_palette,
-                          domain = data[[field]])
+                          domain = data_shp[[field]])
       
       # get popup
-      popup_text <- paste("<h5><strong>", popup_title, "</strong>" , data[[field]], "</h5>",
-                          "<h5><strong>", popup_add_field_title, "</strong>", data[[popup_add_field]], "</h5>", sep=" ")
+      popup_text <- paste("<h5><strong>", popup_title, "</strong>" , data_shp[[field]], "</h5>",
+                          "<h5><strong>", popup_add_field_title, "</strong>", data_shp[[popup_add_field]], "</h5>", sep=" ")
       
-      leaflet(data,
+      leaflet(data_shp,
               options = leafletOptions(zoomControl = FALSE)) %>%
         addPolygons(color = "#444444", 
                     weight = 1, 
                     smoothFactor = 0.5,
                     opacity = 1.0, 
                     fillOpacity = 0.7,
-                    fillColor = pal(data[[field]]),
+                    fillColor = pal(data_shp[[field]]),
                     popup = popup_text, 
                     highlightOptions = highlightOptions(color = "white", 
                                                         weight = 2,
                                                         bringToFront = TRUE)) %>% 
         addLegend("bottomright",
                   pal = pal,
-                  values = data[[field]],
+                  values = data_shp[[field]],
                   title = legend_title,
                   opacity = 1,
                   layerId = "colorLegend") %>%
@@ -203,27 +207,27 @@ card_map <- function(input,
       
       # get color pal
       pal <- colorNumeric(palette = color_palette,
-                          domain = data[[color_col]])
+                          domain = data_shp[[color_col]])
       
       # get popup
-      popup_text <- paste("<h5><strong>", popup_title, "</strong>" , data[[color_col]], "</h5>",
-                          "<h5><strong>", popup_add_field_title, "</strong>", data[[popup_add_field]], "</h5>", sep=" ")
+      popup_text <- paste("<h5><strong>", popup_title, "</strong>" , data_shp[[color_col]], "</h5>",
+                          "<h5><strong>", popup_add_field_title, "</strong>", data_shp[[popup_add_field]], "</h5>", sep=" ")
       
-      leaflet(data,
+      leaflet(data_shp,
               options = leafletOptions(zoomControl = FALSE)) %>%
         addPolygons(color = "#444444", 
                     weight = 1, 
                     smoothFactor = 0.5,
                     opacity = 1.0, 
                     fillOpacity = 0.7,
-                    fillColor = pal(data[[color_col]]),
+                    fillColor = pal(data_shp[[color_col]]),
                     popup = popup_text, 
                     highlightOptions = highlightOptions(color = "white", 
                                                         weight = 2,
                                                         bringToFront = TRUE)) %>% 
         addLegend("bottomright",
                   pal = pal,
-                  values = data[[color_col]],
+                  values = data_shp[[color_col]],
                   title = legend_title,
                   opacity = 1,
                   layerId = "colorLegend") %>%

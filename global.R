@@ -17,11 +17,27 @@ options(scipen = 999,
         digits = 2)
 
 ##libraries
-
 library(tidyverse)
 library(shinydashboard)
 
+##shapefile
+rgns_leaflet <- rgns_simp %>%
+  st_transform(crs = '+proj=longlat +datum=WGS84') %>%
+  rename(region_id = rgn_id) #scores.csv uses region_id not rgn_id so this allows them to join
+
 ## Data sources (change this to be organized by goal and then alphabetically?)
+
+## SCORES.CSV ##
+
+scores <- read_csv(file.path(dir_calc, "scores.csv")) 
+
+### LE scores ###
+
+### Here we want the scores for LIV, ECO and LE.
+### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
+le_scores <- scores %>% 
+  filter(goal %in% c("LIV", "ECO", "LE"),
+         dimension == "score") 
 
 # NOEP data for livelihoods & economies, tourism & recreation
 noep_data <- readxl::read_excel(file.path(dir_anx, '_raw_data/NOEP/New_England_ocean_series.xlsx'), sheet = "ENOW") %>%

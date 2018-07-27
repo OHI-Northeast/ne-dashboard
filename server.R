@@ -7,12 +7,13 @@ function(input, output, session) {
   ## L&E Score map ##
   callModule(card_map, "le_scores_map",
              data = le_scores,
-             field = "score",
-             color_palette = "YlOrRd",
+             field = "input",
+             filter_field = goal,
+             display_field = "score",
              legend_title = "OHI Goal Score",
              popup_title = "Score:",
-             popup_add_field = "dimension",
-             popup_add_field_title = "Dimension:")
+             popup_add_field = "goal",
+             popup_add_field_title = "Goal:")
   
   ### Employment chart
   callModule(card_plot, "le_emp",

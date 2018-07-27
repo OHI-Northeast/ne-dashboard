@@ -41,29 +41,28 @@ dashboardPage(
     
     tabItem(tabName = "liveco",
             
-            ## Livelihoods & Economies tab title ##
-            tab_title_ui(goal_text = "LIVELIHOODS & ECONOMIES",
-                         commitment_text = "a high quantity and quality of ocean-dependent jobs and local revenue"),
+          ## Livelihoods & Economies tab title ##
+          tab_title_ui(goal_text = "LIVELIHOODS & ECONOMIES",
+                       commitment_text = "a high quantity and quality of ocean-dependent jobs and local revenue"),
             
-            ## Scores Map ##
-            map_ui(id = "le_scores_map",
-                   title_text = "Livelihoods & Economies Goal Scores",
-                   sub_title_text = NULL,
-                   select_type = "drop_down",
-                   select_location = "above",
-                   select_choices = unique(le_scores$goal),
-                   select_label = "Select scores to view", 
-                   selected = "Goal"),
+          ## Scores Map ##
+          map_ui(id = "le_scores_map",
+                 title_text = "Livelihoods & Economies Goal Scores",
+                 sub_title_text = "",
+                 select_type = "drop_down",
+                 select_location = "above",
+                 select_choices = unique(le_scores$goal),
+                 select_label = "Select scores to view"),
             
-            ## Employment ##
-            card_ui(id = "le_emp",
-                    title_text = "Employment",
-                    sub_title_text = "",
-                    select_type = "drop_down",
-                    select_location = "above",
-                    select_choices = unique(noep_data$State),
-                    select_label = "Select State",
-                    source_text = "Source: National Ocean Economics Program"),
+          ## Employment ##
+          card_ui(id = "le_emp",
+                  title_text = "Employment",
+                  sub_title_text = "",
+                  select_type = "drop_down",
+                  select_location = "above",
+                  select_choices = unique(noep_data$State),
+                  select_label = "Select State",
+                  source_text = "Source: National Ocean Economics Program"),
     
           ## Wages ##
           card_ui(id = "le_wages",

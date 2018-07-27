@@ -1,6 +1,5 @@
 #global
 
-
 source(file.path('~/github/ne-prep/src/R/common.R'))  ### an OHI-NE specific version of common.R
 
 dir_anx <- file.path(dir_M, 'git-annex/neprep')
@@ -29,7 +28,7 @@ rgns_leaflet <- rgns_simp %>%
 
 ## SCORES.CSV ##
 
-scores <- read_csv(file.path(dir_calc, "scores.csv")) 
+scores <- read_csv(file.path(dir_calc, "scores.csv"))
 
 ### LE scores ###
 
@@ -37,7 +36,8 @@ scores <- read_csv(file.path(dir_calc, "scores.csv"))
 ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
 le_scores <- scores %>% 
   filter(goal %in% c("LIV", "ECO", "LE"),
-         dimension == "score") 
+         dimension == "score",
+         year == 2015)
 
 # NOEP data for livelihoods & economies, tourism & recreation
 noep_data <- readxl::read_excel(file.path(dir_anx, '_raw_data/NOEP/New_England_ocean_series.xlsx'), sheet = "ENOW") %>%

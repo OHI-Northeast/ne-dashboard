@@ -30,7 +30,7 @@ rgns_leaflet <- rgns_simp %>%
 
 scores <- read_csv(file.path(dir_calc, "scores.csv"))
 
-### LE scores ###
+## LE data ##
 
 ### Here we want the scores for LIV, ECO and LE.
 ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
@@ -39,15 +39,23 @@ le_scores <- scores %>%
          dimension == "score",
          year == 2015)
 
-# NOEP data for livelihoods & economies, tourism & recreation
-noep_data <- readxl::read_excel(file.path(dir_anx, '_raw_data/NOEP/New_England_ocean_series.xlsx'), sheet = "ENOW") %>%
-  mutate(Employment = as.integer(Employment),
-         Wages_2012 = as.integer(Wages_2012)/Employment) %>%
-  filter(str_detect(County, "All"),
-         !is.na(Employment),
-         !is.na(Wages_2012),
-         !is.na(GDP_2012))
+### jobs data ###
+jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/jobs_sector.csv")
 
-# Trash pressure layer
+### wages data ###
+wages <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/wages_sector.csv")
 
-trash <- read_csv("~/github/ne-prep/prep/cw/scores/trash.csv")
+### GDP data ###
+gdp <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/gdp_sector.csv")
+
+## TR data ##
+
+### Here we want the scores for LIV, ECO and LE.
+### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
+tr_scores <- scores %>% 
+  filter(goal == "TR",
+         dimension == "score",
+         year == 2015)
+
+tr_jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
+

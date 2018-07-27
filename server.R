@@ -17,11 +17,11 @@ function(input, output, session) {
   
   ### Employment chart
   callModule(card_plot, "le_emp",
-             df = noep_data,
+             df = jobs,
              x = "Year",
              y = "Employment",
              color_group = "Sector",
-             filter_field = "State",
+             filter_field = "rgn_name",
              plot_type = "scatter",
              mode = "lines+markers",
              tooltip_text = ~paste("Number of jobs:", Employment,
@@ -32,24 +32,42 @@ function(input, output, session) {
   
   ### Wages
   callModule(card_plot, "le_wages",
-             df = noep_data,
+             df = wages,
              x = "Year",
-             y = "Wages_2012",
+             y = "Wages",
              color_group = "Sector",
-             filter_field = "State",
+             filter_field = "rgn_name",
              plot_type = "scatter",
              mode = "lines+markers",
-             tooltip_text = ~paste("Average annual wage: $", prettyNum(Wages_2012, big.mark = ","),
+             tooltip_text = ~paste("Average annual wage: $", prettyNum(Wages, big.mark = ","),
                                    "<br>Sector:", Sector,
                                    "<br>Year:", Year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Wages (2012 $USD)")
   
- ## Trash map ##
-  callModule(card_map, "trash_map",
-             data = trash,
-             field = "pressure_score",
-             color_palette = "YlOrRd",
-             legend_title = "Trash Pressure Scores")
+  ## Tourism & Recreation ##
+  
+  ## TR Score map ##
+  callModule(card_map, "tr_scores_map",
+             data = tr_scores,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "goal",
+             popup_add_field_title = "Goal:")
+  
+  ### Employment chart
+  callModule(card_plot, "tr_jobs",
+             df = tr_jobs,
+             x = "Year",
+             y = "Employment",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Number of jobs:", Employment,
+                                   "<br>Sector:", Sector,
+                                   "<br>Year:", Year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Number of jobs")
 
   }

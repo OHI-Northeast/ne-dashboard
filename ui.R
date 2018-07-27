@@ -60,8 +60,8 @@ dashboardPage(
                   sub_title_text = "",
                   select_type = "drop_down",
                   select_location = "above",
-                  select_choices = unique(noep_data$State),
-                  select_label = "Select State",
+                  select_choices = unique(jobs$rgn_name),
+                  select_label = "Select region",
                   source_text = "Source: National Ocean Economics Program"),
     
           ## Wages ##
@@ -70,12 +70,9 @@ dashboardPage(
                   sub_title_text = "Wages in 2012 US Dollars",
                   select_type = "drop_down",
                   select_location = "above",
-                  select_choices = unique(noep_data$State),
-                  select_label = "Select State",
+                  select_choices = unique(wages$rgn_name),
+                  select_label = "Select region",
                   source_text = "Source: National Ocean Economics Program")),
-            
-            
-           # liv_ecoUI("one")),
     
     ## Tourism & recreation ##
     
@@ -83,8 +80,19 @@ dashboardPage(
             
             ## Tourism & Recreation tab title ##
             tab_title_ui(goal_text = "TOURISM & RECREATION",
-                         commitment_text = "opportunities for people to enjoy coastal areas through tourism and recreation")),
+                         commitment_text = "opportunities for people to enjoy coastal areas through tourism and recreation"),
     
+            ## Scores Map ##
+            map_ui(id = "tr_scores_map",
+                   title_text = "Tourism & Recreation Goal Scores",
+                   sub_title_text = ""),
+            
+            ## Employment ##
+            card_ui(id = "tr_jobs",
+                    title_text = "Jobs in Tourism",
+                    sub_title_text = "",
+                    source_text = "Source: National Ocean Economics Program")),
+        
     ## Biodiversity ##
     
     tabItem(tabName = "bio",

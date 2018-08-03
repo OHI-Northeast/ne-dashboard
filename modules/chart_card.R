@@ -107,6 +107,11 @@ card_ui <- function(id,
                             choices = select_choices,
                             label = p(select_label),
                             selected = selected)
+    } else if (select_type == "search") {
+      select <- selectizeInput(ns("select"),
+                               choices = select_choices,
+                               label = p(select_label),
+                               selected = selected)
     } else {
       select <- checkboxGroupInput(ns("select"),
                                    choices = select_choices,

@@ -1,8 +1,6 @@
 #global
 
-source(file.path('~/github/ne-prep/src/R/common.R'))  ### an OHI-NE specific version of common.R
-
-dir_anx <- file.path(dir_M, 'git-annex/neprep')
+#source(file.path('~/github/ne-prep/src/R/common.R'))  ### an OHI-NE specific version of common.R
 
 ## source modules
 source("modules/chart_card.R")
@@ -20,15 +18,15 @@ library(tidyverse)
 library(shinydashboard)
 
 ##shapefile
-rgns_leaflet <- rgns_simp %>%
-  st_transform(crs = '+proj=longlat +datum=WGS84') %>%
+rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%
+  sf::st_transform(crs = '+proj=longlat +datum=WGS84') %>%
   rename(region_id = rgn_id) #scores.csv uses region_id not rgn_id so this allows them to join
 
 ## Data sources (change this to be organized by goal and then alphabetically?)
 
 ## SCORES.CSV ##
 
-scores <- read_csv(file.path(dir_calc, "scores.csv"))
+scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/scores.csv")
 
 ## LE data ##
 

@@ -1,0 +1,10 @@
+name: ne-dashboard
+title:
+username:
+account: jafflerbach
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 394462
+bundleId: 1517150
+url: https://jafflerbach.shinyapps.io/ne-dashboard/
+when: 1533315258.30462

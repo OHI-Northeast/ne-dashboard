@@ -178,7 +178,8 @@ card_map <- function(input,
     output$plot <- renderLeaflet({
       # get color pal
       pal <- colorNumeric(palette = color_palette,
-                          domain = data_shp[[field]])
+                          domain = data_shp[[field]],
+                          na.color = "#00000000")
       
       # get popup
       popup_text <- paste("<h5><strong>", popup_title, "</strong>" , data_shp[[field]], "</h5>",
@@ -186,8 +187,8 @@ card_map <- function(input,
       
       leaflet(data_shp,
               options = leafletOptions(zoomControl = FALSE)) %>%
-        addPolygons(color = "#444444", 
-                    weight = 1, 
+        addPolygons(color = "#A9A9A9", 
+                    weight = 0.5, 
                     smoothFactor = 0.5,
                     opacity = 1.0, 
                     fillOpacity = 0.7,
@@ -221,7 +222,8 @@ card_map <- function(input,
       
       # get color pal
       pal <- colorNumeric(palette = color_palette,
-                          domain = selected_data()[[display_field]])
+                          domain = selected_data()[[display_field]],
+                          na.color = "#00000000")
       
       # get popup
       popup_text <- paste("<h5><strong>", popup_title, "</strong>" , selected_data()[[display_field]], "</h5>",
@@ -229,8 +231,8 @@ card_map <- function(input,
       
       leaflet(selected_data(),
               options = leafletOptions(zoomControl = FALSE)) %>%
-        addPolygons(color = "#444444", 
-                    weight = 1, 
+        addPolygons(color = "#A9A9A9", 
+                    weight = 0.5, 
                     smoothFactor = 0.5,
                     opacity = 1.0, 
                     fillOpacity = 0.7,

@@ -12,8 +12,8 @@ function(input, output, session) {
              display_field = "score",
              legend_title = "OHI Goal Score",
              popup_title = "Score:",
-             popup_add_field = "goal",
-             popup_add_field_title = "Goal:")
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
   
   ### Employment chart
   callModule(card_plot, "le_emp",
@@ -53,8 +53,8 @@ function(input, output, session) {
              field = "score",
              legend_title = "OHI Goal Score",
              popup_title = "Score:",
-             popup_add_field = "goal",
-             popup_add_field_title = "Goal:")
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
   
   ### Employment chart
   callModule(card_plot, "tr_jobs",

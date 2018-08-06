@@ -16,6 +16,7 @@ options(scipen = 999,
 ##libraries
 library(tidyverse)
 library(shinydashboard)
+library(RColorBrewer)
 
 ##shapefile
 rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%

@@ -165,7 +165,7 @@ card_map <- function(input,
                      field,
                      filter_field = NULL,
                      display_field = NULL,
-                     color_palette = "Spectral",
+                     color_palette = rev(colorRampPalette(brewer.pal(11, 'Spectral'))(255)),
                      legend_title = NA,
                      popup_title = NA,
                      popup_add_field = NA,
@@ -203,7 +203,8 @@ card_map <- function(input,
                   values = data_shp[[field]],
                   title = legend_title,
                   opacity = 1,
-                  layerId = "colorLegend") %>%
+                  layerId = "colorLegend",
+                  labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))) %>%
         addProviderTiles(providers$CartoDB.Positron) %>%
       setView(-70.0589, 41.5, zoom = 6)
     })
@@ -248,7 +249,8 @@ card_map <- function(input,
                   values = selected_data()[[display_field]],
                   title = legend_title,
                   opacity = 1,
-                  layerId = "colorLegend") %>%
+                  layerId = "colorLegend",
+                  labFormat = labelFormat(transform = function(x) sort(x, decreasing = TRUE))) %>%
         addProviderTiles(providers$CartoDB.Positron) %>%
         setView(-70.0589, 41.5, zoom = 6)
     })

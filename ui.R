@@ -52,7 +52,8 @@ dashboardPage(
                  select_type = "drop_down",
                  select_location = "above",
                  select_choices = unique(le_scores$goal),
-                 select_label = "Select scores to view"),
+                 select_label = "Select scores to view",
+                 box_width = 6),
             
           ## Employment ##
           card_ui(id = "le_emp",

@@ -74,13 +74,14 @@ map_ui <- function(id,
                    select_choices = c(""),
                    select_label = NULL, 
                    selected = NULL,
-                   source_text = NULL) {
+                   source_text = NULL,
+                   box_width = 12) {
   
   ns <- NS(id)
   
   # Output w/o selection
   if (missing(select_type) == TRUE) {
-    items <- leafletOutput(ns("plot"))
+    items <- leafletOutput(ns("plot"), height=450)
   } 
   else {
     # Select layout
@@ -105,9 +106,9 @@ map_ui <- function(id,
     # Chart layout
     if (select_location == "above") {
       items <- list(select,
-                    leafletOutput(ns("plot")))
+                    leafletOutput(ns("plot"), height=450))
     } else if (select_location == "below") {
-      items <- list(leafletOutput(ns("plot")),
+      items <- list(leafletOutput(ns("plot"), height=450),
                     select)
     }
   }
@@ -118,7 +119,7 @@ map_ui <- function(id,
   # Return tagList with box content  
   fluidRow(
     tagList(
-      box(box_content, width = 12)
+      box(box_content, width = box_width)
     )
   )
   
@@ -203,7 +204,8 @@ card_map <- function(input,
                   title = legend_title,
                   opacity = 1,
                   layerId = "colorLegend") %>%
-        addProviderTiles(providers$CartoDB.Positron) 
+        addProviderTiles(providers$CartoDB.Positron) %>%
+      setView(-70.0589, 41.5, zoom = 6)
     })
     
   } else {
@@ -247,7 +249,8 @@ card_map <- function(input,
                   title = legend_title,
                   opacity = 1,
                   layerId = "colorLegend") %>%
-        addProviderTiles(providers$CartoDB.Positron) 
+        addProviderTiles(providers$CartoDB.Positron) %>%
+        setView(-70.0589, 41.5, zoom = 6)
     })
     
   }

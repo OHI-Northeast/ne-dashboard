@@ -8,7 +8,7 @@ dashboardPage(
   
 ### Dashboard sidebar  
   dashboardSidebar(
-    sidebarMenu(
+    sidebarMenu(style = "position: fixed; overflow: visible;",
       menuItem("Index", tabName = "dashboard", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Livelihoods & Economies", tabName = "liveco", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Tourism & Recreation", tabName = "tr", badgeLabel = "draft", badgeColor = "orange"),

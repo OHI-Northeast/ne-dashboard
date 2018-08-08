@@ -5,6 +5,6 @@ account: jafflerbach
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 394462
-bundleId: 1517150
+bundleId: 1525311
 url: https://jafflerbach.shinyapps.io/ne-dashboard/
-when: 1533315258.30462
+when: 1533756421.46248

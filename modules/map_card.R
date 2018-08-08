@@ -116,13 +116,8 @@ map_ui <- function(id,
   # Put together in box
   box_content <- list(h4(title_text), p(sub_title_text), items, p(source_text))
   
-  # Return tagList with box content  
-  fluidRow(
-    tagList(
-      box(box_content, width = box_width)
-    )
-  )
-  
+  # return box
+  tagList(box(box_content, width = box_width))
 }
 
 #'

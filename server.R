@@ -6,7 +6,7 @@ function(input, output, session) {
   
   ## L&E Score map ##
   callModule(card_map, "le_scores_map",
-             data = le_scores,
+             data = le_scores_map,
              field = "input",
              filter_field = goal,
              display_field = "score",
@@ -14,6 +14,21 @@ function(input, output, session) {
              popup_title = "Score:",
              popup_add_field = "rgn_name",
              popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "le_scores",
+             df = le_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             filter_field = "goal",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
   
   ### Employment chart
   callModule(card_plot, "le_emp",
@@ -49,12 +64,26 @@ function(input, output, session) {
   
   ## TR Score map ##
   callModule(card_map, "tr_scores_map",
-             data = tr_scores,
+             data = tr_scores_map,
              field = "score",
              legend_title = "OHI Goal Score",
              popup_title = "Score:",
              popup_add_field = "rgn_name",
              popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "tr_scores",
+             df = tr_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
   
   ### Employment chart
   callModule(card_plot, "tr_jobs",
@@ -69,5 +98,45 @@ function(input, output, session) {
                                    "<br>Year:", Year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Number of jobs")
+  
+  ## Clean Waters ##
+  
+  ## CW Score map ##
+  callModule(card_map, "cw_scores_map",
+             data = cw_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "cw_scores",
+             df = cw_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ### CW layers chart
+  callModule(card_plot, "cw_layers",
+             df = cw_layers,
+             x = "year",
+             y = "score",
+             color_group = "layer",
+             filter_field = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Score:", score,
+                                   "<br>Layer:", layer,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Layer Score")
 
   }

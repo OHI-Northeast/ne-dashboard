@@ -1,7 +1,5 @@
 #global
 
-#source(file.path('~/github/ne-prep/src/R/common.R'))  ### an OHI-NE specific version of common.R
-
 ## source modules
 source("modules/chart_card.R")
 source("modules/map_card.R")
@@ -25,9 +23,14 @@ rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%
 
 ## Data sources (change this to be organized by goal and then alphabetically?)
 
+rgn_data <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/spatial/regions_list.csv") %>%
+  select(-area_km2)
+
 ## SCORES.CSV ##
 
-scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/scores.csv")
+scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/scores.csv") %>%
+  left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
+  mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name))
 
 ## LE data ##
 
@@ -35,8 +38,8 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
 ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
 le_scores <- scores %>% 
   filter(goal %in% c("LIV", "ECO", "LE"),
-         dimension == "score",
-         year == 2015)
+         dimension == "score")
+le_scores_map <- filter(le_scores, year == 2015)
 
 ### jobs data ###
 jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/jobs_sector.csv")
@@ -53,8 +56,20 @@ gdp <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-page
 ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
 tr_scores <- scores %>% 
   filter(goal == "TR",
-         dimension == "score",
-         year == 2015)
+         dimension == "score")
+tr_scores_map <- filter(tr_scores, year == 2015)
 
 tr_jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
+
+## CW data ##
+cw_scores <- scores %>%
+  filter(goal == "CW",
+         dimension == "score")
+cw_scores_map <- filter(cw_scores, year == 2015)
+
+cw_layers <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv") %>%
+  select(-X1) %>%
+  left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
+  mutate(score = value * 100)
+
 

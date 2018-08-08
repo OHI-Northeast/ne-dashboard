@@ -75,7 +75,8 @@ card_ui <- function(id,
                     select_choices = c(""),
                     select_label = NULL, 
                     selected = NULL,
-                    source_text = NULL) {
+                    source_text = NULL,
+                    box_width = 12) {
   
   ns <- NS(id)
   
@@ -123,9 +124,9 @@ card_ui <- function(id,
     # Chart layout
     if (select_location == "above") {
       items <- list(select,
-                    plotlyOutput(ns("plot")))
+                    plotlyOutput(ns("plot"), height=450))
     } else if (select_location == "below") {
-      items <- list(plotlyOutput(ns("plot")),
+      items <- list(plotlyOutput(ns("plot"), height=450),
                     select)
     }
   }
@@ -133,13 +134,7 @@ card_ui <- function(id,
   # Put together in box
   box_content <- list(h4(title_text), p(sub_title_text), items, p(source_text))
   
-  # Return tagList with box content  
-  fluidRow(
-    tagList(
-      box(box_content, width = 12)
-    )
-  )
-  
+  tagList(box(box_content, width = box_width))
 }
 
 

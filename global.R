@@ -16,6 +16,14 @@ library(tidyverse)
 library(shinydashboard)
 library(RColorBrewer)
 
+##color palette ----
+reds <-  grDevices::colorRampPalette(
+  c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"),
+  space="Lab")(85)
+blues <-  grDevices::colorRampPalette(
+  c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(15)
+myPalette <-  c(reds, blues)
+
 ##shapefile
 rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%
   sf::st_transform(crs = '+proj=longlat +datum=WGS84') %>%

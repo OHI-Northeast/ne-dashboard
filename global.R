@@ -38,7 +38,8 @@ rgn_data <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/
 
 scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/scores.csv") %>%
   left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
-  mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name))
+  mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name)) %>%
+  filter(year > 2007)
 
 ## LE data ##
 
@@ -47,7 +48,7 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
 le_scores <- scores %>% 
   filter(goal %in% c("LIV", "ECO", "LE"),
          dimension == "score")
-le_scores_map <- filter(le_scores, year == 2015)
+le_scores_map <- filter(le_scores, year == 2017)
 
 ### jobs data ###
 jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/jobs_sector.csv")
@@ -65,7 +66,7 @@ gdp <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-page
 tr_scores <- scores %>% 
   filter(goal == "TR",
          dimension == "score")
-tr_scores_map <- filter(tr_scores, year == 2015)
+tr_scores_map <- filter(tr_scores, year == 2017)
 
 tr_jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
 
@@ -73,7 +74,7 @@ tr_jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-
 cw_scores <- scores %>%
   filter(goal == "CW",
          dimension == "score")
-cw_scores_map <- filter(cw_scores, year == 2015)
+cw_scores_map <- filter(cw_scores, year == 2017)
 
 cw_layers <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv") %>%
   select(-X1) %>%

@@ -52,14 +52,18 @@ dashboardPage(
                    sub_title_text = "",
                    select_type = "drop_down",
                    select_location = "above",
-                   select_choices = unique(le_scores$goal),
-                   select_label = "Select scores to view",
+                   select_choices = c("Economies sub-goal" = "ECO",
+                                      "Livelihoods sub-goal" = "LIV",
+                                      "Livelihoods & Economies goal" = "LE"),
+                   select_label = "Select scores to view. Only scores from the most recent assessment (2017) are shown",
                    box_width = 6),
 
             card_ui(id = "le_scores",
                     title_text = "OHI Scores",
                     select_type = "drop_down",
-                    select_choices = unique(le_scores$goal),
+                    select_choices = c("Economies sub-goal" = "ECO",
+                                       "Livelihoods sub-goal" = "LIV",
+                                       "Livelihoods & Economies goal" = "LE"),
                     select_label = "Select scores to view",
                     box_width = 6)
             ),
@@ -98,7 +102,7 @@ dashboardPage(
             ## Scores Map ##
             map_ui(id = "tr_scores_map",
                    title_text = "Current Scores",
-                   sub_title_text = "This map shows scores from the most recent assessed year (2015)",
+                   sub_title_text = "This map shows scores from the most recent assessed year (2017)",
                    box_width = 6),
             
             card_ui(id = "tr_scores",
@@ -124,7 +128,7 @@ dashboardPage(
               ## Scores Map ##
               map_ui(id = "cw_scores_map",
                      title_text = "Current Scores",
-                     sub_title_text = "This map shows scores from the most recent assessed year (2015)",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)",
                      box_width = 6),
               
               card_ui(id = "cw_scores",

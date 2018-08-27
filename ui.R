@@ -73,7 +73,7 @@ dashboardPage(
                     box_width = 6)
             ),
           
-          ## Housing Burden plan links ##
+          ## Text boxes with links ##
           fluidRow(
             text_links_default(title = "HOW WE CALCULATE THIS GOAL",
                                url = "http://ohi-science.org/goals/#livelihoods-and-economies"),

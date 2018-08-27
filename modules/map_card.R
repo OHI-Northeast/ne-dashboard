@@ -75,7 +75,7 @@ map_ui <- function(id,
                    select_label = NULL, 
                    selected = NULL,
                    source_text = NULL,
-                   box_width = 12) {
+                   box_width = NULL) {
   
   ns <- NS(id)
   

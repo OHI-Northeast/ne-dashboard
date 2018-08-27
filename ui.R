@@ -9,7 +9,8 @@ dashboardPage(
 ### Dashboard sidebar  
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Index", tabName = "dashboard", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Welcome", tabName = "welcome", badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Index", tabName = "index", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Livelihoods & Economies", tabName = "liveco", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Tourism & Recreation", tabName = "tr", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Clean Waters", tabName = "cw", badgeLabel = "draft", badgeColor = "orange"),
@@ -33,8 +34,12 @@ dashboardPage(
 
   tabItems(
     
+    ## Welcome landing page##
+    tabItem(tabName = "welcome",
+      h2("Welcome to the Northeast Ocean Health Index")),
+    
     ## Overall index scores ##
-    tabItem(tabName = "dashboard",
+    tabItem(tabName = "index",
             h2("Index scores")),
     
     ## Livelihood and economies ## 
@@ -67,6 +72,17 @@ dashboardPage(
                     select_label = "Select scores to view",
                     box_width = 6)
             ),
+          
+          ## Housing Burden plan links ##
+          fluidRow(
+            text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                               url = "http://ohi-science.org/goals/#livelihoods-and-economies"),
+            
+            text_links_default(title = "JOBS DATA PREP",
+                               url = "https://ohi-northeast.github.io/ne-prep/prep/liv/jobs.html"),
+            
+            text_links_default(title = "WAGES DATA PREP",
+                               url = "https://ohi-northeast.github.io/ne-prep/prep/liv/wages.html")),
           
           fluidRow(
             ## Employment ##

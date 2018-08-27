@@ -29,3 +29,9 @@ h1, h4, h2, h3{
 	border: solid #006bcc;
   border-width: 1px 1px;
 }
+
+/* tesxt links */
+.text_link_button {
+	text-align: center;
+	border-color: #3c8dbc;
+}

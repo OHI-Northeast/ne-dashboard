@@ -6,6 +6,7 @@ source("modules/map_card.R")
 
 ## source functions
 source("functions/tab_title.R")
+source("functions/text_links.R")
 
 ## no scientific notation and round to 2 decimals
 options(scipen = 999,

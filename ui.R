@@ -3,12 +3,12 @@ source("global.R")
 ###Setting up the dashboard page
 dashboardPage(
   dashboardHeader(
-    title = "Ocean Health Index for the US Northeast",
-    titleWidth = 375),
+    title = "OHI for the US Northeast",
+    titleWidth = 300),
   
 ### Dashboard sidebar  
   dashboardSidebar(
-    sidebarMenu(style = "position: fixed; overflow: visible;",
+    sidebarMenu(
       menuItem("Index", tabName = "dashboard", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Livelihoods & Economies", tabName = "liveco", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Tourism & Recreation", tabName = "tr", badgeLabel = "draft", badgeColor = "orange"),
@@ -20,7 +20,7 @@ dashboardPage(
       menuItem("Coastal Protection & Carbon Storage", tabName = "cpcs", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Pressures", tabName = "pressures", badgeLabel = "draft", badgeColor = "orange")
   ),
-  width = 350),
+  width = 300),
   
   
 ### Dashboard Body
@@ -28,7 +28,7 @@ dashboardPage(
     #adding this tag to make header longer, from here:https://rstudio.github.io/shinydashboard/appearance.html#long-titles
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")),
-    
+      tags$script(HTML("$('body').addClass('fixed');")), #this locks side and top bars
 ### Side bar tabs
 
   tabItems(
@@ -50,7 +50,7 @@ dashboardPage(
             map_ui(id = "le_scores_map",
                    title_text = "Livelihoods & Economies Goal Scores",
                    sub_title_text = "",
-                   select_type = "drop_down",
+                   select_type = "radio",
                    select_location = "above",
                    select_choices = c("Economies sub-goal" = "ECO",
                                       "Livelihoods sub-goal" = "LIV",
@@ -60,7 +60,7 @@ dashboardPage(
 
             card_ui(id = "le_scores",
                     title_text = "OHI Scores",
-                    select_type = "drop_down",
+                    select_type = "radio",
                     select_choices = c("Economies sub-goal" = "ECO",
                                        "Livelihoods sub-goal" = "LIV",
                                        "Livelihoods & Economies goal" = "LE"),
@@ -73,7 +73,7 @@ dashboardPage(
             card_ui(id = "le_emp",
                     title_text = "Employment",
                     sub_title_text = "",
-                    select_type = "drop_down",
+                    select_type = "radio",
                     select_location = "above",
                     select_choices = unique(jobs$rgn_name),
                     select_label = "Select region",
@@ -84,7 +84,7 @@ dashboardPage(
             card_ui(id = "le_wages",
                     title_text = "Average annual wages",
                     sub_title_text = "Wages in 2012 US Dollars",
-                    select_type = "drop_down",
+                    select_type = "radio",
                     select_location = "above",
                     select_choices = unique(wages$rgn_name),
                     select_label = "Select region",
@@ -141,7 +141,7 @@ dashboardPage(
               card_ui(id = "cw_layers",
                       title_text = "Layers used in Clean Waters Goal",
                       sub_title_text = "",
-                      select_type = "drop_down",
+                      select_type = "radio",
                       select_location = "above",
                       select_choices = c("Connecticut", "Maine", "Massachusetts-Gulf of Maine", "Massachusetts-Virginian", "New Hampshire", "New York", "Rhode Island"),
                       selected = "Connecticut",

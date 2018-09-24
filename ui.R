@@ -11,13 +11,13 @@ dashboardPage(
     sidebarMenu(
       menuItem("Welcome", tabName = "welcome", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Index", tabName = "index", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Clean Waters", tabName = "cw", badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Food Provision", tabName = "fp", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Livelihoods & Economies", tabName = "liveco", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Tourism & Recreation", tabName = "tr", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Clean Waters", tabName = "cw", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Biodiversity", tabName = "bio", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Sense of Place", tabName = "sop", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Local Fishing & Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Food Provision", tabName = "fp", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Coastal Protection & Carbon Storage", tabName = "cpcs", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Pressures", tabName = "pressures", badgeLabel = "draft", badgeColor = "orange")
   ),
@@ -41,6 +41,81 @@ dashboardPage(
     ## Overall index scores ##
     tabItem(tabName = "index",
             h2("Index scores")),
+    
+    ## Clean Waters ##
+    
+    tabItem(tabName = "cw",
+            ## Tourism & Recreation tab title ##
+            tab_title_ui(goal_text = "CLEAN WATERS",
+                         commitment_text = "coastal waters which are free of contaminants"),
+            
+            fluidRow(
+              ## Scores Map ##
+              map_ui(id = "cw_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)",
+                     box_width = 6),
+              
+              card_ui(id = "cw_scores",
+                      title_text = "Scores over time",
+                      sub_title_text = "Explore scores for each region over time",
+                      box_width = 6)),
+            
+            fluidRow(  
+              ## Water Quality Index ##
+              card_ui(id = "cw_layers",
+                      title_text = "Layers used in Clean Waters Goal",
+                      sub_title_text = "",
+                      select_type = "radio",
+                      select_location = "above",
+                      select_choices = c("Connecticut", "Maine", "Massachusetts-Gulf of Maine", "Massachusetts-Virginian", "New Hampshire", "New York", "Rhode Island"),
+                      selected = "Connecticut",
+                      select_label = "Select region",
+                      source_text = "Source: multiple (fill this in)"))),
+    
+    ## Food Provision ## 
+    tabItem(tabName = "fp",
+            
+            ## Livelihoods & Economies tab title ##
+            tab_title_ui(goal_text = "FOOD PROVISION: Wild-Caught Fisheries",
+                         commitment_text = "sustainably harvested seafood from wild-caught fisheries"),
+            
+            ##First row with scores map and scores over time chart
+            fluidRow(
+              
+              ## Scores Map ##
+              map_ui(id = "fis_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)",
+                     box_width = 6),
+              
+              card_ui(id = "fis_scores",
+                      title_text = "Scores over time",
+                      sub_title_text = "Explore scores for each region over time",
+                      box_width = 6)),
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url = "http://ohi-science.org/goals/#food-provision"),
+              
+              text_links_default(title = "CATCH DATA PREP",
+                                 url = "https://ohi-northeast.github.io/ne-prep/prep/fis/fish_catch.html"),
+              
+              text_links_default(title = "STOCK STATUS DATA PREP",
+                                 url = "https://ohi-northeast.github.io/ne-prep/prep/fis/stock_status.html")),
+            
+            fluidRow(
+              ## NOAA landings ##
+              card_ui(id = "fis_noaa_catch",
+                      title_text = "Landings",
+                      sub_title_text = "Landings shown are for assessed stocks only",
+                      select_type = "radio",
+                      select_location = "above",
+                      select_choices = unique(fis_noaa_catch$state),
+                      select_label = "Select region",
+                      source_text = "Source: National Ocean and Atmospheric Administration"))
+          ),
     
     ## Livelihood and economies ## 
     tabItem(tabName = "liveco",
@@ -133,38 +208,7 @@ dashboardPage(
                     sub_title_text = "",
                     source_text = "Source: National Ocean Economics Program"))),
     
-    ## Clean Waters ##
-    
-    tabItem(tabName = "cw",
-            ## Tourism & Recreation tab title ##
-            tab_title_ui(goal_text = "CLEAN WATERS",
-                         commitment_text = "coastal waters which are free of contaminants"),
-            
-            fluidRow(
-              ## Scores Map ##
-              map_ui(id = "cw_scores_map",
-                     title_text = "Current Scores",
-                     sub_title_text = "This map shows scores from the most recent assessed year (2017)",
-                     box_width = 6),
-              
-              card_ui(id = "cw_scores",
-                      title_text = "Scores over time",
-                      sub_title_text = "Explore scores for each region over time",
-                      box_width = 6)),
-            
-            fluidRow(  
-              ## Water Quality Index ##
-              card_ui(id = "cw_layers",
-                      title_text = "Layers used in Clean Waters Goal",
-                      sub_title_text = "",
-                      select_type = "radio",
-                      select_location = "above",
-                      select_choices = c("Connecticut", "Maine", "Massachusetts-Gulf of Maine", "Massachusetts-Virginian", "New Hampshire", "New York", "Rhode Island"),
-                      selected = "Connecticut",
-                      select_label = "Select region",
-                      source_text = "Source: multiple (fill this in)"))),
-    
-        
+ 
     ## Biodiversity ##
     
     tabItem(tabName = "bio",
@@ -188,14 +232,6 @@ dashboardPage(
             ## Local Fishing & Resource Access Opportunities tab title ##
             tab_title_ui(goal_text = "LOCAL FISHING & RESOURCE ACCESS OPPORTUNITIES",
                          commitment_text = "opportunities for Native Americans and local community members to access local natural resources")),
-    
-    ## Food Provision ##
-    
-    tabItem(tabName = "fp",
-            
-            ## Food Provision tab title ##
-            tab_title_ui(goal_text = "FOOD PROVISION",
-                         commitment_text = "sustainably harvested seafood from wild-caught fisheries and mariculture")),
     
     ## Coastal Protection & Carbon Storage ##
     

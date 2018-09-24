@@ -1,6 +1,86 @@
 
 function(input, output, session) {
   
+  ## Clean Waters ##
+  
+  ## CW Score map ##
+  callModule(card_map, "cw_scores_map",
+             data = cw_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "cw_scores",
+             df = cw_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ### CW layers chart
+  callModule(card_plot, "cw_layers",
+             df = cw_layers,
+             x = "year",
+             y = "score",
+             color_group = "layer",
+             filter_field = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Score:", score,
+                                   "<br>Layer:", layer,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Layer Score")
+  
+  ## Food Provision ##
+  
+  ## FIS Score map ##
+  callModule(card_map, "fis_scores_map",
+             data = fis_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "fis_scores",
+             df = fis_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ### NOAA landings chart
+  callModule(card_plot, "fis_noaa_catch",
+             df = fis_noaa_catch,
+             x = "year",
+             y = "pounds",
+             color_group = "species",
+             filter_field = "state",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Species:", species,
+                                   "<br>Pounds:", pounds,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Pounds")
+  
   
   ## Livelihoods & Economies ##
   
@@ -98,45 +178,5 @@ function(input, output, session) {
                                    "<br>Year:", Year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Number of jobs")
-  
-  ## Clean Waters ##
-  
-  ## CW Score map ##
-  callModule(card_map, "cw_scores_map",
-             data = cw_scores_map,
-             field = "score",
-             legend_title = "OHI Goal Score",
-             popup_title = "Score:",
-             popup_add_field = "rgn_name",
-             popup_add_field_title = "")
-  
-  ## Scores time series chart ##
-  callModule(card_plot, "cw_scores",
-             df = cw_scores,
-             x = "year",
-             y = "score",
-             color_group = "rgn_name",
-             plot_type = "scatter",
-             mode = "lines+markers",
-             tooltip_text = ~paste("Goal score:", score,
-                                   "<br>Region:", rgn_name,
-                                   "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
-             yaxis_label = "Score")
-  
-  ### CW layers chart
-  callModule(card_plot, "cw_layers",
-             df = cw_layers,
-             x = "year",
-             y = "score",
-             color_group = "layer",
-             filter_field = "rgn_name",
-             plot_type = "scatter",
-             mode = "lines+markers",
-             tooltip_text = ~paste("Score:", score,
-                                   "<br>Layer:", layer,
-                                   "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
-             yaxis_label = "Layer Score")
 
   }

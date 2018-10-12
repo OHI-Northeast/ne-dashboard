@@ -183,7 +183,7 @@ card_map <- function(input,
                           "<h5><strong>", popup_add_field_title, "</strong>", data_shp[[popup_add_field]], "</h5>", sep=" ")
       
       leaflet(data_shp,
-              options = leafletOptions(zoomControl = FALSE)) %>%
+              options = leafletOptions()) %>%
         addPolygons(color = "#A9A9A9", 
                     weight = 0.5, 
                     smoothFactor = 0.5,
@@ -223,7 +223,7 @@ card_map <- function(input,
                           "<h5><strong>", popup_add_field_title, "</strong>", selected_data()[[popup_add_field]], "</h5>", sep=" ")
       
       leaflet(selected_data(),
-              options = leafletOptions(zoomControl = FALSE)) %>%
+              options = leafletOptions()) %>%
         addPolygons(color = "#A9A9A9", 
                     weight = 0.5, 
                     smoothFactor = 0.5,

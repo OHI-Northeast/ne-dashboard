@@ -45,7 +45,7 @@ dashboardPage(
     ## Clean Waters ##
     
     tabItem(tabName = "cw",
-            ## Tourism & Recreation tab title ##
+            ## Clean Waters tab title ##
             tab_title_ui(goal_text = "CLEAN WATERS",
                          commitment_text = "coastal waters which are free of contaminants"),
             
@@ -53,16 +53,14 @@ dashboardPage(
               ## Scores Map ##
               map_ui(id = "cw_scores_map",
                      title_text = "Current Scores",
-                     sub_title_text = "This map shows scores from the most recent assessed year (2017)",
-                     box_width = 6),
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
               
               card_ui(id = "cw_scores",
                       title_text = "Scores over time",
-                      sub_title_text = "Explore scores for each region over time",
-                      box_width = 6)),
+                      sub_title_text = "Explore scores for each region over time")),
             
-            fluidRow(  
-              ## Water Quality Index ##
+            fluidRow( 
+              ## CW layers ##
               card_ui(id = "cw_layers",
                       title_text = "Layers used in Clean Waters Goal",
                       sub_title_text = "",
@@ -76,7 +74,7 @@ dashboardPage(
     ## Food Provision ## 
     tabItem(tabName = "fp",
             
-            ## Livelihoods & Economies tab title ##
+            ## Food Provision tab title ##
             tab_title_ui(goal_text = "FOOD PROVISION: Wild-Caught Fisheries",
                          commitment_text = "sustainably harvested seafood from wild-caught fisheries"),
             
@@ -86,13 +84,11 @@ dashboardPage(
               ## Scores Map ##
               map_ui(id = "fis_scores_map",
                      title_text = "Current Scores",
-                     sub_title_text = "This map shows scores from the most recent assessed year (2017)",
-                     box_width = 6),
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
               
               card_ui(id = "fis_scores",
                       title_text = "Scores over time",
-                      sub_title_text = "Explore scores for each region over time",
-                      box_width = 6)),
+                      sub_title_text = "Explore scores for each region over time")),
             
             ## Text boxes with links ##
             fluidRow(
@@ -135,8 +131,7 @@ dashboardPage(
                    select_choices = c("Economies sub-goal" = "ECO",
                                       "Livelihoods sub-goal" = "LIV",
                                       "Livelihoods & Economies goal" = "LE"),
-                   select_label = "Select scores to view. Only scores from the most recent assessment (2017) are shown",
-                   box_width = 6),
+                   select_label = "Select scores to view. Only scores from the most recent assessment (2017) are shown"),
 
             card_ui(id = "le_scores",
                     title_text = "OHI Scores",
@@ -144,8 +139,7 @@ dashboardPage(
                     select_choices = c("Economies sub-goal" = "ECO",
                                        "Livelihoods sub-goal" = "LIV",
                                        "Livelihoods & Economies goal" = "LE"),
-                    select_label = "Select scores to view",
-                    box_width = 6)
+                    select_label = "Select scores to view")
             ),
           
           ## Text boxes with links ##
@@ -193,13 +187,11 @@ dashboardPage(
             ## Scores Map ##
             map_ui(id = "tr_scores_map",
                    title_text = "Current Scores",
-                   sub_title_text = "This map shows scores from the most recent assessed year (2017)",
-                   box_width = 6),
+                   sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
             
             card_ui(id = "tr_scores",
                     title_text = "Scores over time",
-                    sub_title_text = "Explore scores for each region over time",
-                    box_width = 6)),
+                    sub_title_text = "Explore scores for each region over time")),
           
         fluidRow(  
             ## Employment ##

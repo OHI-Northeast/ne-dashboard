@@ -75,8 +75,7 @@ card_ui <- function(id,
                     select_choices = c(""),
                     select_label = NULL, 
                     selected = NULL,
-                    source_text = NULL,
-                    box_width = 12) {
+                    source_text = NULL) {
   
   ns <- NS(id)
   
@@ -134,7 +133,7 @@ card_ui <- function(id,
   # Put together in box
   box_content <- list(h4(title_text), p(sub_title_text), items, p(source_text))
   
-  tagList(box(box_content, width = box_width))
+  tagList(box(box_content))
 }
 
 

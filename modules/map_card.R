@@ -74,8 +74,7 @@ map_ui <- function(id,
                    select_choices = c(""),
                    select_label = NULL, 
                    selected = NULL,
-                   source_text = NULL,
-                   box_width = NULL) {
+                   source_text = NULL) {
   
   ns <- NS(id)
   
@@ -117,7 +116,7 @@ map_ui <- function(id,
   box_content <- list(h4(title_text), p(sub_title_text), items, p(source_text))
   
   # return box
-  tagList(box(box_content, width = box_width))
+  tagList(box(box_content))
 }
 
 #'

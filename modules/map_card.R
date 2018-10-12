@@ -188,7 +188,7 @@ card_map <- function(input,
                     weight = 0.5, 
                     smoothFactor = 0.5,
                     opacity = 1.0, 
-                    fillOpacity = 0.7,
+                    fillOpacity = 0.85,
                     fillColor = pal(data_shp[[field]]),
                     popup = popup_text, 
                     highlightOptions = highlightOptions(color = "white", 
@@ -196,9 +196,9 @@ card_map <- function(input,
                                                         bringToFront = TRUE)) %>% 
         addLegend("bottomright",
                   pal = pal,
-                  values = data_shp[[field]],
+                  values = c(0:100),
                   title = legend_title,
-                  opacity = 1,
+                  opacity = 0.85,
                   layerId = "colorLegend") %>%
         addProviderTiles(providers$CartoDB.Positron) %>%
       setView(-70.0589, 41.5, zoom = 6)
@@ -228,7 +228,7 @@ card_map <- function(input,
                     weight = 0.5, 
                     smoothFactor = 0.5,
                     opacity = 1.0, 
-                    fillOpacity = 0.7,
+                    fillOpacity = 0.85,
                     fillColor = pal(selected_data()[[display_field]]),
                     popup = popup_text, 
                     highlightOptions = highlightOptions(color = "white", 
@@ -236,9 +236,9 @@ card_map <- function(input,
                                                         bringToFront = TRUE)) %>% 
         addLegend("bottomright",
                   pal = pal,
-                  values = selected_data()[[display_field]],
+                  values = c(0:100),
                   title = legend_title,
-                  opacity = 1,
+                  opacity = 0.85,
                   layerId = "colorLegend") %>%
         addProviderTiles(providers$CartoDB.Positron) %>%
         setView(-70.0589, 41.5, zoom = 6)

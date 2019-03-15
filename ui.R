@@ -70,12 +70,13 @@ dashboardPage(
               card_ui(id = "cw_layers",
                       title_text = "Layers used in Clean Waters Goal",
                       sub_title_text = "",
-                      select_type = "radio",
+                      select_type = "drop_down",
                       select_location = "above",
                       select_choices = c("Connecticut", "Maine", "Massachusetts-Gulf of Maine", "Massachusetts-Virginian", "New Hampshire", "New York", "Rhode Island"),
                       selected = "Connecticut",
                       select_label = "Select region",
-                      source_text = "Source: multiple (fill this in)"))),
+                      source_text = "Source: multiple (fill this in)",
+                      box_width = 12))),
     
     ## Food Provision ##
     tabItem(tabName = "fp",
@@ -119,11 +120,12 @@ dashboardPage(
               card_ui(id = "fis_noaa_catch",
                       title_text = "Landings",
                       sub_title_text = "Landings shown are for assessed stocks only",
-                      select_type = "radio",
+                      select_type = "drop_down",
                       select_location = "above",
                       select_choices = unique(fis_noaa_catch$rgn_name),
                       select_label = "Select region",
-                      source_text = "Source: National Ocean and Atmospheric Administration"))
+                      source_text = "Source: National Ocean and Atmospheric Administration",
+                      box_width = 12))
           ),
     
     ### Mariculture ###
@@ -178,18 +180,18 @@ dashboardPage(
             card_ui(id = "le_emp",
                     title_text = "Employment",
                     sub_title_text = "",
-                    select_type = "radio",
+                    select_type = "drop_down",
                     select_location = "above",
                     select_choices = unique(jobs$rgn_name),
                     select_label = "Select region",
-                    source_text = "Source: National Ocean Economics Program")),
+                    source_text = "Source: National Ocean Economics Program"),
           
-          fluidRow(
+         
             ## Wages ##
             card_ui(id = "le_wages",
                     title_text = "Average annual wages",
                     sub_title_text = "Wages in 2012 US Dollars",
-                    select_type = "radio",
+                    select_type = "drop_down",
                     select_location = "above",
                     select_choices = unique(wages$rgn_name),
                     select_label = "Select region",
@@ -218,7 +220,8 @@ dashboardPage(
             card_ui(id = "tr_jobs",
                     title_text = "Jobs in Tourism",
                     sub_title_text = "",
-                    source_text = "Source: National Ocean Economics Program"))),
+                    source_text = "Source: National Ocean Economics Program",
+                    box_width = 12))),
     
  
     ## Biodiversity ##

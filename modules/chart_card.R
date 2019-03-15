@@ -93,7 +93,7 @@ card_ui <- function(id,
   
   # Output w/o selection
   if (missing(select_type) == TRUE) {
-    items <- plotlyOutput(ns("plot"))
+    items <- plotlyOutput(ns("plot"), height = 450)
   } 
   else {
     # Select layout

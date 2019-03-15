@@ -7,6 +7,7 @@ source("modules/map_card.R")
 ## source functions
 source("functions/tab_title.R")
 source("functions/text_links.R")
+source("functions/convertMenuItem.R")
 
 ## no scientific notation and round to 2 decimals
 options(scipen = 999,
@@ -50,13 +51,11 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
   fis_scores_map <- filter(fis_scores, year == 2017)
 
  #for now I'm removing non-assessed catch but we should probably consider a way to display both assessed/unassessed stock catch values
-  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/noaa_catch_dashboard.csv") %>% select(-X1) %>%
-    distinct() %>%
-    filter(assessed == 1)
+  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/noaa_catch_dashboard.csv") %>% 
+    filter(!is.na(score))
 
   ## LE data ##
 
-  ### Here we want the scores for LIV, ECO and LE.
   ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
   le_scores <- scores %>% 
     filter(goal %in% c("LIV", "ECO", "LE"),
@@ -74,7 +73,6 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
 
 ## TR data ##
 
-  ### Here we want the scores for LIV, ECO and LE.
   ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
   tr_scores <- scores %>% 
     filter(goal == "TR",
@@ -84,14 +82,19 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
   tr_jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
 
 ## CW data ##
-cw_scores <- scores %>%
-  filter(goal == "CW",
-         dimension == "score")
-cw_scores_map <- filter(cw_scores, year == 2017)
+  cw_scores <- scores %>%
+    filter(goal == "CW",
+           dimension == "score")
+  cw_scores_map <- filter(cw_scores, year == 2017)
+  
+  cw_layers <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv") %>%
+    select(-X1) %>%
+    left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
+    mutate(score = value * 100)
 
-cw_layers <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv") %>%
-  select(-X1) %>%
-  left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
-  mutate(score = value * 100)
-
-
+## SPP data ##
+  spp_scores <- scores %>%
+    filter(goal == "SPP",
+           dimension == "score")
+  
+  spp_scores_map <- filter(spp_scores, year == 2017)

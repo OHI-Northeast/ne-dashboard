@@ -70,16 +70,16 @@ function(input, output, session) {
   callModule(card_plot, "fis_noaa_catch",
              df = fis_noaa_catch,
              x = "year",
-             y = "pounds",
+             y = "catch",
              color_group = "species",
-             filter_field = "state",
+             filter_field = "rgn_name",
              plot_type = "scatter",
              mode = "lines+markers",
              tooltip_text = ~paste("Species:", species,
-                                   "<br>Pounds:", pounds,
+                                   "<br>Pounds:", catch,
                                    "<br>Year:", year, sep=" "),
              xaxis_label = "Year",
-             yaxis_label = "Pounds")
+             yaxis_label = "Catch (pounds)")
   
   
   ## Livelihoods & Economies ##
@@ -178,5 +178,32 @@ function(input, output, session) {
                                    "<br>Year:", Year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Number of jobs")
+  
+  ## Biodiversity ##
+  
+  ## Species ##
+  
+  ## SPP Score map ##
+  callModule(card_map, "spp_scores_map",
+             data = spp_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "spp_scores",
+             df = spp_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
 
   }

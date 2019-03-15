@@ -12,10 +12,14 @@ dashboardPage(
       menuItem("Welcome", tabName = "welcome", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Index", tabName = "index", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Clean Waters", tabName = "cw", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Food Provision", tabName = "fp", badgeLabel = "draft", badgeColor = "orange"),
+      convertMenuItem(menuItem("Food Provision", tabName = "fp", startExpanded = TRUE,
+               menuSubItem("Wild-Caught Fisheries", tabName = "fis", selected = TRUE),
+               menuSubItem("Mariculture", tabName = "mar")), "fp"),
       menuItem("Livelihoods & Economies", tabName = "liveco", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Tourism & Recreation", tabName = "tr", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Biodiversity", tabName = "bio", badgeLabel = "draft", badgeColor = "orange"),
+      convertMenuItem(menuItem("Biodiversity", tabName = "bio",
+               menuSubItem("Species", tabName = "spp"),
+               menuSubItem("Habitats", tabName = "hab")), "bio"),
       menuItem("Sense of Place", tabName = "sop", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Local Fishing & Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Coastal Protection & Carbon Storage", tabName = "cpcs", badgeLabel = "draft", badgeColor = "orange"),
@@ -30,6 +34,8 @@ dashboardPage(
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")),
       tags$script(HTML("$('body').addClass('fixed');")), #this locks side and top bars
+    
+    
 ### Side bar tabs
 
   tabItems(
@@ -71,8 +77,15 @@ dashboardPage(
                       select_label = "Select region",
                       source_text = "Source: multiple (fill this in)"))),
     
-    ## Food Provision ## 
+    ## Food Provision ##
     tabItem(tabName = "fp",
+            
+            ## Biodiversity tab title ##
+            tab_title_ui(goal_text = "FOOD PROVISION",
+                         commitment_text = "sustainably harvested and grown seafood")),
+    
+    ### Fisheries ### 
+    tabItem(tabName = "fis",
             
             ## Food Provision tab title ##
             tab_title_ui(goal_text = "FOOD PROVISION: Wild-Caught Fisheries",
@@ -108,10 +121,17 @@ dashboardPage(
                       sub_title_text = "Landings shown are for assessed stocks only",
                       select_type = "radio",
                       select_location = "above",
-                      select_choices = unique(fis_noaa_catch$state),
+                      select_choices = unique(fis_noaa_catch$rgn_name),
                       select_label = "Select region",
                       source_text = "Source: National Ocean and Atmospheric Administration"))
           ),
+    
+    ### Mariculture ###
+    tabItem(tabName = "mar",
+            
+            ## Biodiversity tab title ##
+            tab_title_ui(goal_text = "FOOD PROVISION: Mariculture",
+                         commitment_text = "sustainably harvested seafood from mariculture")),
     
     ## Livelihood and economies ## 
     tabItem(tabName = "liveco",
@@ -208,6 +228,32 @@ dashboardPage(
             ## Biodiversity tab title ##
             tab_title_ui(goal_text = "BIODIVERSITY",
                          commitment_text = "a diversity of healthy marine species, habitats, and landscapes")),
+    
+      ### Species ### 
+      
+      tabItem(tabName = "spp",
+              
+              ## Biodiversity tab title ##
+              tab_title_ui(goal_text = "BIODIVERSITY: Species",
+                           commitment_text = "a diversity of healthy marine species, habitats, and landscapes"),
+    
+              ## Scores Map ##
+              map_ui(id = "spp_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+              
+              card_ui(id = "spp_scores",
+                      title_text = "Scores over time",
+                      sub_title_text = "Explore scores for each region over time")),
+    
+    
+      ### Habitats ###
+      
+      tabItem(tabName = "hab",
+              
+              ## Biodiversity tab title ##
+              tab_title_ui(goal_text = "BIODIVERSITY: Habitats",
+                           commitment_text = "a diversity of healthy marine species, habitats, and landscapes")),
     
     ## Sense of Place ##
     

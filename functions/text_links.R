@@ -3,13 +3,14 @@ library(shinydashboard)
 
 text_links_default <- function(title = NULL,
                                url = NULL,
-                               text_link = NULL) {
+                               text_link = NULL,
+                               box_width = 4) {
   
   box(class = "text_link_button",
       h3(strong(a(title,
                   href = url,
-                  target = "_blank"))), 
-      width = 4,
+                  target = "_blank"))),
+      width = box_width,
       status = "warning",
       solidHeader = TRUE)
 }
@@ -22,7 +23,6 @@ text_links_extra <- function(titles,
                h3(strong(a(titles[1],
                            href = urls[1],
                            target = "_blank"))), 
-               width = 4,
                status = "warning",
                solidHeader = TRUE),
            
@@ -30,7 +30,6 @@ text_links_extra <- function(titles,
                h3(strong(a(titles[2],
                            href = urls[2],
                            target = "_blank"))),
-               width = 4,
                status = "warning",
                solidHeader = TRUE),
            
@@ -38,7 +37,6 @@ text_links_extra <- function(titles,
                h3(strong(a(titles[3],
                            href = urls[3],
                            target = "_blank"))), 
-               width = 4,
                status = "warning",
                solidHeader = TRUE))
   

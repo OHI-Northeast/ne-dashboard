@@ -62,8 +62,18 @@ dashboardPage(
                      sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
               
               card_ui(id = "cw_scores",
-                      title_text = "Scores over time",
+                      title_text     = "Scores over time",
                       sub_title_text = "Explore scores for each region over time")),
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url   = "http://ohi-science.org/goals/#clean-waters",
+                                 box_width = 6),
+              
+              text_links_default(title = "DATA PREP",
+                                 url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw#ocean-health-index---us-northeast-clean-waters-goal", 
+                                 box_width = 6)),
             
             fluidRow( 
               ## CW layers ##
@@ -247,7 +257,17 @@ dashboardPage(
               
               card_ui(id = "spp_scores",
                       title_text = "Scores over time",
-                      sub_title_text = "Explore scores for each region over time")),
+                      sub_title_text = "Explore scores for each region over time"),
+      
+          ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url   = "http://ohi-science.org/goals/#biodiversity",
+                                 box_width = 6),
+              
+              text_links_default(title = "DATA PREP",
+                                 url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp#species-status", 
+                                 box_width = 6))),
     
     
       ### Habitats ###

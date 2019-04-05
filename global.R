@@ -51,8 +51,10 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
   fis_scores_map <- filter(fis_scores, year == 2017)
 
  #for now I'm removing non-assessed catch but we should probably consider a way to display both assessed/unassessed stock catch values
-  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/noaa_catch_dashboard.csv") %>% 
-    filter(!is.na(score))
+  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fis_meancatch.csv") %>% 
+    select(-X1) %>%
+    filter(species!= "CONFIDENTIAL SPECIES") %>%
+    mutate(species = ifelse(is.na(stock), species, stock)) #this will make sure we display stocks separate
 
   ## LE data ##
 

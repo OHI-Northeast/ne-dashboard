@@ -120,10 +120,10 @@ dashboardPage(
                                  url = "http://ohi-science.org/goals/#food-provision"),
               
               text_links_default(title = "CATCH DATA PREP",
-                                 url = "https://ohi-northeast.github.io/ne-prep/prep/fis/fish_catch.html"),
+                                 url = "https://ohi-northeast.github.io/ne-prep/prep/fis/noaa_spatial_fish_catch.html"),
               
               text_links_default(title = "STOCK STATUS DATA PREP",
-                                 url = "https://ohi-northeast.github.io/ne-prep/prep/fis/stock_status.html")),
+                                 url = "https://ohi-northeast.github.io/ne-prep/prep/fis/stock_scores.html")),
             
             fluidRow(
               ## NOAA landings ##

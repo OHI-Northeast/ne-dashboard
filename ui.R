@@ -276,8 +276,27 @@ dashboardPage(
               
               ## Biodiversity tab title ##
               tab_title_ui(goal_text = "BIODIVERSITY: Habitats",
-                           commitment_text = "a diversity of healthy marine species, habitats, and landscapes")),
+                           commitment_text = "a diversity of healthy marine species, habitats, and landscapes"),
     
+              ## Scores Map ##
+              map_ui(id = "hab_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+              
+              card_ui(id = "hab_scores",
+                      title_text = "Scores over time",
+                      sub_title_text = "Explore scores for each region over time"),
+              
+              ## Text boxes with links ##
+              fluidRow(
+                text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                   url   = "http://ohi-science.org/goals/#biodiversity",
+                                   box_width = 6),
+                
+                text_links_default(title = "DATA PREP",
+                                   url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp#species-status", 
+                                   box_width = 6))),
+
     ## Sense of Place ##
     
     tabItem(tabName = "sop",

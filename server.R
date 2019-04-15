@@ -205,5 +205,30 @@ function(input, output, session) {
                                    "<br>Year:", year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Score")
+  
+  ## Habitats ##
+  
+  ## HAB Score map ##
+  callModule(card_map, "hab_scores_map",
+             data = hab_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "hab_scores",
+             df = hab_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
 
   }

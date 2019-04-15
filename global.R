@@ -100,3 +100,10 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
            dimension == "score")
   
   spp_scores_map <- filter(spp_scores, year == 2017)
+  
+## HAB data ##
+  hab_scores <- scores %>%
+    filter(goal == "HAB",
+           dimension == "score")
+  
+  hab_scores_map <- filter(hab_scores, year == 2017)

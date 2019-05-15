@@ -15,7 +15,10 @@ dashboardPage(
       convertMenuItem(menuItem("Food Provision", tabName = "fp", startExpanded = TRUE,
                menuSubItem("Wild-Caught Fisheries", tabName = "fis"),
                menuSubItem("Mariculture", tabName = "mar")), "fp"),
-      menuItem("Livelihoods & Economies", tabName = "liveco", badgeLabel = "draft", badgeColor = "orange"),
+      convertMenuItem(menuItem("Livelihoods & Economies", tabName = "liveco", 
+                               startExpanded = TRUE,
+               menuSubItem("Livelihoods", tabName = "liv"),
+               menuSubItem("Economies", tabName = "eco")), "liveco"),
       menuItem("Tourism & Recreation", tabName = "tr", badgeLabel = "draft", badgeColor = "orange"),
       convertMenuItem(menuItem("Biodiversity", tabName = "bio", startExpanded = TRUE,
                menuSubItem("Species", tabName = "spp"),
@@ -157,22 +160,11 @@ dashboardPage(
             ## Scores Map ##
             map_ui(id = "le_scores_map",
                    title_text = "Livelihoods & Economies Goal Scores",
-                   sub_title_text = "",
-                   select_type = "radio",
-                   select_location = "above",
-                   select_choices = c("Economies sub-goal" = "ECO",
-                                      "Livelihoods sub-goal" = "LIV",
-                                      "Livelihoods & Economies goal" = "LE"),
-                   select_label = "Select scores to view. Only scores from the most recent assessment (2017) are shown"),
+                   sub_title_text = "This map shows scores from the most recent assessment (2017) are shown"),
 
             card_ui(id = "le_scores",
-                    title_text = "OHI Scores",
-                    select_type = "radio",
-                    select_choices = c("Economies sub-goal" = "ECO",
-                                       "Livelihoods sub-goal" = "LIV",
-                                       "Livelihoods & Economies goal" = "LE"),
-                    select_label = "Select scores to view")
-            ),
+                    title_text = "Scores over time",
+                    sub_title_text = "Explore scores for each region over time")),
           
           ## Text boxes with links ##
           fluidRow(
@@ -183,29 +175,123 @@ dashboardPage(
                                url = "https://ohi-northeast.github.io/ne-prep/prep/liv/jobs.html"),
             
             text_links_default(title = "WAGES DATA PREP",
-                               url = "https://ohi-northeast.github.io/ne-prep/prep/liv/wages.html")),
+                               url = "https://ohi-northeast.github.io/ne-prep/prep/liv/wages.html"))
+          ),
           
+      ##Livelihoods##
+      tabItem(tabName = "liv",
+              
+              ## Biodiversity tab title ##
+              tab_title_ui(goal_text = "Livelihoods",
+                           commitment_text = ""),
+              
+              ##First row with scores map and scores over time chart
+              fluidRow(
+                ## Scores Map ##
+                map_ui(id = "liv_scores_map",
+                       title_text = "Livelihoods Sub-Goal Scores",
+                       sub_title_text = "This map shows scores from the most recent assessment (2017) are shown"),
+                
+                card_ui(id = "liv_scores",
+                        title_text = "Scores over time",
+                        sub_title_text = "Explore scores for each region over time")),
+              
+              ## Text boxes with links ##
+              fluidRow(
+                text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                   url = "http://ohi-science.org/goals/#livelihoods-and-economies"),
+                
+                text_links_default(title = "JOBS DATA PREP",
+                                   url = "https://ohi-northeast.github.io/ne-prep/prep/liv/jobs.html"),
+                
+                text_links_default(title = "WAGES DATA PREP",
+                                   url = "https://ohi-northeast.github.io/ne-prep/prep/liv/wages.html")),
+              
           fluidRow(
+            
             ## Employment ##
-            card_ui(id = "le_emp",
+            card_ui(id = "liv_emp",
                     title_text = "Employment",
                     sub_title_text = "",
                     select_type = "drop_down",
                     select_location = "above",
-                    select_choices = unique(jobs$rgn_name),
+                    select_choices = unique(jobs_scores$rgn_name),
                     select_label = "Select region",
                     source_text = "Source: National Ocean Economics Program"),
           
-         
-            ## Wages ##
-            card_ui(id = "le_wages",
-                    title_text = "Average annual wages",
-                    sub_title_text = "Wages in 2012 US Dollars",
-                    select_type = "drop_down",
-                    select_location = "above",
-                    select_choices = unique(wages$rgn_name),
-                    select_label = "Select region",
-                    source_text = "Source: National Ocean Economics Program"))),
+            #job scores by region between 0 and 1
+            card_ui(id = "liv_emp_scores",
+                    title_text = "Job scores",
+                    source_text = "Source: National Ocean Economics Program")
+            ),
+    
+    
+        fluidRow(
+          
+          ## Wages ##
+          card_ui(id = "liv_wages",
+                  title_text = "Average annual wages",
+                  sub_title_text = "",
+                  select_type = "drop_down",
+                  select_location = "above",
+                  select_choices = unique(wages_scores$rgn_name),
+                  select_label = "Select region",
+                  source_text = "Source: National Ocean Economics Program"),
+          
+          
+          #wage scores by region between 0 and 1
+          card_ui(id = "liv_wage_scores",
+                  title_text = "Wage scores",
+                  sub_title_text = "A score of 1 indicates wage growth of at least 3.5% annually",
+                  source_text = "Source: National Ocean Economics Program"))
+      ),
+    
+    ##Economies##
+    tabItem(tabName = "eco",
+            
+            ## Biodiversity tab title ##
+            tab_title_ui(goal_text = "Economies",
+                         commitment_text = ""),
+            
+            ##First row with scores map and scores over time chart
+            fluidRow(
+              ## Scores Map ##
+              map_ui(id = "eco_scores_map",
+                     title_text = "Economies Sub-Goal Scores",
+                     sub_title_text = "This map shows scores from the most recent assessment (2017) are shown"),
+              
+              card_ui(id = "eco_scores",
+                      title_text = "Scores over time",
+                      sub_title_text = "Explore scores for each region over time")),
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url = "http://ohi-science.org/goals/#livelihoods-and-economies"),
+              
+              text_links_default(title = "GDP DATA PREP",
+                                 box_width = 6,
+                                 url = "https://ohi-northeast.github.io/ne-prep/prep/eco/gdp.html")),
+            
+            fluidRow(
+              
+              ## GDP ##
+              card_ui(id = "eco_gdp",
+                      title_text = "Gross Domestic Product",
+                      sub_title_text = "GDP in 2012 US Dollars",
+                      select_type = "drop_down",
+                      select_location = "above",
+                      select_choices = unique(gdp$rgn_name),
+                      select_label = "Select region",
+                      source_text = "Source: National Ocean Economics Program"),
+              
+              #wage scores by region between 0 and 1
+              card_ui(id = "eco_gdp_scores",
+                      title_text = "GDP scores",
+                      sub_title_text = "",
+                      source_text = "Source: National Ocean Economics Program"))
+    ),
+    
       
     ## Tourism & recreation ##
     

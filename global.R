@@ -60,19 +60,38 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
 
   ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
   le_scores <- scores %>% 
-    filter(goal %in% c("LIV", "ECO", "LE"),
+    filter(goal == "LE",
            dimension == "score")
   le_scores_map <- filter(le_scores, year == 2017)
-
+  
+  #livelihoods#
+  liv_scores <- scores %>% 
+    filter(goal == "LIV",
+           dimension == "score")
+  liv_scores_map <- filter(liv_scores, year == 2017)
+  
   ### jobs data ###
   jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/jobs_sector.csv")
+  
+  jobs_scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/job_scores.csv")
   
   ### wages data ###
   wages <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/wages_sector.csv")
   
+  wages_scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/wages_scores.csv")
+  
+  #economies#
+  eco_scores <- scores %>% 
+    filter(goal == "ECO",
+           dimension == "score")
+  eco_scores_map <- filter(eco_scores, year == 2017)
+  
+
   ### GDP data ###
   gdp <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/gdp_sector.csv")
 
+  gdp_scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/eco/data/gdp_scores.csv")
+  
 ## TR data ##
 
   ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals

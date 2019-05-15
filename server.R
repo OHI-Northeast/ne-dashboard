@@ -87,9 +87,7 @@ function(input, output, session) {
   ## L&E Score map ##
   callModule(card_map, "le_scores_map",
              data = le_scores_map,
-             field = "input",
-             filter_field = goal,
-             display_field = "score",
+             field = "score",
              legend_title = "OHI Goal Score",
              popup_title = "Score:",
              popup_add_field = "rgn_name",
@@ -101,7 +99,31 @@ function(input, output, session) {
              x = "year",
              y = "score",
              color_group = "rgn_name",
-             filter_field = "goal",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ## Livelihoods ##
+  
+  ## Liv Score map ##
+  callModule(card_map, "liv_scores_map",
+             data = liv_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "liv_scores",
+             df = liv_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
              plot_type = "scatter",
              mode = "lines+markers",
              tooltip_text = ~paste("Goal score:", score,
@@ -111,7 +133,7 @@ function(input, output, session) {
              yaxis_label = "Score")
   
   ### Employment chart
-  callModule(card_plot, "le_emp",
+  callModule(card_plot, "liv_emp",
              df = jobs,
              x = "Year",
              y = "Employment",
@@ -125,8 +147,22 @@ function(input, output, session) {
              xaxis_label = "Year",
              yaxis_label = "Number of jobs")
   
+  ###job scores
+  callModule(card_plot, "liv_emp_scores",
+             df = jobs_scores,
+             x = "scenario_year",
+             y = "job_score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Job score:", job_score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", scenario_year, sep = " "),
+             xaxis_label = "Year",
+             yaxis_label = "Job score")
+  
   ### Wages
-  callModule(card_plot, "le_wages",
+  callModule(card_plot, "liv_wages",
              df = wages,
              x = "Year",
              y = "Wages",
@@ -139,6 +175,76 @@ function(input, output, session) {
                                    "<br>Year:", Year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Wages (2012 $USD)")
+  
+  ###wage scores
+  callModule(card_plot, "liv_wage_scores",
+             df = wages_scores,
+             x = "scenario_year",
+             y = "wages_score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Wage score:", wages_score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", scenario_year, sep = " "),
+             xaxis_label = "Year",
+             yaxis_label = "Wage score")
+  
+  ## Economies ##
+  
+  ## Economies Score map ##
+  callModule(card_map, "eco_scores_map",
+             data = eco_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "eco_scores",
+             df = eco_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  
+  ### GDP
+  callModule(card_plot, "eco_gdp",
+             df = gdp,
+             x = "Year",
+             y = "GDP",
+             color_group = "Sector",
+             filter_field = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("GDP: $", prettyNum(GDP, big.mark = ","),
+                                   "<br>Sector:", Sector,
+                                   "<br>Year:", Year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Gross Domestic Product (2012 $USD)")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "eco_gdp_scores",
+             df = gdp_scores,
+             x = "scenario_year",
+             y = "status",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("GDP score:", status,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", scenario_year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
   
   ## Tourism & Recreation ##
   

@@ -40,8 +40,25 @@ rgn_data <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/
 
 scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/scores.csv") %>%
   left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
-  mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name)) %>%
-  filter(year > 2007)
+  mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name))
+
+## Index scores for entire region ##
+
+indx_scores <- scores %>%
+  filter(goal == "Index",
+         dimension == "score")
+
+ne_indx_scores <- indx_scores %>%
+  filter(region_id == 0)
+
+indx_scores_map <- filter(indx_scores, year == 2017)
+
+## Food Provision data ##
+fp_scores <- scores %>% 
+  filter(goal == "FP",
+         dimension == "score")
+
+fp_scores_map <- filter(fp_scores, year == 2017)
 
 ## FIS data ##
   fis_scores <- scores %>% 
@@ -56,9 +73,15 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
     filter(species!= "CONFIDENTIAL SPECIES") %>%
     mutate(species = ifelse(is.na(stock), species, stock)) #this will make sure we display stocks separate
 
+  ## Aquaculture data ##
+  mar_scores <- scores %>% 
+    filter(goal == "MAR",
+           dimension == "score")
+  
+  mar_scores_map <- filter(mar_scores, year == 2017)
+  
   ## LE data ##
 
-  ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
   le_scores <- scores %>% 
     filter(goal == "LE",
            dimension == "score")
@@ -126,3 +149,5 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
            dimension == "score")
   
   hab_scores_map <- filter(hab_scores, year == 2017)
+  
+  

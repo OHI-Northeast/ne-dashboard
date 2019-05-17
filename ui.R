@@ -14,7 +14,7 @@ dashboardPage(
       menuItem("Clean Waters", tabName = "cw", badgeLabel = "draft", badgeColor = "orange"),
       convertMenuItem(menuItem("Food Provision", tabName = "fp", startExpanded = TRUE,
                menuSubItem("Wild-Caught Fisheries", tabName = "fis"),
-               menuSubItem("Mariculture", tabName = "mar")), "fp"),
+               menuSubItem("Aquaculture", tabName = "mar")), "fp"),
       convertMenuItem(menuItem("Livelihoods & Economies", tabName = "liveco", 
                                startExpanded = TRUE,
                menuSubItem("Livelihoods", tabName = "liv"),
@@ -24,11 +24,25 @@ dashboardPage(
                menuSubItem("Species", tabName = "spp"),
                menuSubItem("Habitats", tabName = "hab")), "bio"),
       menuItem("Sense of Place", tabName = "sop", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Local Fishing & Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Coastal Protection & Carbon Storage", tabName = "cpcs", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Pressures", tabName = "pressures", badgeLabel = "draft", badgeColor = "orange")
   ),
-  width = 300),
+  width = 300,
+  
+  tags$footer(p("Dashboard developed by ", a(href = 'https://www.jamieafflerbach.com/', "Jamie Afflerbach.")),
+              br(),
+              p("This project was funded by the ", a(href = 'https://www.moore.org/', "Gordon & Betty Moore Foundation")), align = "left", style = "
+position:absolute;
+bottom:0;
+width:100%;
+height:120px; /* Height of the footer */
+color: white;
+padding: 10px;
+background-color: black;
+z-index: 1000;"
+  )
+  ),
   
   
 ### Dashboard Body
@@ -45,11 +59,69 @@ dashboardPage(
     
     ## Welcome landing page##
     tabItem(tabName = "welcome",
-      h2("Welcome to the Northeast Ocean Health Index")),
+            
+        fluidRow(box(h1("US Northeast Ocean Health Index Dashboard"),
+                      "Scores and data underlying the Northeast OHI assessment", width = 12)),
+        
+        fluidRow(box(h3("What is the Northeast OHI?"),
+                     br(),
+                     "Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index does this by measuring progress towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. The US Northeast index was designed as a monitoring tool to support the Northeast Regional Plan. Working with local partners, our team is tailoring the Ocean Health Index (OHI) to the unique context of the U.S. Northeast by incorporating more locally meaningful information, priorities, and perspectives.", width = 6),
+        
+              box(h3("Who is involved?"),
+                  br(),
+                      "The Northeast assessment is led by Jamie Afflerbach, Courtney Scarborough & Ben Halpern at the National Center for Ecological Analysis and Synthesis (NCEAS) at the University of California, Santa Barbara (UCSB). The Northeast Regional Planning Body provides a forum to help coordinate with other, federal, state and local governmental organizations, NGOs, and community members on development of the OHI.")),
+        
+        fluidRow(box(
+          "Ocean Health Index scores are calculated for each goal separately and then combined to get an overall score on a scale of 0-100. Goal scores are represented by the length of the petals in a flower plot, and the overall score is in the center",
+          
+        uiOutput("flowerplot")),
+          
+          #northeast region index score line plot
+          card_ui(id = "ne_indx_scores",
+                      title_text     = "US Northeast Ocean Health Index score over time"))
+      
+          ), 
+            
     
     ## Overall index scores ##
     tabItem(tabName = "index",
-            h2("Index scores")),
+            h2("US Northeast goal scores"),
+            br(),
+            br(),
+            
+            # infoBoxes with goal scores for Northeast region
+            fluidRow(
+              infoBox("Clean Waters", tags$p(filter(cw_scores_map, region_id == 0)$score, style = "font-size: 200%;"), 
+                      icon = icon("tint"), color = "teal", fill = TRUE, width = 3),
+              infoBox("Food Provision", tags$p(filter(fis_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                      icon = icon("utensils"),color = "red", fill = TRUE, width = 3),
+              infoBox("Livelihoods & Economies", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                      icon = icon("money"),color = "green", fill = TRUE, width = 3),
+              infoBox("Tourism & Recreation", tags$p(filter(tr_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                      icon = icon("umbrella-beach"),color = "yellow", fill = TRUE, width = 3)
+            ),
+            
+            fluidRow(
+              infoBox("Biodiversity", tags$p(filter(spp_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                      icon = icon("fish"), color = "blue", fill = TRUE, width = 3),
+              infoBox("Sense of Place", tags$p(filter(fis_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                      icon = icon("home"), color = "aqua", fill = TRUE, width = 3),
+              infoBox("Resource Access Opportunities", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                      icon = icon("ship"), color = "orange", fill = TRUE, width = 3),
+              infoBox("Coastal Protection & Carbon Storage", tags$p(filter(hab_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                      icon = icon("pagelines"), color = "purple", fill = TRUE, width = 3)
+            ),
+            
+            fluidRow(
+              ## Scores Map ##
+              map_ui(id = "indx_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+              
+              card_ui(id = "indx_scores",
+                      title_text     = "Scores over time",
+                      sub_title_text = "Index scores for each region over time"))
+            ),
     
     ## Clean Waters ##
     
@@ -94,9 +166,21 @@ dashboardPage(
     ## Food Provision ##
     tabItem(tabName = "fp",
             
-            ## Biodiversity tab title ##
+            ## tab title ##
             tab_title_ui(goal_text = "FOOD PROVISION",
-                         commitment_text = "sustainably harvested and grown seafood")),
+                         commitment_text = "sustainably harvested and grown seafood"),
+    
+            ##First row with scores map and scores over time chart
+            fluidRow(
+              
+              ## Scores Map ##
+              map_ui(id = "fp_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+              
+              card_ui(id = "fp_scores",
+                      title_text = "Scores over time",
+              sub_title_text = "Explore scores for each region over time"))),
     
     ### Fisheries ### 
     tabItem(tabName = "fis",
@@ -145,9 +229,21 @@ dashboardPage(
     tabItem(tabName = "mar",
             
             ## Biodiversity tab title ##
-            tab_title_ui(goal_text = "FOOD PROVISION: Mariculture",
-                         commitment_text = "sustainably harvested seafood from mariculture")),
-    
+            tab_title_ui(goal_text = "FOOD PROVISION: Aquaculture",
+                         commitment_text = "sustainably produced seafood from aquaculture"),
+  
+            ##First row with scores map and scores over time chart
+            fluidRow(
+              
+              ## Scores Map ##
+              map_ui(id = "mar_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+              
+              card_ui(id = "mar_scores",
+                      title_text = "Scores over time",
+                      sub_title_text = "Explore scores for each region over time"))),
+
     ## Livelihood and economies ## 
     tabItem(tabName = "liveco",
             

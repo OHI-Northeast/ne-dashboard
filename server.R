@@ -1,6 +1,47 @@
 
 function(input, output, session) {
   
+  ## Overall Index ##
+
+  output$flowerplot <- renderUI({
+    tags$img(src = "https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/flower_USNortheast.png", height = 450, width = 600)
+  })
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "ne_indx_scores",
+             df = ne_indx_scores,
+             x = "year",
+             y = "score",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Index score:", score,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ## Score map ##
+  callModule(card_map, "indx_scores_map",
+             data = indx_scores_map,
+             field = "score",
+             legend_title = "OHI Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "indx_scores",
+             df = indx_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Index score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
   ## Clean Waters ##
   
   ## CW Score map ##
@@ -42,6 +83,29 @@ function(input, output, session) {
              yaxis_label = "Layer Score")
   
   ## Food Provision ##
+
+  callModule(card_map, "fp_scores_map",
+             data = fp_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  callModule(card_plot, "fp_scores",
+             df = fp_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ## Wild-Caught Fisheries ##
   
   ## FIS Score map ##
   callModule(card_map, "fis_scores_map",
@@ -80,6 +144,29 @@ function(input, output, session) {
                                    "<br>Year:", year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Catch (pounds)")
+  
+  ## Aquaculture ##
+  
+  callModule(card_map, "mar_scores_map",
+             data = mar_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  callModule(card_plot, "mar_scores",
+             df = mar_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
   
   
   ## Livelihoods & Economies ##

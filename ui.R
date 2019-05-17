@@ -33,14 +33,14 @@ dashboardPage(
   tags$footer(p("Dashboard developed by ", a(href = 'https://www.jamieafflerbach.com/', "Jamie Afflerbach.")),
               br(),
               p("This project was funded by the ", a(href = 'https://www.moore.org/', "Gordon & Betty Moore Foundation")), align = "left", style = "
-position:absolute;
-bottom:0;
-width:100%;
-height:120px; /* Height of the footer */
-color: white;
-padding: 10px;
-background-color: black;
-z-index: 1000;"
+                position:absolute;
+                bottom:0;
+                width:100%;
+                height:120px; /* Height of the footer */
+                color: white;
+                padding: 10px;
+                background-color: black;
+                z-index: 1000;"
   )
   ),
   
@@ -65,11 +65,11 @@ z-index: 1000;"
         
         fluidRow(box(h3("What is the Northeast OHI?"),
                      br(),
-                     "Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index does this by measuring progress towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. The US Northeast index was designed as a monitoring tool to support the Northeast Regional Plan. Working with local partners, our team is tailoring the Ocean Health Index (OHI) to the unique context of the U.S. Northeast by incorporating more locally meaningful information, priorities, and perspectives.", width = 6),
+                     p("The US Northeast index was designed as a monitoring tool to support the Northeast Regional Plan. Working with local partners, our team is tailoring the Ocean Health Index (OHI) to the unique context of the U.S. Northeast by incorporating more locally meaningful information, priorities, and perspectives. More information can be found at ", a(href = "http://www.ohi-northeast.org/", "ohi-northeast.org", ".")), width = 6),
         
               box(h3("Who is involved?"),
                   br(),
-                      "The Northeast assessment is led by Jamie Afflerbach, Courtney Scarborough & Ben Halpern at the National Center for Ecological Analysis and Synthesis (NCEAS) at the University of California, Santa Barbara (UCSB). The Northeast Regional Planning Body provides a forum to help coordinate with other, federal, state and local governmental organizations, NGOs, and community members on development of the OHI.")),
+                      "The Northeast assessment is led by Jamie Afflerbach, Courtney Scarborough & Ben Halpern at the National Center for Ecological Analysis and Synthesis (NCEAS) at the University of California, Santa Barbara (UCSB). The Northeast Regional Ocean Council (NROC) Ocean Planning Committee provides a forum to help coordinate with other, federal, state and local governmental organizations, NGOs, and community members on development of the OHI.")),
         
         fluidRow(box(
           "Ocean Health Index scores are calculated for each goal separately and then combined to get an overall score on a scale of 0-100. Goal scores are represented by the length of the petals in a flower plot, and the overall score is in the center",
@@ -78,7 +78,10 @@ z-index: 1000;"
           
           #northeast region index score line plot
           card_ui(id = "ne_indx_scores",
-                      title_text     = "US Northeast Ocean Health Index score over time"))
+                      title_text     = "US Northeast Ocean Health Index score over time")),
+        
+        fluidRow(box(
+          p("Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index does this by measuring progress   towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. More information about the Ocean Health Index can be found at ", a(href = "http://ohi-science.org/", "ohi-science.org")), width = 12))
       
           ), 
             

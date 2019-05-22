@@ -25,7 +25,7 @@ dashboardPage(
                menuSubItem("Habitats", tabName = "hab")), "bio"),
       menuItem("Sense of Place", tabName = "sop", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Coastal Protection & Carbon Storage", tabName = "cpcs", badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Habitat Services", tabName = "hs", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Pressures", tabName = "pressures", badgeLabel = "draft", badgeColor = "orange")
   ),
   width = 300,
@@ -69,7 +69,7 @@ dashboardPage(
         
               box(h3("Who is involved?"),
                   br(),
-                      "The Northeast assessment is led by Jamie Afflerbach, Courtney Scarborough & Ben Halpern at the National Center for Ecological Analysis and Synthesis (NCEAS) at the University of California, Santa Barbara (UCSB). The Northeast Regional Ocean Council (NROC) Ocean Planning Committee provides a forum to help coordinate with other, federal, state and local governmental organizations, NGOs, and community members on development of the OHI.")),
+                      "The Northeast assessment is led by a team of scientists at the National Center for Ecological Analysis and Synthesis (NCEAS) at the University of California, Santa Barbara (UCSB). The Northeast Regional Ocean Council (NROC) Ocean Planning Committee provides a forum to help coordinate with other, federal, state and local governmental organizations, NGOs, and community members on development of the OHI.")),
         
         fluidRow(box(
           "Ocean Health Index scores are calculated for each goal separately and then combined to get an overall score on a scale of 0-100. Goal scores are represented by the length of the petals in a flower plot, and the overall score is in the center",
@@ -105,13 +105,13 @@ dashboardPage(
             ),
             
             fluidRow(
-              infoBox("Biodiversity", tags$p(filter(spp_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+              infoBox("Biodiversity", tags$p(filter(bio_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                       icon = icon("fish"), color = "blue", fill = TRUE, width = 3),
               infoBox("Sense of Place", tags$p(filter(fis_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                       icon = icon("home"), color = "aqua", fill = TRUE, width = 3),
               infoBox("Resource Access Opportunities", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                       icon = icon("ship"), color = "orange", fill = TRUE, width = 3),
-              infoBox("Coastal Protection & Carbon Storage", tags$p(filter(hab_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+              infoBox("Habitat Services", tags$p(filter(hs_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                       icon = icon("pagelines"), color = "purple", fill = TRUE, width = 3)
             ),
             
@@ -425,13 +425,40 @@ dashboardPage(
             
             ## Biodiversity tab title ##
             tab_title_ui(goal_text = "BIODIVERSITY",
-                         commitment_text = "a diversity of healthy marine species, habitats, and landscapes")),
+                         commitment_text = "a diversity of healthy marine species, habitats, and landscapes"),
+            
+            ## Scores Map ##
+            map_ui(id = "bio_scores_map",
+                   title_text = "Current Scores",
+                   sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+            
+            card_ui(id = "bio_scores",
+                    title_text = "Scores over time",
+                    sub_title_text = "Explore scores for each region over time"),
+            
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url   = "http://ohi-science.org/goals/#biodiversity",
+                                 box_width = 12)),
+            fluidRow(
+              ## Species sub-goal scores##
+              card_ui(id = "bio_spp_scores",
+                      title_text = "Species sub-goal scores",
+                      sub_title_text = ""),
+              
+              ## Habitat sub-goal scores##
+              card_ui(id = "bio_hab_scores",
+                      title_text = "Habitat sub-goal scores",
+                      sub_title_text = ""))
+            ),
     
       ### Species ### 
       
       tabItem(tabName = "spp",
               
-              ## Biodiversity tab title ##
+              ## Biodiversity:species tab title ##
               tab_title_ui(goal_text = "BIODIVERSITY: Species",
                            commitment_text = "a diversity of healthy marine species, habitats, and landscapes"),
     
@@ -459,7 +486,7 @@ dashboardPage(
       
       tabItem(tabName = "hab",
               
-              ## Biodiversity tab title ##
+              ## Biodiversity: habitats tab title ##
               tab_title_ui(goal_text = "BIODIVERSITY: Habitats",
                            commitment_text = "a diversity of healthy marine species, habitats, and landscapes"),
     
@@ -480,7 +507,33 @@ dashboardPage(
                 
                 text_links_default(title = "DATA PREP",
                                    url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp#species-status", 
-                                   box_width = 6))),
+                                   box_width = 6)),
+              
+              
+              fluidRow(
+                ## Raw habitat data ##
+                card_ui(id = "hab_raw_data",
+                        title_text = "Habitat data",
+                        sub_title_text = "",
+                        select_type = "radio",
+                        select_location = "above",
+                        select_choices = list("Eelgrass" = "eelgrass",
+                                              "Salt Marsh" = "salt_marsh",
+                                              "Offshore habitats" = "offshore"),
+                        source_text = "Source: "),
+                
+                
+                ## Habitat layer scores b/w 0 and 100 ##
+                card_ui(id = "hab_layer_scores",
+                        title_text = "Habitat layer scores between 0 and 100",
+                        sub_title_text = "",
+                        select_type = "radio",
+                        select_location = "above",
+                        select_choices = list("Eelgrass" = "eelgrass",
+                                              "Salt Marsh" = "salt_marsh",
+                                              "Offshore habitats" = "offshore"),
+                        source_text = ""))
+              ),
 
     ## Sense of Place ##
     
@@ -498,13 +551,48 @@ dashboardPage(
             tab_title_ui(goal_text = "LOCAL FISHING & RESOURCE ACCESS OPPORTUNITIES",
                          commitment_text = "opportunities for Native Americans and local community members to access local natural resources")),
     
-    ## Coastal Protection & Carbon Storage ##
+    ## Habitat Services ##
     
-    tabItem(tabName = "cpcs",
+    tabItem(tabName = "hs",
             
-            ## Coastal Protection & Carbon Storage tab title ##
-            tab_title_ui(goal_text = "COASTAL PROTECTION & CARBON STORAGE",
-                         commitment_text = "storage of carbon and protection of our coasts from storm damage by living natural habitats")),
+            ## Habitat Services tab title ##
+            tab_title_ui(goal_text = "Habitat Services",
+                         commitment_text = "storage of carbon and protection of our coasts from storm damage by living natural habitats"),
+            
+            ## Scores Map ##
+            map_ui(id = "hs_scores_map",
+                   title_text = "Current Scores",
+                   sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+            
+            card_ui(id = "hs_scores",
+                    title_text = "Scores over time",
+                    sub_title_text = "Explore scores for each region over time"),
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url   = "http://ohi-science.org/goals/#biodiversity",
+                                 box_width = 6),
+              
+              text_links_default(title = "DATA PREP",
+                                 url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp#species-status", 
+                                 box_width = 6)),
+            
+            
+            fluidRow(
+              ## Coastal Protection ##
+              card_ui(id = "coastal_protection",
+                      title_text = "Coastal Protection scores",
+                      sub_title_text = "",
+                      source_text = "Source: "),
+              
+              
+              ## Carbon Storage ##
+              card_ui(id = "carbon_storage",
+                      title_text = "Carbon Storage scores",
+                      sub_title_text = "",
+                      source_text = "Source: "))
+    ),
     
     ## Pressures ##
     

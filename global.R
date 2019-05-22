@@ -135,6 +135,13 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     select(-X1) %>%
     left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
     mutate(score = value * 100)
+  
+## BIO data ##
+  bio_scores <- scores %>%
+    filter(goal == "BD",
+           dimension == "score")
+  
+  bio_scores_map <- filter(bio_scores, year == 2017)
 
 ## SPP data ##
   spp_scores <- scores %>%
@@ -149,5 +156,23 @@ fp_scores_map <- filter(fp_scores, year == 2017)
            dimension == "score")
   
   hab_scores_map <- filter(hab_scores, year == 2017)
+  
+  salt_marsh <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/salt_marsh_percent_change.csv") 
+  
+  eelgrass   <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/eelgrass_score_rgn_gf.csv")
+  
+  hab_data <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/dashboard_habitat_data.csv")
+  
+## Habitat Services (HS) Data ##
+  
+  hs_scores <- scores %>%
+    filter(goal == "HS",
+           dimension == "score")
+  
+  hs_scores_map <- filter(hs_scores, year == 2017)
+  
+  coastal_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/hs_coastal_protection.csv")
+    
+  carbon_storage <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/hs_carbon_storage.csv")
   
   

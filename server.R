@@ -374,9 +374,61 @@ function(input, output, session) {
   
   ## Biodiversity ##
   
+  ### BIO Score map ###
+  callModule(card_map, "bio_scores_map",
+             data = bio_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ### Scores time series chart ###
+  callModule(card_plot, "bio_scores",
+             df = bio_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ### species sub-goal scores ###
+  callModule(card_plot, "bio_spp_scores",
+             df = spp_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Sub-goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ### habitats sub-goal scores ###
+  
+  callModule(card_plot, "bio_hab_scores",
+             df = hab_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Sub-goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
   ## Species ##
   
-  ## SPP Score map ##
+  ### SPP Score map ###
   callModule(card_map, "spp_scores_map",
              data = spp_scores_map,
              field = "score",
@@ -385,7 +437,7 @@ function(input, output, session) {
              popup_add_field = "rgn_name",
              popup_add_field_title = "")
   
-  ## Scores time series chart ##
+  ### Scores time series chart ###
   callModule(card_plot, "spp_scores",
              df = spp_scores,
              x = "year",
@@ -401,7 +453,7 @@ function(input, output, session) {
   
   ## Habitats ##
   
-  ## HAB Score map ##
+  ### HAB Score map ###
   callModule(card_map, "hab_scores_map",
              data = hab_scores_map,
              field = "score",
@@ -423,5 +475,87 @@ function(input, output, session) {
                                    "<br>Year:", year, sep=" "),
              xaxis_label = "Year",
              yaxis_label = "Score")
+  
+  ### Habitat raw data line chart
+  callModule(card_plot, "hab_raw_data",
+             df = hab_data %>% filter(!is.na(raw_data)),
+             x = "year",
+             y = "raw_data",
+             color_group = "rgn_name",
+             filter_field = "habitat",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Data:", metric,
+                                   "<br>Value:", raw_data,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "")
+  
+  ### Habitat layer scores chart
+  callModule(card_plot, "hab_layer_scores",
+             df = hab_data,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             filter_field = "habitat",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Score:", score,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Layer Score")
+  
+  ## Habitat Services ##
+  
+  
+  ## HAB Score map ##
+  callModule(card_map, "hs_scores_map",
+             data = hs_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "hs_scores",
+             df = hs_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ### Coastal Protection
+  callModule(card_plot, "coastal_protection",
+             df = coastal_protection,
+             x = "year",
+             y = "cp_score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Score:", cp_score,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ### Carbon Storage
+  callModule(card_plot, "carbon_storage",
+             df = carbon_storage,
+             x = "year",
+             y = "cs_score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Score:", cs_score,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
 
   }

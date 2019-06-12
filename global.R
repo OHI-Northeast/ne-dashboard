@@ -175,4 +175,34 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     
   carbon_storage <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/hs_carbon_storage.csv")
   
+## Sense of Place ##
+  sop_scores <- scores %>%
+    filter(goal == "SP",
+           dimension == "score")
+  
+  sop_map <- filter(sop_scores, year == 2017)
+  
+## Lasting Special Places $$
+  lsp_scores <- scores %>%
+    filter(goal == "LSP",
+           dimension == "score")
+  
+  lsp_map <- filter(lsp_scores, year == 2017)
+  
+  land_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/lsp_protected_land.csv") %>% 
+    left_join(rgn_data)
+  marine_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/lsp_protected_marine.csv") %>% 
+    left_join(rgn_data)
+  
+## Iconic Species  
+  
+  ico_scores <- scores %>%
+    filter(goal == "ICO",
+           dimension == "score")
+  
+  ico_map <- filter(ico_scores, year == 2017)
+  
+  ico_species_scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/ico_scores.csv") %>%
+    left_join(rgn_data)
+  
   

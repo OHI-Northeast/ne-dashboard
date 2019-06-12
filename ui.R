@@ -23,7 +23,9 @@ dashboardPage(
       convertMenuItem(menuItem("Biodiversity", tabName = "bio", startExpanded = TRUE,
                menuSubItem("Species", tabName = "spp"),
                menuSubItem("Habitats", tabName = "hab")), "bio"),
-      menuItem("Sense of Place", tabName = "sop", badgeLabel = "draft", badgeColor = "orange"),
+      convertMenuItem(menuItem("Sense of Place", tabName = "sop", startExpanded = TRUE,
+               menuSubItem("Lasting Special Places", tabName = "lsp"),
+               menuSubItem("Iconic Species", tabName = "ico")), "sop"),
       menuItem("Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Habitat Services", tabName = "hs", badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Pressures", tabName = "pressures", badgeLabel = "draft", badgeColor = "orange")
@@ -532,8 +534,7 @@ dashboardPage(
                         select_choices = list("Eelgrass" = "eelgrass",
                                               "Salt Marsh" = "salt_marsh",
                                               "Offshore habitats" = "offshore"),
-                        source_text = ""))
-              ),
+                        source_text = ""))),
 
     ## Sense of Place ##
     
@@ -541,7 +542,114 @@ dashboardPage(
             
             ## Sense of Place tab title ##
             tab_title_ui(goal_text = "SENSE OF PLACE",
-                         commitment_text = "a deep sense of identity and belonging provided through connections with our marine communities")),
+                         commitment_text = "a deep sense of identity and belonging provided through connections with our marine communities"),
+            
+            ## Scores Map ##
+            map_ui(id = "sop_scores_map",
+                   title_text = "Current Scores",
+                   sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+            
+            card_ui(id = "sop_scores",
+                    title_text = "Scores over time",
+                    sub_title_text = "Explore scores for each region over time"),
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url   = "http://ohi-science.org/goals/#sense-of-place",
+                                 box_width = 12)),
+            
+            fluidRow(
+              #lasting special places scores
+              card_ui(id = "sop_lsp_scores",
+                      title_text = "Lasting Special Places subgoal",
+                      sub_title_text = "Explore scores for each region over time"),
+              
+              card_ui(id = "sop_ico_scores",
+                      title_text = "Iconic Species subgoal",
+                      sub_title_text = ""))),
+    
+    ## Lasting Special Places ##
+    
+    tabItem(tabName = "lsp",
+            
+            ## Biodiversity: habitats tab title ##
+            tab_title_ui(goal_text = "SENSE OF PLACE: Lasting Special Places",
+                         commitment_text = ""),
+            
+            ## Scores Map ##
+            map_ui(id = "lsp_scores_map",
+                   title_text = "Current Scores",
+                   sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+            
+            card_ui(id = "lsp_scores",
+                    title_text = "Scores over time",
+                    sub_title_text = "Explore scores for each region over time"),
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url   = "http://ohi-science.org/goals/#sense-of-place",
+                                 box_width = 6),
+              
+              text_links_default(title = "DATA PREP",
+                                 url   = "https://ohi-northeast.github.io/ne-prep/prep/sop/lsp/lsp.html", 
+                                 box_width = 6)),
+            
+            fluidRow(
+              ## Protected marine areas ##
+              card_ui(id = "lsp_marine",
+                      title_text = "Proportion of area protected within state waters",
+                      sub_title_text = "",
+                      source_text = "Source: "),
+              
+              ## Protected land in coastal 1km ##
+              card_ui(id = "lsp_land",
+                      title_text = "Proportion of area protected on land within 1km of the coastline",
+                      sub_title_text = "",
+                      source_text = ""))
+    ),
+    
+    ## Iconic Species ##
+    
+    tabItem(tabName = "ico",
+            
+            ## Biodiversity: habitats tab title ##
+            tab_title_ui(goal_text = "SENSE OF PLACE: Iconic Species",
+                         commitment_text = ""),
+            
+            ## Scores Map ##
+            map_ui(id = "ico_scores_map",
+                   title_text = "Current Scores",
+                   sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+            
+            card_ui(id = "ico_scores",
+                    title_text = "Scores over time",
+                    sub_title_text = "Explore scores for each region over time"),
+            
+            ## Text boxes with links ##
+            fluidRow(
+              text_links_default(title = "HOW WE CALCULATE THIS GOAL",
+                                 url   = "http://ohi-science.org/goals/#sense-of-place",
+                                 box_width = 6),
+              
+              text_links_default(title = "DATA PREP",
+                                 url   = "https://ohi-northeast.github.io/ne-prep/prep/sop/ico/iconic_species.html", 
+                                 box_width = 6)),
+            
+            fluidRow(
+              ## Protected marine areas ##
+              card_ui(id = "ico_species_scores",
+                      title_text = "Species status by region",
+                      sub_title_text = "",
+                      select_type = "drop_down",
+                      select_location = "above",
+                      select_choices = unique(ico_species_scores$rgn_name),
+                      select_label = "Select region",
+                      source_text = "Source: NatureServe and IUCN",
+                      box_width = 12))
+            
+    ),
     
     ## Local Fishing & Resource Access Opportunities  ##
     

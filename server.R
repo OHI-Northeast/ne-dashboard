@@ -557,5 +557,150 @@ function(input, output, session) {
              xaxis_label = "Year",
              yaxis_label = "Score")
   
+  ### Sense of Place
+  
+  ##SOP Score Map
+  callModule(card_map, "sop_scores_map",
+             data = sop_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ##SOP Scores time series chart
+  callModule(card_plot, "sop_scores",
+             df = sop_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ##SOP LSP scores
+  callModule(card_plot, "sop_lsp_scores",
+             df = lsp_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Sub-goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ##SOP ICO Scores
+  callModule(card_plot, "sop_ico_scores",
+             df = ico_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Sub-goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ## Lasting Special Places ##
+  
+  ## LSP Score map ##
+  callModule(card_map, "lsp_scores_map",
+             data = lsp_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## Scores time series chart ##
+  callModule(card_plot, "lsp_scores",
+             df = lsp_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ## Marine protected area ##
+  callModule(card_plot, "lsp_marine",
+             df = marine_protection,
+             x = "year",
+             y = "prop_area",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Proportion protected:", prop_area,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Proportion of area protected (0 to 1)")
+  
+  ## land protected area ##
+  callModule(card_plot, "lsp_land",
+             df = land_protection,
+             x = "year",
+             y = "prop_area",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Proportion protected:", prop_area,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Proportion of area protected (0 to 1)")
+  
+  ## Iconic Species ##
+  
+  ## ICO Map ##
+  callModule(card_map, "ico_scores_map",
+             data = ico_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## ICO Scores time series ## 
+  callModule(card_plot, "ico_scores",
+             df = ico_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Score")
+  
+  ##Iconic species status ##
+  callModule(card_plot, "ico_species_scores",
+             df = ico_species_scores,
+             x = "year",
+             y = "score",
+             color_group = "common",
+             filter_field = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Score:", score,
+                                   "<br>Species:", common,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "Year",
+             yaxis_label = "Status score (a score of 1 is equal to a status of Least Concern)")
 
   }

@@ -109,7 +109,7 @@ dashboardPage(
             fluidRow(
               infoBox("Biodiversity", tags$p(filter(bio_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                       icon = icon("fish"), color = "blue", fill = TRUE, width = 3),
-              infoBox("Sense of Place", tags$p(filter(fis_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+              infoBox("Sense of Place", tags$p(filter(sop_map, region_id == 0)$score, style = "font-size: 200%;"),
                       icon = icon("home"), color = "aqua", fill = TRUE, width = 3),
               infoBox("Resource Access Opportunities", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                       icon = icon("ship"), color = "orange", fill = TRUE, width = 3),

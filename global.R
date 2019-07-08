@@ -67,11 +67,10 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 
   fis_scores_map <- filter(fis_scores, year == 2017)
 
- #for now I'm removing non-assessed catch but we should probably consider a way to display both assessed/unassessed stock catch values
-  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fis_meancatch.csv") %>% 
-    select(-X1) %>%
-    filter(species!= "CONFIDENTIAL SPECIES") %>%
-    mutate(species = ifelse(is.na(stock), species, stock)) #this will make sure we display stocks separate
+ #catch aggregated to OHI regions
+  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/nmfs_spatial_catch_by_ohi_rgn.csv") %>% 
+    left_join(rgn_data) %>%
+    filter(species!= "CONFIDENTIAL SPECIES")
 
   ## Aquaculture data ##
   mar_scores <- scores %>% 

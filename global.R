@@ -1,22 +1,20 @@
 #global
+##libraries
+library(tidyverse)
+library(shinydashboard)
+library(RColorBrewer)
 
 ## source modules
 source("modules/chart_card.R")
 source("modules/map_card.R")
 
-## source functions
-source("functions/tab_title.R")
-source("functions/text_links.R")
-source("functions/convertMenuItem.R")
+## source custom functions
+files.sources = list.files("functions", full.names = T)
+sapply(files.sources, source)
 
 ## no scientific notation and round to 2 decimals
 options(scipen = 999,
         digits = 2)
-
-##libraries
-library(tidyverse)
-library(shinydashboard)
-library(RColorBrewer)
 
 ##color palette ----
 reds <-  grDevices::colorRampPalette(
@@ -26,13 +24,12 @@ blues <-  grDevices::colorRampPalette(
   c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(15)
 myPalette <-  c(reds, blues)
 
-##shapefile
+## shapefile
 rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%
   sf::st_transform(crs = '+proj=longlat +datum=WGS84') %>%
   rename(region_id = rgn_id) #scores.csv uses region_id not rgn_id so this allows them to join
 
 ## Data sources (change this to be organized by goal and then alphabetically?)
-
 rgn_data <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/spatial/regions_list.csv") %>%
   select(-area_km2)
 

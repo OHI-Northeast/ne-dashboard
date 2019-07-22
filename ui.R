@@ -10,7 +10,7 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Welcome", tabName = "welcome", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Index", tabName = "index", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Overall Ocean Health", tabName = "index", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
       menuItem("Clean Waters", tabName = "cw", badgeLabel = "draft", badgeColor = "orange"),
       convertMenuItem(menuItem("Food Provision", tabName = "fp", startExpanded = TRUE,
                menuSubItem("Wild-Caught Fisheries", tabName = "fis"),
@@ -62,60 +62,53 @@ dashboardPage(
     ## Welcome landing page##
     tabItem(tabName = "welcome",
             
-        fluidRow(box(h1("US Northeast Ocean Health Index Dashboard"),
-                      "Scores and data underlying the Northeast OHI assessment", width = 12)),
+        fluidRow(box(h1("Ocean Health Dashboard for the US Northeast"),
+                      "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations.", width = 12)),
+        
+        fluidRow(box(h3("How healthy are oceans in the US Northeast?"),
+                     br(),
+                     p("Ocean Health Index assessments uses the best-available data to measure progress toward target conditions for benefits provided by a region's marine ecosystems, reslting in benefit-specific and overall health scores on a scale of 0 to 100. **Dive Deeper**(link to overall health page"), width = 12)),
+        
+        # infoBoxes with goal scores for Northeast region
+        fluidRow(
+          infoBox("Clean Waters", tags$p(filter(cw_scores_map, region_id == 0)$score, style = "font-size: 200%;"), 
+                  icon = icon("tint"), color = "teal", fill = TRUE, width = 3),
+          infoBox("Food Provision", tags$p(filter(fis_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                  icon = icon("utensils"),color = "red", fill = TRUE, width = 3),
+          infoBox("Livelihoods & Economies", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                  icon = icon("money"),color = "green", fill = TRUE, width = 3),
+          infoBox("Tourism & Recreation", tags$p(filter(tr_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                  icon = icon("umbrella-beach"),color = "yellow", fill = TRUE, width = 3)
+        ),
+        
+        fluidRow(
+          infoBox("Biodiversity", tags$p(filter(bio_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                  icon = icon("fish"), color = "blue", fill = TRUE, width = 3),
+          infoBox("Sense of Place", tags$p(filter(sop_map, region_id == 0)$score, style = "font-size: 200%;"),
+                  icon = icon("home"), color = "aqua", fill = TRUE, width = 3),
+          infoBox("Resource Access Opportunities", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                  icon = icon("ship"), color = "orange", fill = TRUE, width = 3),
+          infoBox("Habitat Services", tags$p(filter(hs_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+                  icon = icon("pagelines"), color = "purple", fill = TRUE, width = 3)
+        ),
         
         fluidRow(box(h3("What is the Northeast OHI?"),
-                     br(),
-                     p("The US Northeast index was designed as a monitoring tool to support the Northeast Regional Plan. Working with local partners, our team is tailoring the Ocean Health Index (OHI) to the unique context of the U.S. Northeast by incorporating more locally meaningful information, priorities, and perspectives. More information can be found at ", a(href = "http://www.ohi-northeast.org/", "ohi-northeast.org", ".")), width = 6),
+                 br(),
+                 "(need to add links)"),
         
-              box(h3("Who is involved?"),
+              box(h3("Access Ocean Health Index Data"),
                   br(),
-                      "The Northeast assessment is led by a team of scientists at the National Center for Ecological Analysis and Synthesis (NCEAS) at the University of California, Santa Barbara (UCSB). The Northeast Regional Ocean Council (NROC) Ocean Planning Committee provides a forum to help coordinate with other, federal, state and local governmental organizations, NGOs, and community members on development of the OHI.")),
+                      "(need to add links")),
         
-        fluidRow(box(
-          "Ocean Health Index scores are calculated for each goal separately and then combined to get an overall score on a scale of 0-100. Goal scores are represented by the length of the petals in a flower plot, and the overall score is in the center",
-          
-        uiOutput("flowerplot")),
-          
-          #northeast region index score line plot
-          card_ui(id = "ne_indx_scores",
-                      title_text     = "US Northeast Ocean Health Index score over time")),
-        
-        fluidRow(box(
-          p("Determining ocean health requires an approach that integrates social, economic, and environmental information. The Ocean Health Index does this by measuring progress   towards widely held goals that represent key benefits and services provided by marine ecosystems. By analyzing these goals together we obtain a comprehensive picture of the state of the ecosystem. More information about the Ocean Health Index can be found at ", a(href = "http://ohi-science.org/", "ohi-science.org")), width = 12))
-      
-          ), 
+        fluidRow(box(h3("About the Assessment"),
+          "The goal of this assessment is to serve regional ocean planning by providing a big picture perspective on ocean health based on data and priorities specific to the Northeast. The assessment was led by a team of scientists from the Ocean Health Index program at the National Center for Ecological Analysis and Synthesis (NCEAS). This team worked with the Northeast Regional Ocean Council (NROC) Ocean PLanning Committee to get stakeholder input from federal, state, and local governmnetal organizations, NGO's, and community members. More information can be found at ", a(href = "http://www.ohi-northeast.org/", "ohi-northeast.org", "."), width = 12))),
             
     
     ## Overall index scores ##
     tabItem(tabName = "index",
-            h2("US Northeast goal scores"),
-            br(),
-            br(),
             
-            # infoBoxes with goal scores for Northeast region
-            fluidRow(
-              infoBox("Clean Waters", tags$p(filter(cw_scores_map, region_id == 0)$score, style = "font-size: 200%;"), 
-                      icon = icon("tint"), color = "teal", fill = TRUE, width = 3),
-              infoBox("Food Provision", tags$p(filter(fis_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
-                      icon = icon("utensils"),color = "red", fill = TRUE, width = 3),
-              infoBox("Livelihoods & Economies", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
-                      icon = icon("money"),color = "green", fill = TRUE, width = 3),
-              infoBox("Tourism & Recreation", tags$p(filter(tr_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
-                      icon = icon("umbrella-beach"),color = "yellow", fill = TRUE, width = 3)
-            ),
-            
-            fluidRow(
-              infoBox("Biodiversity", tags$p(filter(bio_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
-                      icon = icon("fish"), color = "blue", fill = TRUE, width = 3),
-              infoBox("Sense of Place", tags$p(filter(sop_map, region_id == 0)$score, style = "font-size: 200%;"),
-                      icon = icon("home"), color = "aqua", fill = TRUE, width = 3),
-              infoBox("Resource Access Opportunities", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
-                      icon = icon("ship"), color = "orange", fill = TRUE, width = 3),
-              infoBox("Habitat Services", tags$p(filter(hs_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
-                      icon = icon("pagelines"), color = "purple", fill = TRUE, width = 3)
-            ),
+            fluidRow(box(h1("Overall Ocean Health"),
+                         "more text here on what this page is about", width = 12)),
             
             fluidRow(
               ## Scores Map ##
@@ -123,9 +116,13 @@ dashboardPage(
                      title_text = "Current Scores",
                      sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
               
+              uiOutput("flowerplot")),
+            
+            fluidRow(
               card_ui(id = "indx_scores",
                       title_text     = "Scores over time",
-                      sub_title_text = "Index scores for each region over time"))
+                      sub_title_text = "Index scores for each region over time",
+                      box_width = 12))
             ),
     
     ## Clean Waters ##

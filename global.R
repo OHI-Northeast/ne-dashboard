@@ -23,6 +23,7 @@ reds <-  grDevices::colorRampPalette(
 blues <-  grDevices::colorRampPalette(
   c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(15)
 myPalette <-  c(reds, blues)
+chart_colors <- viridis::viridis(n = 12)
 
 ## shapefile
 rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%

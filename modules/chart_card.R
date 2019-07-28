@@ -203,7 +203,7 @@ card_plot <- function(input,
                       color_group = NULL,
                       mode = "markers",
                       filter_field = NULL,
-                      colors = NULL, 
+                      colors = chart_colors, 
                       plot_type,
                       tooltip_text = NULL,
                       xaxis_label = "Year",
@@ -286,7 +286,7 @@ card_plot <- function(input,
                  marker = marker,
                  text = tooltip_text, 
                  hoverinfo = "text") %>%
-      layout(font = list(family = "Lora", size = 14),
+      layout(#font = list(family = "Open Sans", size = 12), ##tried to change font to Open Sans but it wasn't working....
              xaxis = list(title = xaxis_label, 
                           fixedrange = TRUE, 
                           linecolor = "#A9A9A9",
@@ -300,7 +300,8 @@ card_plot <- function(input,
                           zeroline = FALSE, 
                           range = yaxis_range),
              annotations = annotations,
-             margin = list(b = xaxis_margin)) %>%
+             margin = list(b = xaxis_margin),
+             legend = list(orientation = 'h', size = 10)) %>%
       config(displayModeBar = F)
     
     if (is.null(add_traces)) {

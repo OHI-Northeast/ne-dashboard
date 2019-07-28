@@ -16,7 +16,7 @@ function(input, output, session) {
              mode = "lines+markers",
              tooltip_text = ~paste("Index score:", score,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Score map ##
@@ -39,7 +39,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Index score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Clean Waters ##
@@ -64,7 +64,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### CW layers chart
@@ -79,7 +79,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Score:", score,
                                    "<br>Layer:", layer,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Layer Score")
   
   ## Food Provision ##
@@ -102,7 +102,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Wild-Caught Fisheries ##
@@ -127,7 +127,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### NOAA landings chart
@@ -142,7 +142,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Species:", display_name,
                                    "<br>Pounds:", catch,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Catch (pounds)")
   
   ## Aquaculture ##
@@ -165,7 +165,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   
@@ -191,7 +191,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Livelihoods ##
@@ -216,7 +216,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### Employment chart
@@ -231,7 +231,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Number of jobs:", Employment,
                                    "<br>Sector:", Sector,
                                    "<br>Year:", Year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Number of jobs")
   
   ###job scores
@@ -245,7 +245,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Job score:", job_score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", scenario_year, sep = " "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Job score")
   
   ### Wages
@@ -260,7 +260,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Average annual wage: $", prettyNum(Wages, big.mark = ","),
                                    "<br>Sector:", Sector,
                                    "<br>Year:", Year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Wages (2012 $USD)")
   
   ###wage scores
@@ -274,7 +274,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Wage score:", wages_score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", scenario_year, sep = " "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Wage score")
   
   ## Economies ##
@@ -299,7 +299,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   
@@ -315,7 +315,7 @@ function(input, output, session) {
              tooltip_text = ~paste("GDP: $", prettyNum(GDP, big.mark = ","),
                                    "<br>Sector:", Sector,
                                    "<br>Year:", Year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Gross Domestic Product (2012 $USD)")
   
   ## Scores time series chart ##
@@ -329,7 +329,7 @@ function(input, output, session) {
              tooltip_text = ~paste("GDP score:", status,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", scenario_year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   
@@ -355,7 +355,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### Employment chart
@@ -369,7 +369,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Number of jobs:", Employment,
                                    "<br>Sector:", Sector,
                                    "<br>Year:", Year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Number of jobs")
   
   ## Biodiversity ##
@@ -394,7 +394,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### species sub-goal scores ###
@@ -408,7 +408,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Sub-goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### habitats sub-goal scores ###
@@ -423,7 +423,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Sub-goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Species ##
@@ -448,7 +448,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Habitats ##
@@ -473,7 +473,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### Habitat raw data line chart
@@ -488,7 +488,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Data:", metric,
                                    "<br>Value:", raw_data,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "")
   
   ### Habitat layer scores chart
@@ -502,7 +502,7 @@ function(input, output, session) {
              mode = "lines+markers",
              tooltip_text = ~paste("Score:", score,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Layer Score")
   
   ## Habitat Services ##
@@ -528,7 +528,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### Coastal Protection
@@ -541,7 +541,7 @@ function(input, output, session) {
              mode = "lines+markers",
              tooltip_text = ~paste("Score:", cp_score,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### Carbon Storage
@@ -554,7 +554,7 @@ function(input, output, session) {
              mode = "lines+markers",
              tooltip_text = ~paste("Score:", cs_score,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ### Sense of Place
@@ -579,7 +579,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ##SOP LSP scores
@@ -593,7 +593,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Sub-goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ##SOP ICO Scores
@@ -607,7 +607,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Sub-goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Lasting Special Places ##
@@ -632,7 +632,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ## Marine protected area ##
@@ -646,7 +646,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Proportion protected:", prop_area,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Proportion of area protected (0 to 1)")
   
   ## land protected area ##
@@ -660,7 +660,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Proportion protected:", prop_area,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Proportion of area protected (0 to 1)")
   
   ## Iconic Species ##
@@ -685,7 +685,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Goal score:", score,
                                    "<br>Region:", rgn_name,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Score")
   
   ##Iconic species status ##
@@ -700,7 +700,7 @@ function(input, output, session) {
              tooltip_text = ~paste("Score:", score,
                                    "<br>Species:", common,
                                    "<br>Year:", year, sep=" "),
-             xaxis_label = "Year",
+             xaxis_label = "",
              yaxis_label = "Status score (a score of 1 is equal to a status of Least Concern)")
 
   }

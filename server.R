@@ -372,6 +372,20 @@ function(input, output, session) {
              xaxis_label = "",
              yaxis_label = "Number of jobs")
   
+  ### Beach closure chart
+  callModule(card_plot, "tr_beach",
+             df = tr_beaches,
+             x = "Year",
+             y = "perc_closed",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Proportion closed:", perc_closed,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", Year, sep=" "),
+             xaxis_label = "",
+             yaxis_label = "Average proportion (%) of swim season closed")
+  
   ## Biodiversity ##
   
   ### BIO Score map ###

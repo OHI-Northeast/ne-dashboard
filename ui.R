@@ -73,7 +73,7 @@ dashboardPage(
         fluidRow(
           infoBox("Clean Waters", tags$p(filter(cw_scores_map, region_id == 0)$score, style = "font-size: 200%;"), 
                   icon = icon("tint"), color = "teal", fill = TRUE, width = 3),
-          infoBox("Food Provision", tags$p(filter(fis_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+          infoBox("Food Provision", tags$p(filter(fp_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                   icon = icon("utensils"),color = "red", fill = TRUE, width = 3),
           infoBox("Livelihoods & Economies", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                   icon = icon("money"),color = "green", fill = TRUE, width = 3),
@@ -414,8 +414,15 @@ dashboardPage(
             card_ui(id = "tr_jobs",
                     title_text = "Jobs in Tourism",
                     sub_title_text = "",
-                    source_text = "Source: National Ocean Economics Program",
-                    box_width = 12))),
+                    source_text = "Source: National Ocean Economics Program"),
+            
+            ## Beach Closures ##
+            card_ui(id = "tr_beach",
+                    title_text = "Average proportion of swim season with beach closures",
+                    sub_title_text = "This layer reports the average proportion of a swim season with beaches closed to recreation.",
+                    source_text = "Source: EPA Beacon")
+            
+            )),
     
  
     ## Biodiversity ##

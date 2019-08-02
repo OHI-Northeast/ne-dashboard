@@ -114,13 +114,13 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
 ## TR data ##
 
-  ### For now I"m limiting this to status only. But we will want to have the ability to toggle between all dimensions and sub goals
   tr_scores <- scores %>% 
     filter(goal == "TR",
            dimension == "score")
   tr_scores_map <- filter(tr_scores, year == 2017)
   
   tr_jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
+  tr_beaches <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/proportion_closed_by_rgn.csv")
 
 ## CW data ##
   cw_scores <- scores %>%

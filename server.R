@@ -716,5 +716,62 @@ function(input, output, session) {
                                    "<br>Year:", year, sep=" "),
              xaxis_label = "",
              yaxis_label = "Status score (a score of 1 is equal to a status of Least Concern)")
+  
+  
+  ## Resource Access Opportunities ##
+  
+  ## RAO Map ##
+  callModule(card_map, "rao_scores_map",
+             data = rao_scores_map,
+             field = "score",
+             legend_title = "OHI Goal Score",
+             popup_title = "Score:",
+             popup_add_field = "rgn_name",
+             popup_add_field_title = "")
+  
+  ## RAO Scores time series ## 
+  callModule(card_plot, "rao_scores",
+             df = rao_scores,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Goal score:", score,
+                                   "<br>Region:", rgn_name,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "",
+             yaxis_label = "Score")
+  
+  ##RAO economic access ##
+  ##NOT DONE
+  # callModule(card_plot, "rao_econ",
+  #            df = rao_econ,
+  #            x = "year",
+  #            y = "score",
+  #            color_group = "common",
+  #            filter_field = "rgn_name",
+  #            plot_type = "scatter",
+  #            mode = "lines+markers",
+  #            tooltip_text = ~paste("Score:", score,
+  #                                  "<br>Year:", year, sep=" "),
+  #            xaxis_label = "",
+  #            yaxis_label = "Ratio of gas ($/barrel) to mean wage")
+  
+  ##RAO fish stock sustainability ##
+  
+  ## NOT DONE
+  # callModule(card_plot, "rao_fssi",
+  #            df = rao_fssi,
+  #            x = "year",
+  #            y = "score",
+  #            color_group = "common",
+  #            filter_field = "rgn_name",
+  #            plot_type = "scatter",
+  #            mode = "lines+markers",
+  #            tooltip_text = ~paste("Score:", score,
+  #                                  "<br>Year:", year, sep=" "),
+  #            xaxis_label = "",
+  #            yaxis_label = "")
 
   }

@@ -9,9 +9,9 @@ dashboardPage(
 ### Dashboard sidebar  
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Welcome", tabName = "welcome", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Overall Ocean Health", tabName = "index", icon = icon("dashboard"), badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Clean Waters", tabName = "cw", badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Welcome", tabName = "welcome"),
+      menuItem("Overall Ocean Health", tabName = "index", icon = icon("dashboard")),
+      menuItem("Clean Waters", tabName = "cw"),
       convertMenuItem(menuItem("Food Provision", tabName = "fp", startExpanded = TRUE,
                menuSubItem("Wild-Caught Fisheries", tabName = "fis"),
                menuSubItem("Aquaculture", tabName = "mar")), "fp"),
@@ -19,16 +19,16 @@ dashboardPage(
                                startExpanded = TRUE,
                menuSubItem("Livelihoods", tabName = "liv"),
                menuSubItem("Economies", tabName = "eco")), "liveco"),
-      menuItem("Tourism & Recreation", tabName = "tr", badgeLabel = "draft", badgeColor = "orange"),
+      menuItem("Tourism & Recreation", tabName = "tr"),
       convertMenuItem(menuItem("Biodiversity", tabName = "bio", startExpanded = TRUE,
                menuSubItem("Species", tabName = "spp"),
                menuSubItem("Habitats", tabName = "hab")), "bio"),
       convertMenuItem(menuItem("Sense of Place", tabName = "sop", startExpanded = TRUE,
                menuSubItem("Lasting Special Places", tabName = "lsp"),
                menuSubItem("Iconic Species", tabName = "ico")), "sop"),
-      menuItem("Resource Access Opportunities ", tabName = "ao", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Habitat Services", tabName = "hs", badgeLabel = "draft", badgeColor = "orange"),
-      menuItem("Pressures", tabName = "pressures", badgeLabel = "draft", badgeColor = "orange")
+      menuItem("Resource Access Opportunities ", tabName = "rao"),
+      menuItem("Habitat Services", tabName = "hs"),
+      menuItem("Pressures", tabName = "pressures")
   ),
   width = 300,
   
@@ -86,7 +86,7 @@ dashboardPage(
                   icon = icon("fish"), color = "blue", fill = TRUE, width = 3),
           infoBox("Sense of Place", tags$p(filter(sop_map, region_id == 0)$score, style = "font-size: 200%;"),
                   icon = icon("home"), color = "aqua", fill = TRUE, width = 3),
-          infoBox("Resource Access Opportunities", tags$p(filter(le_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
+          infoBox("Resource Access Opportunities", tags$p(filter(rao_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                   icon = icon("ship"), color = "orange", fill = TRUE, width = 3),
           infoBox("Habitat Services", tags$p(filter(hs_scores_map, region_id == 0)$score, style = "font-size: 200%;"),
                   icon = icon("pagelines"), color = "purple", fill = TRUE, width = 3)
@@ -655,13 +655,41 @@ dashboardPage(
             
     ),
     
-    ## Local Fishing & Resource Access Opportunities  ##
+    ## Resource Access Opportunities  ##
     
-    tabItem(tabName = "ao",
+    tabItem(tabName = "rao",
             
-            ## Local Fishing & Resource Access Opportunities tab title ##
-            tab_title_ui(goal_text = "LOCAL FISHING & RESOURCE ACCESS OPPORTUNITIES",
-                         commitment_text = "opportunities for Native Americans and local community members to access local natural resources")),
+            
+            ## Resource Access Opportunities tab title ##
+            tab_title_ui(goal_text = "RESOURCE ACCESS OPPORTUNITIES",
+                         commitment_text = ""),
+            
+            fluidRow(
+              ## Scores Map ##
+              map_ui(id = "rao_scores_map",
+                     title_text = "Current Scores",
+                     sub_title_text = "This map shows scores from the most recent assessed year (2017)"),
+              
+              card_ui(id = "rao_scores",
+                      title_text = "Scores over time",
+                      sub_title_text = "Explore scores for each region over time"))
+            
+            # fluidRow(  
+            #   ## Economic access ##
+            #   card_ui(id = "rao_econ",
+            #           title_text = "Economic Access (gas to wage ratio)",
+            #           sub_title_text = "",
+            #           source_text = ""),
+            #   
+            #   ## FSSI ##
+            #   card_ui(id = "rao_fssi",
+            #           title_text = "Fish stock sustainability index (FSSI)",
+            #           sub_title_text = "",
+            #           source_text = "Source: NOAA FSSI")
+            #   )
+    ),
+            
+          
     
     ## Habitat Services ##
     

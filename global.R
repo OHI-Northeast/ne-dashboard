@@ -203,3 +203,12 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     left_join(rgn_data)
   
   
+## Resource Access Opportunities
+  
+  rao_scores <- scores %>%
+    filter(goal == "RAO",
+           dimension == "score")
+  
+  rao_scores_map <- filter(rao_scores, year == 2017)
+  
+  

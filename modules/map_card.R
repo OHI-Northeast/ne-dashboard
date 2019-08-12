@@ -171,7 +171,7 @@ card_map <- function(input,
   
   # get color pal
   pal <- colorNumeric(palette = color_palette,
-                      domain = c(0, 100),
+                      domain = c(100, 0),
                       na.color = "#00000000")
   
   if (field != "input") {
@@ -193,12 +193,15 @@ card_map <- function(input,
                     highlightOptions = highlightOptions(color = "white", 
                                                         weight = 2,
                                                         bringToFront = TRUE)) %>% 
-        addLegend("bottomright",
-                  pal = pal,
-                  values = c(0:100),
-                  title = legend_title,
-                  opacity = 0.85,
-                  layerId = "colorLegend") %>%
+        
+        addLegend_decreasing("bottomright",
+                             pal = pal,
+                             values = c(0:100),
+                             title = legend_title,
+                             opacity = 0.85,
+                             layerId = "colorLegend",
+                             decreasing = TRUE) %>%
+        
         addProviderTiles(providers$CartoDB.Positron) %>%
       setView(-70.0589, 41.5, zoom = 6)
     })

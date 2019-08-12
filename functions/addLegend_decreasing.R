@@ -1,3 +1,5 @@
+#custom function for reversing color legend from this issue: https://github.com/rstudio/leaflet/issues/256#issuecomment-440290201
+
 addLegend_decreasing <- function (map, position = c("topright", "bottomright", "bottomleft", 
                                                     "topleft"), pal, values, na.label = "NA", bins = 7, colors, 
                                   opacity = 0.5, labels = NULL, labFormat = labelFormat(), 

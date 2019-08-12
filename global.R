@@ -16,7 +16,7 @@ sapply(files.sources, source)
 options(scipen = 999,
         digits = 2)
 
-##color palette ----
+##color palette ---
 reds <-  grDevices::colorRampPalette(
   c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"),
   space="Lab")(85)
@@ -40,7 +40,7 @@ scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/ma
   left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
   mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name))
 
-## Index scores for entire region ##
+## Index scores for entire region ----
 
 indx_scores <- scores %>%
   filter(goal == "Index",
@@ -51,14 +51,14 @@ ne_indx_scores <- indx_scores %>%
 
 indx_scores_map <- filter(indx_scores, year == 2017)
 
-## Food Provision data ##
+## Food Provision data ----
 fp_scores <- scores %>% 
   filter(goal == "FP",
          dimension == "score")
 
 fp_scores_map <- filter(fp_scores, year == 2017)
 
-## FIS data ##
+## FIS data ----
   fis_scores <- scores %>% 
     filter(goal == "FIS",
            dimension == "score")
@@ -70,21 +70,21 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     left_join(rgn_data) %>%
     filter(species!= "CONFIDENTIAL SPECIES")
 
-  ## Aquaculture data ##
+## Aquaculture data ----
   mar_scores <- scores %>% 
     filter(goal == "MAR",
            dimension == "score")
   
   mar_scores_map <- filter(mar_scores, year == 2017)
   
-  ## LE data ##
+## LE data ----
 
   le_scores <- scores %>% 
     filter(goal == "LE",
            dimension == "score")
   le_scores_map <- filter(le_scores, year == 2017)
   
-  #livelihoods#
+## livelihoods----
   liv_scores <- scores %>% 
     filter(goal == "LIV",
            dimension == "score")
@@ -100,7 +100,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   wages_scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/wages_scores.csv")
   
-  #economies#
+## Economies data ----
   eco_scores <- scores %>% 
     filter(goal == "ECO",
            dimension == "score")
@@ -112,7 +112,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 
   gdp_scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/eco/data/gdp_scores.csv")
   
-## TR data ##
+## TR data ----
 
   tr_scores <- scores %>% 
     filter(goal == "TR",
@@ -122,7 +122,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   tr_jobs <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
   tr_beaches <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/proportion_closed_by_rgn.csv")
 
-## CW data ##
+## CW data ----
   cw_scores <- scores %>%
     filter(goal == "CW",
            dimension == "score")
@@ -133,21 +133,21 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
     mutate(score = value * 100)
   
-## BIO data ##
+## BIO data ----
   bio_scores <- scores %>%
     filter(goal == "BD",
            dimension == "score")
   
   bio_scores_map <- filter(bio_scores, year == 2017)
 
-## SPP data ##
+## SPP data ----
   spp_scores <- scores %>%
     filter(goal == "SPP",
            dimension == "score")
   
   spp_scores_map <- filter(spp_scores, year == 2017)
   
-## HAB data ##
+## HAB data ----
   hab_scores <- scores %>%
     filter(goal == "HAB",
            dimension == "score")
@@ -160,7 +160,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   hab_data <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/dashboard_habitat_data.csv")
   
-## Habitat Services (HS) Data ##
+## Habitat Services (HS) Data ----
   
   hs_scores <- scores %>%
     filter(goal == "HS",
@@ -172,14 +172,14 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     
   carbon_storage <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/hs_carbon_storage.csv")
   
-## Sense of Place ##
+## Sense of Place ----
   sop_scores <- scores %>%
     filter(goal == "SP",
            dimension == "score")
   
   sop_map <- filter(sop_scores, year == 2017)
   
-## Lasting Special Places $$
+## Lasting Special Places ----
   lsp_scores <- scores %>%
     filter(goal == "LSP",
            dimension == "score")
@@ -191,7 +191,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   marine_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/lsp_protected_marine.csv") %>% 
     left_join(rgn_data)
   
-## Iconic Species  
+## Iconic Species  ----
   
   ico_scores <- scores %>%
     filter(goal == "ICO",
@@ -203,7 +203,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     left_join(rgn_data)
   
   
-## Resource Access Opportunities
+## Resource Access Opportunities  -----
   
   rao_scores <- scores %>%
     filter(goal == "RAO",

@@ -68,8 +68,8 @@ library(assertthat)
 
 ## Card UI Function ##
 card_ui <- function(id, 
-                    title_text = NULL,
-                    sub_title_text = NULL,
+                    title_text = "Scores over time",
+                    sub_title_text = "Double click on a region in the legend to highlight just that line. Hover over the lines to see individual scores.",
                     select_type = c(NULL, "radio", "drop_down", "checkboxes"),
                     select_location = c(NULL, "above", "below"),
                     select_choices = c(""),

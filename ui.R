@@ -19,7 +19,7 @@ dashboardPage(
         menuItem(
           "Food Provision",
           tabName = "fp",
-          startExpanded = TRUE,
+          startExpanded = FALSE,
           menuSubItem("Wild-Caught Fisheries", tabName = "fis"),
           menuSubItem("Aquaculture", tabName = "mar")
         ),
@@ -29,7 +29,7 @@ dashboardPage(
         menuItem(
           "Livelihoods & Economies",
           tabName = "liveco",
-          startExpanded = TRUE,
+          startExpanded = FALSE,
           menuSubItem("Livelihoods", tabName = "liv"),
           menuSubItem("Economies", tabName = "eco")
         ),
@@ -40,7 +40,7 @@ dashboardPage(
         menuItem(
           "Biodiversity",
           tabName = "bio",
-          startExpanded = TRUE,
+          startExpanded = FALSE,
           menuSubItem("Species", tabName = "spp"),
           menuSubItem("Habitats", tabName = "hab")
         ),
@@ -50,7 +50,7 @@ dashboardPage(
         menuItem(
           "Sense of Place",
           tabName = "sop",
-          startExpanded = TRUE,
+          startExpanded = FALSE,
           menuSubItem("Lasting Special Places", tabName = "lsp"),
           menuSubItem("Iconic Species", tabName = "ico")
         ),
@@ -266,9 +266,7 @@ tabItem(tabName = "index",
         fluidRow(
           ## scores map
           map_ui(
-            id             = "indx_scores_map",
-            title_text     = "Current Scores",
-            sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+            id = "indx_scores_map"
           ),
           
           uiOutput("flowerplot")
@@ -278,8 +276,6 @@ tabItem(tabName = "index",
           ## scores through time
           card_ui(
             id             = "indx_scores",
-            title_text     = "Scores over time",
-            sub_title_text = "Index scores for each region over time",
             box_width      = 12
           )
         )), 
@@ -308,37 +304,71 @@ tabItem(
     width = 12
     )),
   
+  ## Key Messages
+  fluidRow(box(
+    h4("Key Messages"),
+      "- Message 1",
+    br(),
+      "- Message 2",
+    width = 12)),
+  
   fluidRow(
     ## scores map
     map_ui(
-      id = "cw_scores_map",
-      title_text = "Current Scores",
-      sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+      id = "cw_scores_map"
     ),
     
     ## scores through time
     card_ui(
-      id = "cw_scores",
-      title_text     = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "cw_scores"
     )
   ),
   
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#clean-waters",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "DATA PREP",
-      url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw#ocean-health-index---us-northeast-clean-waters-goal",
-      box_width = 6
+  
+  ## Data layers and targets
+  fluidRow(box(
+    h4("Data Layers"),
+    tags$ul(
+      tags$li(
+        tags$b("Pathogens"),
+        ": Number of beach day closures as recorded by the EPA Beach Closure Data"
+      ),
+      tags$li(
+        tags$b("Trash"),
+        ": Pounds of trash collected per person at the Ocean Conservancy’s International coastal cleanup day data"
+      ),
+      tags$li(
+        tags$b("Water quality"),
+        ": EPA's National Coastal Condition Assessment Water Quality Index status classifications"
+      ),
+      tags$li(
+        tags$b("Sediment quality"),
+        ": EPA's National Coastal Condition Assessment Sediment Quality Index status classifications"
+      )
     )
   ),
-  
+  box(
+    h4("Data Targets"),
+    tags$ul(
+      tags$li(
+        tags$b("Pathogens"),
+        ": 100 days free of any beach closures, representing the average length of the swimming season for the region"
+      ),
+      tags$li(
+        tags$b("Trash"),
+        ": Zero pounds of trash collected on all beaches on International Coastal Cleanup Day"
+      ),
+      tags$li(
+        tags$b("Water quality"),
+        ": All monitoring sites classified as in “Good” water quality condition"
+      ),
+      tags$li(
+        tags$b("Sediment quality"),
+        ": All monitoring sites classified as in “Good” sediment quality condition"
+      )
+    )
+  )), 
+
   fluidRow(
     ## CW layers ##
     card_ui(
@@ -361,8 +391,32 @@ tabItem(
       source_text = "Source: multiple (fill this in)",
       box_width = 12
     )
-  )
-),
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(title = "CODE",
+                       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw#ocean-health-index---us-northeast-clean-waters-goal", 
+                       box_width = 6),
+    
+    text_links_default(title = "ACCESS LAYER DATA",
+                       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw/data", 
+                       box_width = 6)
+  ),
+  
+  fluidRow(box(h4("Data Gaps"),
+               tags$ul(
+                 tags$li(
+                   tags$b("Trash"),
+                   ": the Ocean Conservancy’s International coastal cleanup day data is the most spatially and temporally representative data available for the Northeast region, however these data are only collected once a year by volunteers and thus may not be representative of the larger patterns occurring across time and space in the region. More comprehensive and consistent monitoring of floating trash, beach trash, and microplastics would allow for a more accurate assessment of the pollution derived from trash across the region."
+                 ),
+                 tags$li(
+                   tags$b("Temporal availability"),
+                   "of US EPA's National Coastal Condition Assessment data - These data are incredibly representative spatially of the water quality across the region, however these monitoring efforts only occur every 4-5 years and thus may miss some events or trends that would be revealed by more monitoring efforts throughout each year."
+                 )
+               ),
+               width = 12))
+), 
 
 ## Food Provision --------
 tabItem(
@@ -390,15 +444,11 @@ tabItem(
   fluidRow(
     ## scores map
     map_ui(
-      id = "fp_scores_map",
-      title_text = "Current Scores",
-      sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+      id = "fp_scores_map"
     ),
     ## scores through time
     card_ui(
-      id = "fp_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "fp_scores"
     )
   )
 ),
@@ -413,15 +463,11 @@ tabItem(
   fluidRow(
     ## scores map
     map_ui(
-      id = "fis_scores_map",
-      title_text = "Current Scores",
-      sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+      id = "fis_scores_map"
     ),
     ## scores through time
     card_ui(
-      id = "fis_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "fis_scores"
     )
   ),
   
@@ -463,15 +509,11 @@ tabItem(
   fluidRow(
     ## scores map
     map_ui(
-      id = "mar_scores_map",
-      title_text = "Current Scores",
-      sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+      id = "mar_scores_map"
     ),
     ## scores through time
     card_ui(
-      id = "mar_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "mar_scores"
     )
   )
 ),
@@ -502,15 +544,11 @@ tabItem(
   fluidRow(
     ## scores map
     map_ui(
-      id = "le_scores_map",
-      title_text = "Livelihoods & Economies Goal Scores",
-      sub_title_text = "This map shows scores from the most recent assessment (2017) are shown"
+      id = "le_scores_map"
     ),
     ## scores through time
     card_ui(
-      id = "le_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "le_scores"
     )
   ),
   
@@ -537,16 +575,12 @@ tabItem(
   fluidRow(
     ## scores map
     map_ui(
-      id = "liv_scores_map",
-      title_text = "Livelihoods Sub-Goal Scores",
-      sub_title_text = "This map shows scores from the most recent assessment (2017) are shown"
+      id = "liv_scores_map"
     ),
     
     ## scores through time
     card_ui(
-      id = "liv_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "liv_scores"
     )
   ),
   
@@ -618,16 +652,12 @@ tabItem(
   fluidRow(
     ## scores map
     map_ui(
-      id = "eco_scores_map",
-      title_text = "Economies Sub-Goal Scores",
-      sub_title_text = "This map shows scores from the most recent assessment (2017) are shown"
+      id = "eco_scores_map"
     ),
     
     ## scores through time
     card_ui(
-      id = "eco_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "eco_scores"
     )
   ),
   
@@ -695,16 +725,12 @@ tabItem(
     
     ## scores map
     map_ui(
-      id = "tr_scores_map",
-      title_text = "Current Scores",
-      sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+      id = "tr_scores_map"
     ),
     
     ## scores through time
     card_ui(
-      id = "tr_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "tr_scores"
     )
   ),
   
@@ -755,16 +781,12 @@ tabItem(
   
   ## scores map
   map_ui(
-    id = "bio_scores_map",
-    title_text = "Current Scores",
-    sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+    id = "bio_scores_map"
   ),
   
   ## scores through time
   card_ui(
-    id = "bio_scores",
-    title_text = "Scores over time",
-    sub_title_text = "Explore scores for each region over time"
+    id = "bio_scores"
   ),
   
   
@@ -803,16 +825,12 @@ tabItem(
   
   ## scores map
   map_ui(
-    id = "spp_scores_map",
-    title_text = "Current Scores",
-    sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+    id = "spp_scores_map"
   ),
   
   ## scores through time
   card_ui(
-    id = "spp_scores",
-    title_text = "Scores over time",
-    sub_title_text = "Explore scores for each region over time"
+    id = "spp_scores"
   ),
   
   ## Text boxes with links ##
@@ -842,16 +860,12 @@ tabItem(
   
   ## scores map
   map_ui(
-    id = "hab_scores_map",
-    title_text = "Current Scores",
-    sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+    id = "hab_scores_map"
   ),
   
   ## scores through time
   card_ui(
-    id = "hab_scores",
-    title_text = "Scores over time",
-    sub_title_text = "Explore scores for each region over time"
+    id = "hab_scores"
   ),
   
   ## Text boxes with links ##
@@ -929,16 +943,12 @@ tabItem(
   
   ## scores map
   map_ui(
-    id = "sop_scores_map",
-    title_text = "Current Scores",
-    sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+    id = "sop_scores_map"
   ),
   
   ## scores through time
   card_ui(
-    id = "sop_scores",
-    title_text = "Scores over time",
-    sub_title_text = "Explore scores for each region over time"
+    id = "sop_scores"
   ),
   
   ## Text boxes with links ##
@@ -976,16 +986,12 @@ tabItem(
   
   ## scores map
   map_ui(
-    id = "lsp_scores_map",
-    title_text = "Current Scores",
-    sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+    id = "lsp_scores_map"
   ),
   
   ## scores through time
   card_ui(
-    id = "lsp_scores",
-    title_text = "Scores over time",
-    sub_title_text = "Explore scores for each region over time"
+    id = "lsp_scores"
   ),
   
   ## Text boxes with links ##
@@ -1032,16 +1038,12 @@ tabItem(
   
   ## scores map
   map_ui(
-    id = "ico_scores_map",
-    title_text = "Current Scores",
-    sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+    id = "ico_scores_map"
   ),
   
   ## scores through time
   card_ui(
-    id = "ico_scores",
-    title_text = "Scores over time",
-    sub_title_text = "Explore scores for each region over time"
+    id = "ico_scores"
   ),
   
   ## Text boxes with links ##
@@ -1103,16 +1105,12 @@ tabItem(
   fluidRow(
     ## scores map
     map_ui(
-      id = "rao_scores_map",
-      title_text = "Current Scores",
-      sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+      id = "rao_scores_map"
     ),
     
     ## scores through time
     card_ui(
-      id = "rao_scores",
-      title_text = "Scores over time",
-      sub_title_text = "Explore scores for each region over time"
+      id = "rao_scores"
     )
   )
   
@@ -1159,16 +1157,12 @@ tabItem(
   
   ## scores maps
   map_ui(
-    id = "hs_scores_map",
-    title_text = "Current Scores",
-    sub_title_text = "This map shows scores from the most recent assessed year (2017)"
+    id = "hs_scores_map"
   ),
   
   ## scores through time
   card_ui(
-    id = "hs_scores",
-    title_text = "Scores over time",
-    sub_title_text = "Explore scores for each region over time"
+    id = "hs_scores"
   ),
   
   ## Text boxes with links ##

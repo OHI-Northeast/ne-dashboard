@@ -67,8 +67,8 @@ library(leaflet)
 
 ## Card UI Function ##
 map_ui <- function(id, 
-                   title_text = NULL,
-                   sub_title_text = NULL,
+                   title_text = "2017 Scores",
+                   sub_title_text = "Scores for all regions from the most recently assessed year (2017). Click on a region to see the score. Areas with no color indicate regions that were not evaluated",
                    select_type = c(NULL, "radio", "drop_down", "checkboxes"),
                    select_location = c(NULL, "above", "below"),
                    select_choices = c(""),
@@ -160,7 +160,7 @@ card_map <- function(input,
                      filter_field = NULL,
                      display_field = NULL,
                      color_palette = myPalette,
-                     legend_title = NA,
+                     legend_title = NULL,
                      popup_title = NA,
                      popup_add_field = NA,
                      popup_add_field_title = NA) {

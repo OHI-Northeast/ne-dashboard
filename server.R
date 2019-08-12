@@ -66,7 +66,6 @@ function(input, output, session) {
     "cw_scores_map",
     data = cw_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -120,7 +119,6 @@ function(input, output, session) {
     "fp_scores_map",
     data = fp_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -156,7 +154,6 @@ function(input, output, session) {
     "fis_scores_map",
     data = fis_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -216,7 +213,6 @@ function(input, output, session) {
     "mar_scores_map",
     data = mar_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -253,7 +249,6 @@ function(input, output, session) {
     "le_scores_map",
     data = le_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -290,7 +285,6 @@ function(input, output, session) {
     "liv_scores_map",
     data = liv_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -421,7 +415,6 @@ function(input, output, session) {
     "eco_scores_map",
     data = eco_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -507,7 +500,6 @@ function(input, output, session) {
     "tr_scores_map",
     data = tr_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -590,7 +582,6 @@ function(input, output, session) {
     "bio_scores_map",
     data = bio_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -674,7 +665,6 @@ function(input, output, session) {
     "spp_scores_map",
     data = spp_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -711,7 +701,6 @@ function(input, output, session) {
     "hab_scores_map",
     data = hab_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -782,15 +771,13 @@ function(input, output, session) {
   )
   
 ## Habitat Services ----
-  
-  
+
   ## HAB Score map ##
   callModule(
     card_map,
     "hs_scores_map",
     data = hs_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -859,7 +846,6 @@ function(input, output, session) {
     "sop_scores_map",
     data = sop_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -942,7 +928,6 @@ function(input, output, session) {
     "lsp_scores_map",
     data = lsp_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -1025,7 +1010,6 @@ function(input, output, session) {
     "ico_scores_map",
     data = ico_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""
@@ -1087,7 +1071,6 @@ function(input, output, session) {
     "rao_scores_map",
     data = rao_scores_map,
     field = "score",
-    legend_title = "OHI Goal Score",
     popup_title = "Score:",
     popup_add_field = "rgn_name",
     popup_add_field_title = ""

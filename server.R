@@ -4,8 +4,8 @@ function(input, output, session) {
   
   output$flowerplot <- renderUI({
     tags$img(src = "https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/flower_USNortheast.png",
-             height = 450,
-             width = 600)
+             height = 400,
+             width  = 550)
   })
   
   ## Scores time series chart ##

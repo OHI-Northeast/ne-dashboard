@@ -10,9 +10,8 @@ dashboardPage(
     sidebarMenu(
       menuItem("Welcome", tabName = "welcome"),
       menuItem(
-        "Overall Ocean Health",
-        tabName = "index",
-        icon = icon("dashboard")
+        "Index Scores",
+        tabName = "index"
       ),
       menuItem("Clean Waters", tabName = "cw"),
       convertMenuItem(
@@ -60,7 +59,7 @@ dashboardPage(
       menuItem("Habitat Services", tabName = "hs"),
       menuItem("Pressures", tabName = "pressures")
     ),
-    width = 300,
+    width = 250,
     
     tags$footer(
       p(
@@ -105,19 +104,13 @@ dashboardPage(
         fluidRow(
           box(
             h1("Ocean Health Dashboard for the US Northeast"),
-            "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations.",
+            "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations. Ocean Health Index assessments use the best-available data to measure progress toward target conditions for benefits provided by a region's marine ecosystems, resulting in benefit-specific and overall health scores on a scale of 0 to 100.", 
+            br(),
+            h4(
+              a("Dive Deeper", href = "#shiny-tab-index", "data-toggle" = "tab")),
             width = 12
           )
         ),
-        
-        fluidRow(box(
-          h3("How healthy are oceans in the US Northeast?"),
-          br(),
-          p(
-            "Ocean Health Index assessments uses the best-available data to measure progress toward target conditions for benefits provided by a region's marine ecosystems, reslting in benefit-specific and overall health scores on a scale of 0 to 100. **Dive Deeper**(link to overall health page"
-          ),
-          width = 12
-        )),
         
         # infoBoxes with goal scores for Northeast region
         fluidRow(
@@ -200,7 +193,7 @@ dashboardPage(
               tags$p(filter(sop_map, region_id == 0)$score,
                      style = "font-size: 200%;"),
               icon = icon("home"),
-              color = "aqua",
+              color = "orange",
               fill = TRUE,
               width = 3
             )
@@ -213,7 +206,7 @@ dashboardPage(
               tags$p(filter(rao_scores_map, region_id == 0)$score,
                      style = "font-size: 200%;"),
               icon = icon("ship"),
-              color = "orange",
+              color = "aqua",
               fill = TRUE,
               width = 3
             )
@@ -234,20 +227,14 @@ dashboardPage(
         ),
         
         fluidRow(
-          box(h3("What is the Northeast OHI?"),
-              br(),
-              "(need to add links)"),
-          
-          box(h3("Access Ocean Health Index Data"),
-              br(),
-              "(need to add links")
-        ),
-        
-        fluidRow(
           box(
             h3("About the Assessment"),
             "The goal of this assessment is to serve regional ocean planning by providing a big picture perspective on ocean health based on data and priorities specific to the Northeast. The assessment was led by a team of scientists from the Ocean Health Index program at the National Center for Ecological Analysis and Synthesis (NCEAS). This team worked with the Northeast Regional Ocean Council (NROC) Ocean PLanning Committee to get stakeholder input from federal, state, and local governmnetal organizations, NGO's, and community members. More information can be found at ",
             a(href = "http://www.ohi-northeast.org/", "ohi-northeast.org", "."),
+            br(),
+            h3("Access Code & Data"),
+            "All code and data is made available on ",
+            a(href = "https://github.com/OHI-Northeast/ne-prep", "GitHub"),
             width = 12
           )
         )
@@ -258,25 +245,31 @@ dashboardPage(
 tabItem(tabName = "index",
         
         fluidRow(box(
-          h1("Overall Ocean Health"),
-          "more text here on what this page is about",
+          h1("Index Scores"),
+          "The Northeast Ocean Health Index uses social, economic, and environmental data to create a comprehensive picture of the state of ocean health from Maine to New York. Below you can explore the results of the assessment across the 11 reporting regions and 13 years of data (2005 - 2017) included in this assessment.",
           width = 12
         )),
         
         fluidRow(
           ## scores map
           map_ui(
-            id = "indx_scores_map"
+            id = "indx_scores_map",
+            sub_title_text = "Overall OHI Scores for all regions from the most recently assessed year (2017). Click on a region to see the score. Areas with no color indicate regions that were not evaluated"
           ),
           
+          box(h4("Goal Scores for 2017"),
+              "Ocean Health Index scores are calculated for individual goals separately and then combined to get an overall score on a scale of 0-100. Individual goal scores are represented by the length of the petals in a flower plot below, and the overall 2017 Index score for the entire Northeast is in the center. You can dig into the data and scores for each individual goal by clicking on the goal titles in the main menu at the left of your screen.",
+              
           uiOutput("flowerplot")
+        )
         ),
         
         fluidRow(
           ## scores through time
           card_ui(
             id             = "indx_scores",
-            box_width      = 12
+            box_width      = 12,
+            title_text     = "OHI Region Scores over time"
           )
         )), 
 
@@ -300,13 +293,12 @@ tabItem(
       )),
   
   fluidRow(box(
-    h3("coastal waters which are free of contaminants"),
+    h4("Water pollution from pathogens and trash is zero and levels of phosphorous, nitrogen, dissolved oxygen, water clarity, chlorophyll a and sediment contaminants meet threshold values set by the US EPA"),
     width = 12
     )),
   
   ## Key Messages
   fluidRow(box(
-    h4("Key Messages"),
       "- Message 1",
     br(),
       "- Message 2",
@@ -405,6 +397,7 @@ tabItem(
   ),
   
   fluidRow(box(h4("Data Gaps"),
+               "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
                tags$ul(
                  tags$li(
                    tags$b("Trash"),
@@ -931,7 +924,7 @@ tabItem(
     tags$p(filter(sop_map, region_id == 0)$score,
            style = "font-size: 250%;"),
     icon = icon("home"),
-    color = "aqua",
+    color = "orange",
     fill = TRUE,
     width = 3
   )),
@@ -1092,7 +1085,7 @@ tabItem(
     tags$p(filter(rao_scores_map, region_id == 0)$score,
            style = "font-size: 250%;"),
     icon = icon("ship"),
-    color = "orange",
+    color = "aqua",
     fill = TRUE,
     width = 3
   )),

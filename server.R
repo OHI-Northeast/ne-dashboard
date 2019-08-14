@@ -1038,29 +1038,20 @@ function(input, output, session) {
     yaxis_label = "Score"
   )
   
-  ##Iconic species status ##
-  callModule(
-    card_plot,
-    "ico_species_scores",
-    df = ico_species_scores,
-    x = "year",
-    y = "score",
-    color_group = "common",
-    filter_field = "rgn_name",
-    plot_type = "scatter",
-    mode = "lines+markers",
-    tooltip_text = ~ paste(
-      "Score:",
-      score,
-      "<br>Species:",
-      common,
-      "<br>Year:",
-      year,
-      sep = " "
-    ),
-    xaxis_label = "",
-    yaxis_label = "Status score (a score of 1 is equal to a status of Least Concern)"
-  )
+  ## Iconic species heatmap
+  
+  output$ico_heatmap <- renderPlot({
+    
+   ggplot(data = ico_heatmap_df, aes(x = rgn_name, y = common)) +
+      geom_tile(aes(fill = Status))+ 
+      scale_fill_viridis_d(direction = 1, na.value = "#e5e5e5") +
+      theme_dark() +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1),
+            axis.title = element_blank(),
+            panel.grid = element_blank()) +
+      coord_cartesian(expand = FALSE) 
+    
+  })
   
   
 ## Resource Access Opportunities ----

@@ -277,44 +277,43 @@ tabItem(tabName = "index",
 
 tabItem(
   tabName = "cw",
-
-  fluidRow(box(
-    h1("CLEAN WATERS"),
-    width = 9
-    ),
-      infoBox(
-        "",
-        tags$p(filter(cw_scores_map, region_id == 0)$score,
-               style = "font-size: 250%;"),
-        icon = icon("tint"),
-        color = "teal",
-        fill = TRUE,
-        width = 3
-      )),
-  
-  fluidRow(box(
-    h4("Water pollution from pathogens and trash is zero and levels of phosphorous, nitrogen, dissolved oxygen, water clarity, chlorophyll a and sediment contaminants meet threshold values set by the US EPA"),
-    width = 12
-    )),
-  
-  ## Key Messages
-  fluidRow(box(
-      "- Message 1",
-    br(),
-      "- Message 2",
-    width = 12)),
   
   fluidRow(
-    ## scores map
-    map_ui(
-      id = "cw_scores_map"
-    ),
-    
-    ## scores through time
-    card_ui(
-      id = "cw_scores"
+    box(h1("CLEAN WATERS"),
+        width = 9),
+    infoBox(
+      "",
+      tags$p(filter(cw_scores_map, region_id == 0)$score,
+             style = "font-size: 250%;"),
+      icon = icon("tint"),
+      color = "teal",
+      fill = TRUE,
+      width = 3
     )
   ),
+  
+  fluidRow(
+    box(
+      h3(
+        "TARGET:",
+        tags$em("Zero water pollution from pathogens and trash, and sediment and water quality levels  meet EPA threshold values")
+      ))),
+ 
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )
+  ),
+  
+  fluidRow(## scores map
+    map_ui(id = "cw_scores_map"),
+    
+    ## scores through time
+    card_ui(id = "cw_scores")),
   
   
   ## Data layers and targets
@@ -359,8 +358,8 @@ tabItem(
         ": All monitoring sites classified as in “Good” sediment quality condition"
       )
     )
-  )), 
-
+  )),
+  
   fluidRow(
     ## CW layers ##
     card_ui(
@@ -387,28 +386,36 @@ tabItem(
   
   ## Text boxes with links ##
   fluidRow(
-    text_links_default(title = "CODE",
-                       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw#ocean-health-index---us-northeast-clean-waters-goal", 
-                       box_width = 6),
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw#ocean-health-index---us-northeast-clean-waters-goal",
+      box_width = 6
+    ),
     
-    text_links_default(title = "ACCESS LAYER DATA",
-                       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw/data", 
-                       box_width = 6)
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw/data",
+      box_width = 6
+    )
   ),
   
-  fluidRow(box(h4("Data Gaps"),
-               "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
-               tags$ul(
-                 tags$li(
-                   tags$b("Trash"),
-                   ": the Ocean Conservancy’s International coastal cleanup day data is the most spatially and temporally representative data available for the Northeast region, however these data are only collected once a year by volunteers and thus may not be representative of the larger patterns occurring across time and space in the region. More comprehensive and consistent monitoring of floating trash, beach trash, and microplastics would allow for a more accurate assessment of the pollution derived from trash across the region."
-                 ),
-                 tags$li(
-                   tags$b("Temporal availability"),
-                   "of US EPA's National Coastal Condition Assessment data - These data are incredibly representative spatially of the water quality across the region, however these monitoring efforts only occur every 4-5 years and thus may miss some events or trends that would be revealed by more monitoring efforts throughout each year."
-                 )
-               ),
-               width = 12))
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Trash"),
+          ": the Ocean Conservancy’s International coastal cleanup day data is the most spatially and temporally representative data available for the Northeast region, however these data are only collected once a year by volunteers and thus may not be representative of the larger patterns occurring across time and space in the region. More comprehensive and consistent monitoring of floating trash, beach trash, and microplastics would allow for a more accurate assessment of the pollution derived from trash across the region."
+        ),
+        tags$li(
+          tags$b("Temporal availability"),
+          "of US EPA's National Coastal Condition Assessment data - These data are incredibly representative spatially of the water quality across the region, however these monitoring efforts only occur every 4-5 years and thus may miss some events or trends that would be revealed by more monitoring efforts throughout each year."
+        )
+      ),
+      width = 12
+    )
+  )
 ), 
 
 ## Food Provision --------
@@ -1039,37 +1046,27 @@ tabItem(
     id = "ico_scores"
   ),
   
-  ## Text boxes with links ##
+  #iconic species heatmap
   fluidRow(
-    text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#sense-of-place",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "DATA PREP",
-      url   = "https://ohi-northeast.github.io/ne-prep/prep/sop/ico/iconic_species.html",
-      box_width = 6
-    )
+    box(
+      plotOutput("ico_heatmap"),
+      width = 12)
+  ),
+
+## Text boxes with links ##
+fluidRow(
+  text_links_default(
+    title = "HOW WE CALCULATE THIS GOAL",
+    url   = "http://ohi-science.org/goals/#sense-of-place",
+    box_width = 6
   ),
   
-  fluidRow(
-    ## Protected marine areas ##
-    card_ui(
-      id = "ico_species_scores",
-      title_text = "Species status by region",
-      sub_title_text = "",
-      select_type = "drop_down",
-      select_location = "above",
-      select_choices = unique(ico_species_scores$rgn_name),
-      select_label = "Select region",
-      source_text = "Source: NatureServe and IUCN",
-      box_width = 12
-    )
+  text_links_default(
+    title = "DATA PREP",
+    url   = "https://ohi-northeast.github.io/ne-prep/prep/sop/ico/iconic_species.html",
+    box_width = 6
   )
-  
-),
+)),
 
 ## Resource Access Opportunities------
 

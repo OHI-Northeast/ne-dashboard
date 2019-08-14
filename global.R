@@ -199,8 +199,18 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   ico_map <- filter(ico_scores, year == 2017)
   
-  ico_species_scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/ico_scores.csv") %>%
-    left_join(rgn_data)
+  #iconic species status for heatmap. need to set levels for arranging by status.
+  
+  order_status <- c("Least Concern", "Least Concern/Not Threatened", "Not Threatened", "Not Threatened/Vulnerable", "Vulnerable", "Vulnerable/Endangered", "Endangered", "Endangered/Critically Endangered", "Critically Endangered", "Critically Endangered/Extinct", "Extinct")
+  
+  ico_heatmap_df <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/sop/ico/data/heatmap_df.csv") %>% 
+    arrange(desc(av_score), common) %>% 
+    mutate(rgn_name = as.factor(rgn_name)) %>% 
+    transform(common = reorder(common, desc(av_score))) %>% 
+    transform(id = as.numeric(factor(common))) %>% 
+    transform(common = reorder(common, desc(id))) %>% 
+    mutate(Status = factor(Status, levels = order_status)) 
+
   
   
 ## Resource Access Opportunities  -----

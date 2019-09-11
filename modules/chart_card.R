@@ -215,7 +215,8 @@ card_plot <- function(input,
                       xaxis_margin = NULL,
                       xaxis_categoryorder = NULL,
                       xaxis_categoryarray = NULL,
-                      add_traces = NULL) {
+                      add_traces = NULL,
+                      legend_or = "h") {
   
   # Get correct data
   if (df == "input") {
@@ -301,7 +302,7 @@ card_plot <- function(input,
                           range = yaxis_range),
              annotations = annotations,
              margin = list(b = xaxis_margin),
-             legend = list(orientation = 'h', size = 10)) %>%
+             legend = list(orientation = legend_or, size = 10)) %>%
       config(displayModeBar = F)
     
     if (is.null(add_traces)) {

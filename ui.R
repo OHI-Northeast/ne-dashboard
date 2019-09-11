@@ -56,8 +56,8 @@ dashboardPage(
         tabName = "sop"
       ),
       menuItem("Resource Access Opportunities ", tabName = "rao"),
-      menuItem("Habitat Services", tabName = "hs"),
-      menuItem("Pressures", tabName = "pressures")
+      menuItem("Habitat Services", tabName = "hs")#,
+      #menuItem("Pressures", tabName = "pressures")
     ),
     width = 250,
     
@@ -294,10 +294,9 @@ tabItem(
   
   fluidRow(
     box(
-      h3(
-        "TARGET:",
-        tags$em("Zero water pollution from pathogens and trash, and sediment and water quality levels  meet EPA threshold values")
-      ))),
+      h3("TARGET:"),
+        h4(tags$em("Zero water pollution from pathogens and trash, and sediment and water quality levels  meet EPA threshold values")
+      ), width = 12)),
  
   fluidRow(
     box(
@@ -315,71 +314,23 @@ tabItem(
     ## scores through time
     card_ui(id = "cw_scores")),
   
-  
   ## Data layers and targets
   fluidRow(box(
-    h4("Data Layers"),
-    tags$ul(
-      tags$li(
-        tags$b("Pathogens"),
-        ": Number of beach day closures as recorded by the EPA Beach Closure Data"
-      ),
-      tags$li(
-        tags$b("Trash"),
-        ": Pounds of trash collected per person at the Ocean Conservancy’s International coastal cleanup day data"
-      ),
-      tags$li(
-        tags$b("Water quality"),
-        ": EPA's National Coastal Condition Assessment Water Quality Index status classifications"
-      ),
-      tags$li(
-        tags$b("Sediment quality"),
-        ": EPA's National Coastal Condition Assessment Sediment Quality Index status classifications"
-      )
-    )
-  ),
-  box(
-    h4("Data Targets"),
-    tags$ul(
-      tags$li(
-        tags$b("Pathogens"),
-        ": 100 days free of any beach closures, representing the average length of the swimming season for the region"
-      ),
-      tags$li(
-        tags$b("Trash"),
-        ": Zero pounds of trash collected on all beaches on International Coastal Cleanup Day"
-      ),
-      tags$li(
-        tags$b("Water quality"),
-        ": All monitoring sites classified as in “Good” water quality condition"
-      ),
-      tags$li(
-        tags$b("Sediment quality"),
-        ": All monitoring sites classified as in “Good” sediment quality condition"
-      )
-    )
-  )),
+    DT::dataTableOutput("cw_datatable"),
+    width = 12
+    )),
   
   fluidRow(
     ## CW layers ##
     card_ui(
       id = "cw_layers",
-      title_text = "Layers used in Clean Waters Goal",
+      title_text = "Data Layers",
       sub_title_text = "",
       select_type = "drop_down",
       select_location = "above",
-      select_choices = c(
-        "Connecticut",
-        "Maine",
-        "Massachusetts-Gulf of Maine",
-        "Massachusetts-Virginian",
-        "New Hampshire",
-        "New York",
-        "Rhode Island"
-      ),
+      select_choices = unique(cw_scores$rgn_name),
       selected = "Connecticut",
       select_label = "Select region",
-      source_text = "Source: multiple (fill this in)",
       box_width = 12
     )
   ),
@@ -436,10 +387,21 @@ tabItem(
     width = 3
   )),
   
-  fluidRow(box(
-    h3("sustainable seafood from wild-caught fisheries and aquaculture"),
-    width = 12
-  )),
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("maximize the amount of sustainable seafood produced from wild-caught fisheries and aquaculture")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )
+  ),
   
   fluidRow(
     ## scores map
@@ -457,8 +419,36 @@ tabItem(
 tabItem(
   tabName = "fis",
   
-  tab_title_ui(goal_text = "FOOD PROVISION: Wild-Caught Fisheries",
-               commitment_text = "sustainably harvested seafood from wild-caught fisheries"),
+  fluidRow(box(
+    h1("WILD-CAUGHT FISHERIES"),
+    width = 9
+  ),
+  
+  infoBox(
+    "",
+    tags$p(filter(fis_scores_map, region_id == 0)$score,
+           style = "font-size: 250%;"),
+    icon = icon("utensils"),
+    color = "red",
+    fill = TRUE,
+    width = 3
+  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("all wild-caught fisheries have a B/Bmsy near 1")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )
+  ),
 
   fluidRow(
     ## scores map
@@ -488,7 +478,7 @@ tabItem(
     card_ui(
       id = "fis_noaa_catch",
       title_text = "Landings",
-      sub_title_text = "Landings shown are for assessed stocks only",
+      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see individual scores.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(fis_noaa_catch$rgn_name),
@@ -503,8 +493,36 @@ tabItem(
 tabItem(
   tabName = "mar",
   
-  tab_title_ui(goal_text = "FOOD PROVISION: Aquaculture",
-               commitment_text = "sustainably produced seafood from aquaculture"),
+  fluidRow(box(
+    h1("AQUACULTURE"),
+    width = 9
+  ),
+  
+  infoBox(
+    "",
+    tags$p(filter(mar_scores_map, region_id == 0)$score,
+           style = "font-size: 250%;"),
+    icon = icon("utensils"),
+    color = "red",
+    fill = TRUE,
+    width = 3
+  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("all farmed seafood is sustainable")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )
+  ),
   
   fluidRow(
     ## scores map
@@ -536,10 +554,22 @@ tabItem(
     width = 3
   )),
   
-  fluidRow(box(
-    h3("a high quantity and quality of ocean-dependent jobs and local revenue"),
-    width = 12
-  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("All coastal dependent livelihoods and economies are growing through time")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )
+  ),
   
   fluidRow(
     ## scores map
@@ -552,25 +582,59 @@ tabItem(
     )
   ),
   
-  ## Text boxes with links ##
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("le_datatable"),
+    width = 12
+  )),
+  
   fluidRow(
-    text_links_default(title = "HOW WE CALCULATE THIS GOAL",
-                       url = "http://ohi-science.org/goals/#livelihoods-and-economies"),
-    
-    text_links_default(title = "JOBS DATA PREP",
-                       url = "https://ohi-northeast.github.io/ne-prep/prep/liv/jobs.html"),
-    
-    text_links_default(title = "WAGES DATA PREP",
-                       url = "https://ohi-northeast.github.io/ne-prep/prep/liv/wages.html")
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Jobs"),
+          ": the data we have does not reveal information about transitioning between sectors or seasonal employment."
+        )
+      ), width = 12
+    )
   )
-),
+), 
 
 ## Livelihoods ----
 tabItem(
   tabName = "liv",
   
-  tab_title_ui(goal_text = "Livelihoods",
-               commitment_text = ""),
+  fluidRow(box(
+    h1("LIVELIHOODS"),
+    width = 9
+  ),
+  
+  infoBox(
+    "",
+    tags$p(filter(liv_scores_map, region_id == 0)$score,
+           style = "font-size: 250%;"),
+    icon = icon("money"),
+    color = "green",
+    fill = TRUE,
+    width = 3
+  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("Annual growth for ocean-dependent jobs meets or exceeds national growth & wages grow by 3.5% annually")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
 
   fluidRow(
     ## scores map
@@ -584,17 +648,11 @@ tabItem(
     )
   ),
   
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(title = "HOW WE CALCULATE THIS GOAL",
-                       url = "http://ohi-science.org/goals/#livelihoods-and-economies"),
-    
-    text_links_default(title = "JOBS DATA PREP",
-                       url = "https://ohi-northeast.github.io/ne-prep/prep/liv/jobs.html"),
-    
-    text_links_default(title = "WAGES DATA PREP",
-                       url = "https://ohi-northeast.github.io/ne-prep/prep/liv/wages.html")
-  ),
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("liv_datatable"),
+    width = 12
+  )),
   
   fluidRow(
     ## Employment ##
@@ -609,16 +667,6 @@ tabItem(
       source_text = "Source: National Ocean Economics Program"
     ),
     
-    #job scores by region between 0 and 1
-    card_ui(
-      id = "liv_emp_scores",
-      title_text = "Job scores",
-      source_text = "Source: National Ocean Economics Program"
-    )
-  ),
-  
-  
-  fluidRow(
     ## Wages ##
     card_ui(
       id = "liv_wages",
@@ -629,15 +677,21 @@ tabItem(
       select_choices = unique(wages_scores$rgn_name),
       select_label = "Select region",
       source_text = "Source: National Ocean Economics Program"
+    )
+  ),
+
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/liv#ocean-health-index---us-northeast-livelihoods-sub-goal",
+      box_width = 6
     ),
     
-    
-    #wage scores by region between 0 and 1
-    card_ui(
-      id = "liv_wage_scores",
-      title_text = "Wage scores",
-      sub_title_text = "A score of 1 indicates wage growth of at least 3.5% annually",
-      source_text = "Source: National Ocean Economics Program"
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/liv/data",
+      box_width = 6
     )
   )
 ),
@@ -646,8 +700,35 @@ tabItem(
 tabItem(
   tabName = "eco",
   
-  tab_title_ui(goal_text = "Economies",
-               commitment_text = ""),
+  fluidRow(box(
+    h1("ECONOMIES"),
+    width = 9
+  ),
+  
+  infoBox(
+    "",
+    tags$p(filter(eco_scores_map, region_id == 0)$score,
+           style = "font-size: 250%;"),
+    icon = icon("money"),
+    color = "green",
+    fill = TRUE,
+    width = 3
+  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   fluidRow(
     ## scores map
@@ -661,17 +742,11 @@ tabItem(
     )
   ),
   
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(title = "HOW WE CALCULATE THIS GOAL",
-                       url = "http://ohi-science.org/goals/#livelihoods-and-economies"),
-    
-    text_links_default(
-      title = "GDP DATA PREP",
-      box_width = 6,
-      url = "https://ohi-northeast.github.io/ne-prep/prep/eco/gdp.html"
-    )
-  ),
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("eco_datatable"),
+    width = 12
+  )),
   
   fluidRow(
     ## GDP ##
@@ -693,8 +768,24 @@ tabItem(
       sub_title_text = "",
       source_text = "Source: National Ocean Economics Program"
     )
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/4e23384d1a5cbae09e97d34b87620f7e11e47c05/prep/eco#ocean-health-index---us-northeast-economies-sub-goal",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/eco/data",
+      box_width = 6
+    )
   )
 ),
+
 
 
 ## Tourism & Recreation -----
@@ -716,10 +807,20 @@ tabItem(
     width = 3
   )),
   
-  fluidRow(box(
-    h3("opportunities for people to enjoy coastal areas through tourism and recreation"),
-    width = 12
-  )),
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("Jobs in coastal tourism sectors are growing (reflecting overall growth in tourism participation) and coastal recreation is not inhibited by beach closures")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   fluidRow(
     
@@ -733,6 +834,12 @@ tabItem(
       id = "tr_scores"
     )
   ),
+  
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("tr_datatable"),
+    width = 12
+  )),
   
   fluidRow(
     ## Employment ##
@@ -774,10 +881,20 @@ tabItem(
     width = 3
   )),
   
-  fluidRow(box(
-    h3("a diversity of healthy marine species, habitats, and landscapes"),
-    width = 12
-  )),
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("No marine species are at risk of extinction and all habitats that support biodiversity are in good condition")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   ## scores map
   map_ui(
@@ -789,15 +906,12 @@ tabItem(
     id = "bio_scores"
   ),
   
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("bio_datatable"),
+    width = 12
+  )),
   
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#biodiversity",
-      box_width = 12
-    )
-  ),
   fluidRow(
     ## Species sub-goal scores##
     card_ui(
@@ -812,6 +926,15 @@ tabItem(
       title_text = "Habitat sub-goal scores",
       sub_title_text = ""
     )
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio#ocean-health-index---us-northeast-biodiversity-goal",
+      box_width = 12
+    )
   )
 ),
 
@@ -820,8 +943,35 @@ tabItem(
 tabItem(
   tabName = "spp",
   
-  tab_title_ui(goal_text = "BIODIVERSITY: Species",
-               commitment_text = "a diversity of healthy marine species, habitats, and landscapes"),
+  fluidRow(box(
+    h1("SPECIES"),
+    width = 9
+  ),
+  
+  infoBox(
+    "",
+    tags$p(filter(spp_scores_map, region_id == 0)$score,
+           style = "font-size: 250%;"),
+    icon = icon("fish"),
+    color = "blue",
+    fill = TRUE,
+    width = 3
+  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("All species identified as present in the region are not at risk of extinction and are classified as of Least Concern by IUCN criteria")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   ## scores map
   map_ui(
@@ -833,17 +983,23 @@ tabItem(
     id = "spp_scores"
   ),
   
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("spp_datatable"),
+    width = 12
+  )),
+  
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#biodiversity",
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp",
       box_width = 6
     ),
     
     text_links_default(
-      title = "DATA PREP",
-      url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp#species-status",
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/spp/data",
       box_width = 6
     )
   )
@@ -855,8 +1011,25 @@ tabItem(
 tabItem(
   tabName = "hab",
   
-  tab_title_ui(goal_text = "BIODIVERSITY: Habitats",
-               commitment_text = "a diversity of healthy marine species, habitats, and landscapes"),
+  fluidRow(box(
+    h1("HABITATS"),
+    width = 12
+  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("No loss of salt marsh habitats from historical estimates, all eelgrass habitats have good water quality condition, and all seabed habitats are undisturbed from fishing activity")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   ## scores map
   map_ui(
@@ -868,6 +1041,11 @@ tabItem(
     id = "hab_scores"
   ),
   
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("hab_datatable"),
+    width = 12
+  )),
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
@@ -914,6 +1092,21 @@ tabItem(
       ),
       source_text = ""
     )
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/hab",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/hab/data",
+      box_width = 6
+    )
   )
 ),
 
@@ -936,11 +1129,22 @@ tabItem(
     width = 3
   )),
   
-  fluidRow(box(
-    h3("a deep sense of identity and belonging provided through connections with our marine communities"),
-    width = 12
-  )),
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("Areas of importance are protected as lasting special places and iconic species are not threatened")
+      ), width = 12)),
   
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
+  
+  fluidRow(
   ## scores map
   map_ui(
     id = "sop_scores_map"
@@ -949,16 +1153,8 @@ tabItem(
   ## scores through time
   card_ui(
     id = "sop_scores"
-  ),
-  
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#sense-of-place",
-      box_width = 12
-    )
-  ),
+  )
+),
   
   fluidRow(
     #lasting special places scores
@@ -981,9 +1177,27 @@ tabItem(
 tabItem(
   tabName = "lsp",
 
-  tab_title_ui(goal_text = "SENSE OF PLACE: Lasting Special Places",
-               commitment_text = ""),
+  fluidRow(box(
+    h1("LASTING SPECIAL PLACES"),
+    width = 12
+  )),
   
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("At least 30% of coastal waters are protected")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
+  
+  fluidRow(
   ## scores map
   map_ui(
     id = "lsp_scores_map"
@@ -992,21 +1206,7 @@ tabItem(
   ## scores through time
   card_ui(
     id = "lsp_scores"
-  ),
-  
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#sense-of-place",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "DATA PREP",
-      url   = "https://ohi-northeast.github.io/ne-prep/prep/sop/lsp/lsp.html",
-      box_width = 6
-    )
+  )
   ),
   
   fluidRow(
@@ -1025,6 +1225,21 @@ tabItem(
       sub_title_text = "",
       source_text = ""
     )
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp/data",
+      box_width = 6
+    )
   )
 ),
 
@@ -1033,8 +1248,25 @@ tabItem(
 tabItem(
   tabName = "ico",
   
-  tab_title_ui(goal_text = "SENSE OF PLACE: Iconic Species",
-               commitment_text = ""),
+  fluidRow(box(
+    h1("ICONIC SPECIES"),
+    width = 12
+  )),
+  
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("All iconic species have a conservation status of Least Concern")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   ## scores map
   map_ui(
@@ -1053,20 +1285,22 @@ tabItem(
       width = 12)
   ),
 
-## Text boxes with links ##
-fluidRow(
-  text_links_default(
-    title = "HOW WE CALCULATE THIS GOAL",
-    url   = "http://ohi-science.org/goals/#sense-of-place",
-    box_width = 6
-  ),
   
-  text_links_default(
-    title = "DATA PREP",
-    url   = "https://ohi-northeast.github.io/ne-prep/prep/sop/ico/iconic_species.html",
-    box_width = 6
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico/data",
+      box_width = 6
+    )
   )
-)),
+),
 
 ## Resource Access Opportunities------
 
@@ -1087,10 +1321,20 @@ tabItem(
     width = 3
   )),
   
-  fluidRow(box(
-    h3("access..."),
-    width = 12
-  )),
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   fluidRow(
     ## scores map
@@ -1140,10 +1384,20 @@ tabItem(
     width = 3
   )),
   
-  fluidRow(box(
-    h3("storage of carbon and protection of our coasts from storm damage by living natural habitats"),
-    width = 12
-  )),
+  fluidRow(
+    box(
+      h3("TARGET:"),
+      h4(tags$em("All biogenic habitats that support carbon storage and coastal protection are in good condition")
+      ), width = 12)),
+  
+  fluidRow(
+    box(
+      # Key Messages
+      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      br(),
+      "- Message 2:",
+      width = 12
+    )),
   
   ## scores maps
   map_ui(
@@ -1154,6 +1408,12 @@ tabItem(
   card_ui(
     id = "hs_scores"
   ),
+  
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("hs_datatable"),
+    width = 12
+  )),
   
   ## Text boxes with links ##
   fluidRow(
@@ -1194,15 +1454,8 @@ tabItem(
 ## Pressures------
 
 tabItem(
-  tabName = "pressures",
-  
-  ## Pressures tab title ##
-  tab_title_ui(goal_text = "Pressures",
-               commitment_text = "pressures"),
-  
-  ##map for trash layer ##
-  map_ui(id = "trash_map",
-         title_text = "Trash pressure layer")
+  tabName = "pressures"
+
 )
   )
   )

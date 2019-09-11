@@ -109,8 +109,18 @@ function(input, output, session) {
                            "<br>Layer:", layer,
                            "<br>Year:", year, sep = " "),
     xaxis_label = "",
-    yaxis_label = "Layer Score"
+    yaxis_label = "Layer Score",
+    legend_or = NULL
   )
+  
+  ## CW Data Table
+  
+  output$cw_datatable = renderDataTable({
+    datatable(cw_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
   
 ## Food Provision ----
   
@@ -192,6 +202,7 @@ function(input, output, session) {
     color_group = "display_name",
     filter_field = "rgn_name",
     plot_type = "scatter",
+    legend_or = NULL,
     mode = "lines+markers",
     tooltip_text = ~ paste(
       "Species:",
@@ -277,6 +288,14 @@ function(input, output, session) {
     yaxis_label = "Score"
   )
   
+  ## LE Data Table
+  
+  output$le_datatable = renderDataTable({
+    datatable(le_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 ## Livelihoods ----
   
   ## Liv Score map ##
@@ -407,6 +426,13 @@ function(input, output, session) {
     yaxis_label = "Wage score"
   )
   
+  ## LIV Data Table
+  output$liv_datatable = renderDataTable({
+    datatable(liv_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 ## Economies ----
   
   ## Economies Score map ##
@@ -490,7 +516,13 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
-  
+  ## ECO Data Table
+  output$eco_datatable = renderDataTable({
+    datatable(eco_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
   
 ## Tourism & Recreation ----
   
@@ -573,7 +605,13 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Average proportion (%) of swim season closed"
   )
-  
+  ## TR Data Table
+  output$tr_datatable = renderDataTable({
+    datatable(tr_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 ## Biodiversity ----
   
   ### BIO Score map ###
@@ -656,7 +694,13 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
-  
+  ## BIO Data Table
+  output$bio_datatable = renderDataTable({
+    datatable(bio_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 ## Species ----
   
   ### SPP Score map ###
@@ -692,7 +736,13 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
-  
+  ## SPP Data Table
+  output$spp_datatable = renderDataTable({
+    datatable(spp_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 ## Habitats ----
   
   ### HAB Score map ###
@@ -769,7 +819,13 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Layer Score"
   )
-  
+  ## HAB Data Table
+  output$hab_datatable = renderDataTable({
+    datatable(hab_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 ## Habitat Services ----
 
   ## HAB Score map ##
@@ -837,7 +893,13 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
-  
+  ## HS Data Table
+  output$hs_datatable = renderDataTable({
+    datatable(hs_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 ## Sense of Place ----
   
   ##SOP Score Map

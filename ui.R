@@ -514,7 +514,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("TARGET:", tags$em("sustainabile farmed seafood production is growing by 4% annually")),
+      h4("TARGET:", tags$em("sustainably farmed seafood production is growing by 4% annually")),
      width = 12)),
   
   fluidRow(
@@ -537,6 +537,12 @@ tabItem(
       id = "mar_scores"
     )
   ),
+  
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("mar_datatable"),
+    width = 12
+  )),
   
   fluidRow(
     ## Production data ##
@@ -1242,6 +1248,12 @@ tabItem(
   )
   ),
   
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("lsp_datatable"),
+    width = 12
+  )),
+  
   fluidRow(
     ## Protected marine areas ##
     card_ui(
@@ -1319,6 +1331,12 @@ tabItem(
   card_ui(
     id = "ico_scores"
   ),
+  
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("ico_datatable"),
+    width = 12
+  )),
   
   #iconic species heatmap
   fluidRow(

@@ -316,6 +316,15 @@ function(input, output, session) {
               escape = FALSE)
   })
   
+  ## MAR Data Table
+  
+  output$mar_datatable = renderDataTable({
+    datatable(mar_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
+  
   
 ## Livelihoods & Economies ----
   
@@ -1110,6 +1119,15 @@ function(input, output, session) {
     yaxis_label = "Score"
   )
   
+  ## LSP Data Table
+  
+  output$lsp_datatable = renderDataTable({
+    datatable(lsp_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
+  
   ## Marine protected area ##
   callModule(
     card_plot,
@@ -1156,6 +1174,8 @@ function(input, output, session) {
     yaxis_label = "Proportion of area protected (0 to 1)"
   )
   
+  
+  
 ## Iconic Species ----
   
   ## ICO Map ##
@@ -1191,6 +1211,15 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
+  
+  ## ICO Data Table
+  
+  output$ico_datatable = renderDataTable({
+    datatable(ico_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
   
   ## Iconic species heatmap
   

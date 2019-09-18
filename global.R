@@ -86,6 +86,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     rename(Species = species,
            `Seafood Watch Score` = sustainabilityscore,
            `Score (0-1)` = rescaled)
+  mar_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/mar_data_info.csv")
   
 ## livelihoods----
   liv_scores <- scores %>% 
@@ -202,7 +203,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     left_join(rgn_data)
   marine_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/lsp_protected_marine.csv") %>% 
     left_join(rgn_data)
-  
+  lsp_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/sop/lsp/data/lsp_data_info.csv")
 ## Iconic Species  ----
   
   ico_scores <- scores %>%
@@ -223,7 +224,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     transform(common = reorder(common, desc(id))) %>% 
     mutate(Status = factor(Status, levels = order_status)) 
 
-  
+  ico_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/sop/ico/data/ico_data_info.csv")
 ## Resource Access Opportunities  -----
   
   rao_scores <- scores %>%

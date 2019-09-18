@@ -55,14 +55,14 @@ indx_scores_map <- filter(indx_scores, year == 2017)
 ## Food Provision data ----
 fp_scores <- scores %>% 
   filter(goal == "FP",
-         dimension == "score")
+         dimension == "status")
 
 fp_scores_map <- filter(fp_scores, year == 2017)
 
 ## FIS data ----
   fis_scores <- scores %>% 
     filter(goal == "FIS",
-           dimension == "score")
+           dimension == "status")
 
   fis_scores_map <- filter(fis_scores, year == 2017)
 
@@ -70,33 +70,45 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/nmfs_spatial_catch_by_ohi_rgn.csv") %>% 
     left_join(rgn_data) %>%
     filter(species!= "CONFIDENTIAL SPECIES")
+  fis_stock_assessment <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/stock_assessment_data_for_dashboard.csv")
+  fis_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/fis_data_info.csv")
 
 ## Aquaculture data ----
   mar_scores <- scores %>% 
     filter(goal == "MAR",
-           dimension == "score")
+           dimension == "status")
   
   mar_scores_map <- filter(mar_scores, year == 2017)
+  mar_production <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/production_clean.csv") %>%
+    mutate(Year = as.numeric(Year)) %>%
+    arrange(Year)
+  mar_spp_sust <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/species_sust_scores.csv") %>%
+    rename(Species = species,
+           `Seafood Watch Score` = sustainabilityscore,
+           `Score (0-1)` = rescaled)
   
 ## livelihoods----
   liv_scores <- scores %>% 
     filter(goal == "LIV",
-           dimension == "score")
+           dimension == "status")
   liv_scores_map <- filter(liv_scores, year == 2017)
   
   ### jobs data ###
   jobs          <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/jobs_sector.csv")
-  jobs_scores   <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/job_scores.csv")
+  jobs_scores   <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/job_scores.csv") %>%
+    filter(!is.na(job_score))
   
   ### wages data ###
   wages         <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/wages_sector.csv")
-  wages_scores  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/wages_scores.csv")
+  wages_scores  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/wages_scores.csv") %>%
+    filter(!is.na(wages_score),
+           !is.na(rgn_id))
   liv_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/liv_data_info.csv")
   
 ## Economies data ----
   eco_scores <- scores %>% 
     filter(goal == "ECO",
-           dimension == "score")
+           dimension == "status")
   eco_scores_map <- filter(eco_scores, year == 2017)
   gdp            <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/gdp_sector.csv")
   gdp_scores     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/eco/data/gdp_scores.csv")
@@ -106,7 +118,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   le_scores <- scores %>% 
     filter(goal == "LE",
-           dimension == "score")
+           dimension == "status")
   le_scores_map <- filter(le_scores, year == 2017)
   le_data_info  <- bind_rows(liv_data_info, eco_data_info)
   
@@ -114,16 +126,20 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 
   tr_scores <- scores %>% 
     filter(goal == "TR",
-           dimension == "score")
+           dimension == "status")
   tr_scores_map <- filter(tr_scores, year == 2017)
   tr_jobs       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
   tr_beaches    <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/proportion_closed_by_rgn.csv")
+  tr_coastal   <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/tr_rao_coastal_access.csv") %>%
+    filter(!is.na(score)) %>%
+    mutate(percent = score*100) %>%
+    left_join(rgn_data) 
   tr_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_data_info.csv")
   
 ## CW data ----
   cw_scores <- scores %>%
     filter(goal == "CW",
-           dimension == "score")
+           dimension == "status")
   cw_scores_map <- filter(cw_scores, year == 2017)
   cw_layers     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv")
   cw_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/cw_data_info.csv")
@@ -131,7 +147,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## BIO data ----
   bio_scores <- scores %>%
     filter(goal == "BD",
-           dimension == "score")
+           dimension == "status")
   
   bio_scores_map <- filter(bio_scores, year == 2017)
   bio_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/bio_data_info.csv")
@@ -139,27 +155,29 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## SPP data ----
   spp_scores <- scores %>%
     filter(goal == "SPP",
-           dimension == "score")
+           dimension == "status")
   
   spp_scores_map <- filter(spp_scores, year == 2017)
   spp_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/spp_data_info.csv")
+  spp_status_rgn <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/species_status_counts_by_rgn.csv")
   
 ## HAB data ----
   hab_scores <- scores %>%
     filter(goal == "HAB",
-           dimension == "score")
+           dimension == "status")
   
   hab_scores_map <- filter(hab_scores, year == 2017)
   salt_marsh     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/salt_marsh_percent_change.csv") 
   eelgrass       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/eelgrass_score_rgn_gf.csv")
-  hab_data       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/dashboard_habitat_data.csv")
+  hab_data       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/dashboard_habitat_data.csv") %>%
+    mutate(score = ifelse(habitat == "offshore", score*100, score))
   hab_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/hab_data_info.csv")
   
 ## Habitat Services (HS) Data ----
   
   hs_scores <- scores %>%
     filter(goal == "HS",
-           dimension == "score")
+           dimension == "status")
   
   hs_scores_map      <- filter(hs_scores, year == 2017)
   coastal_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/hs_coastal_protection.csv")
@@ -169,14 +187,14 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## Sense of Place ----
   sop_scores <- scores %>%
     filter(goal == "SP",
-           dimension == "score")
+           dimension == "status")
   
   sop_map <- filter(sop_scores, year == 2017)
   
 ## Lasting Special Places ----
   lsp_scores <- scores %>%
     filter(goal == "LSP",
-           dimension == "score")
+           dimension == "status")
   
   lsp_map <- filter(lsp_scores, year == 2017)
   
@@ -189,7 +207,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   ico_scores <- scores %>%
     filter(goal == "ICO",
-           dimension == "score")
+           dimension == "status")
   
   ico_map <- filter(ico_scores, year == 2017)
   
@@ -206,13 +224,25 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     mutate(Status = factor(Status, levels = order_status)) 
 
   
-  
 ## Resource Access Opportunities  -----
   
   rao_scores <- scores %>%
     filter(goal == "RAO",
-           dimension == "score")
+           dimension == "status")
   
   rao_scores_map <- filter(rao_scores, year == 2017)
   
+  rao_coastal   <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/tr_rao_coastal_access.csv") %>%
+    filter(!is.na(score)) %>%
+    mutate(percent = score*100) %>%
+    left_join(rgn_data) 
+  
+  rao_econ      <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/rao/data/gas_to_income_ratio.csv")
+  rao_fisheries <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/rao/data/fssi_scores.csv") %>%
+    mutate(year = as.numeric(year)) %>%
+    arrange(year)
+  
+  rao_avg_fssi <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/rao/data/avg_fssi_score_per_region_over_time.csv") %>%
+    mutate(score = average_fssi_score*4)
+  rao_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/rao/data/rao_data_info.csv")
   

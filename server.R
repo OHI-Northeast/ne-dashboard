@@ -217,6 +217,40 @@ function(input, output, session) {
     yaxis_label = "Catch (pounds)"
   )
   
+  ### Stock assessment data chart
+  callModule(
+    card_plot,
+    "fis_stock_ass",
+    df = fis_stock_assessment,
+    x = "year",
+    y = "value",
+    color_group = "indicator",
+    filter_field = "stock",
+    plot_type = "scatter",
+    legend_or = NULL,
+    mode = "lines+markers",
+    tooltip_text = ~ paste(
+      "Metric:",
+      indicator,
+      "<br>Value:",
+      value,
+      "<br>Year:",
+      year,
+      sep = " "
+    ),
+    xaxis_label = "",
+    yaxis_label = "Value"
+  )
+  
+  ## FIS Data Table
+  
+  output$fis_datatable = renderDataTable({
+    datatable(fis_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
+  
 ## Aquaculture ----
   
   callModule(
@@ -250,6 +284,37 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
+  
+  callModule(
+    card_plot,
+    "mar_production",
+    df = mar_production,
+    x = "Year",
+    y = "pounds",
+    color_group = "Species",
+    filter_field = "Region",
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste(
+      "Species:",
+      Species,
+      "<br>Pounds:",
+      pounds,
+      "<br>Year:",
+      Year,
+      sep = " "
+    ),
+    xaxis_label = "",
+    yaxis_label = "Pounds produced"
+  )
+  
+  ## MAR Sustainability Data Table
+  output$mar_spp_sust_table = renderDataTable({
+    datatable(mar_spp_sust,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
   
   
 ## Livelihoods & Economies ----
@@ -605,6 +670,19 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Average proportion (%) of swim season closed"
   )
+  
+  ##TR coastal access ##
+  callModule(card_plot, "tr_coastal",
+             df = tr_coastal,
+             x = "rgn_name",
+             y = "percent",
+             color_group = "rgn_name",
+             plot_type = "bar",
+             tooltip_text = ~paste("Region:", rgn_name,
+                                   "<br>Accessible coastline (%):", percent),
+             xaxis_label = "",
+             yaxis_label = "Amount of accessible coastline (%)")
+  
   ## TR Data Table
   output$tr_datatable = renderDataTable({
     datatable(tr_data_info,
@@ -743,6 +821,20 @@ function(input, output, session) {
               rownames = FALSE,
               escape = FALSE)
   })
+  
+  ##SPP number of species and status by rgn ##
+  callModule(card_plot, "spp_rgn_count",
+             df = spp_status_rgn,
+             x = "count",
+             y = "rgn_name",
+             color_group = "score",
+             plot_type = "bar",
+             tooltip_text = ~paste("Region:", rgn_name,
+                                   "<br>Status score:", score,
+                                   "<br>Num. Species:", count, sep=" "),
+             xaxis_label = "",
+             yaxis_label = "Number of species")
+  
 ## Habitats ----
   
   ### HAB Score map ###
@@ -1153,35 +1245,67 @@ function(input, output, session) {
   )
   
   ##RAO economic access ##
-  ##NOT DONE
-  # callModule(card_plot, "rao_econ",
-  #            df = rao_econ,
-  #            x = "year",
-  #            y = "score",
-  #            color_group = "common",
-  #            filter_field = "rgn_name",
-  #            plot_type = "scatter",
-  #            mode = "lines+markers",
-  #            tooltip_text = ~paste("Score:", score,
-  #                                  "<br>Year:", year, sep=" "),
-  #            xaxis_label = "",
-  #            yaxis_label = "Ratio of gas ($/barrel) to mean wage")
+  callModule(card_plot, "rao_econ",
+             df = rao_econ,
+             x = "year",
+             y = "ratio",
+             color_group = "state",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("State:", state,
+                                   "<br>Ratio:", ratio,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "",
+             yaxis_label = "Ratio of gas ($/barrel) to mean wage")
   
   ##RAO fish stock sustainability ##
+  callModule(card_plot, "rao_fssi",
+             df = rao_fisheries,
+             x = "year",
+             y = "FSSI",
+             color_group = "stock",
+             filter_field = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Species:", stock,
+                                   "<br>FSSI Score:", FSSI,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "",
+             yaxis_label = "Fish Stock Sustainability Index (0-4)")
   
-  ## NOT DONE
-  # callModule(card_plot, "rao_fssi",
-  #            df = rao_fssi,
-  #            x = "year",
-  #            y = "score",
-  #            color_group = "common",
-  #            filter_field = "rgn_name",
-  #            plot_type = "scatter",
-  #            mode = "lines+markers",
-  #            tooltip_text = ~paste("Score:", score,
-  #                                  "<br>Year:", year, sep=" "),
-  #            xaxis_label = "",
-  #            yaxis_label = "")
+  ##RAO average fish stock sustainability ##
+  callModule(card_plot, "rao_avg_fssi",
+             df = rao_avg_fssi,
+             x = "year",
+             y = "score",
+             color_group = "rgn_name",
+             plot_type = "scatter",
+             mode = "lines+markers",
+             tooltip_text = ~paste("Region:", rgn_name,
+                                   "<br>Average FSSI:", score,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "",
+             yaxis_label = "Average Fish Stock Sustainability Index")
   
+  ##RAO coastal access ##
+  callModule(card_plot, "rao_coastal",
+             df = rao_coastal,
+             x = "year",
+             y = "percent",
+             color_group = "rgn_name",
+             plot_type = "bar",
+             tooltip_text = ~paste("Region:", rgn_name,
+               "<br>Accessible coastline (%):", percent,
+                                   "<br>Year:", year, sep=" "),
+             xaxis_label = "",
+             yaxis_label = "Amount of accessible coastline (%)")
+  
+  ## RAO Data Table
+  output$rao_datatable = renderDataTable({
+    datatable(rao_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
 
 }

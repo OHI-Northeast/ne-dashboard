@@ -294,9 +294,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-        h4(tags$em("Zero water pollution from pathogens and trash, and sediment and water quality levels  meet EPA threshold values")
-      ), width = 12)),
+      h4("TARGET:", tags$em("Zero water pollution from pathogens and trash in coastal waters, and sediment and water quality levels meet EPA threshold values")),
+      width = 12)),
  
   fluidRow(
     box(
@@ -389,9 +388,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("maximize the amount of sustainable seafood produced from wild-caught fisheries and aquaculture")
-      ), width = 12)),
+      h4("TARGET: ",tags$em("maximize the amount of sustainable seafood produced from wild-caught fisheries and aquaculture")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -436,9 +434,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("all wild-caught fisheries have a B/Bmsy near 1")
-      ), width = 12)),
+      h4("TARGET:", tags$em("all wild-caught fisheries have a B/Bmsy between 0.8 and 1.2, and an F/Fmsy between 0.66 and 1.2")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -461,17 +458,11 @@ tabItem(
     )
   ),
   
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(title = "HOW WE CALCULATE THIS GOAL",
-                       url = "http://ohi-science.org/goals/#food-provision"),
-    
-    text_links_default(title = "CATCH DATA PREP",
-                       url = "https://ohi-northeast.github.io/ne-prep/prep/fis/noaa_spatial_fish_catch.html"),
-    
-    text_links_default(title = "STOCK STATUS DATA PREP",
-                       url = "https://ohi-northeast.github.io/ne-prep/prep/fis/stock_scores.html")
-  ),
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("fis_datatable"),
+    width = 12
+  )),
   
   fluidRow(
     ## NOAA landings ##
@@ -483,7 +474,20 @@ tabItem(
       select_location = "above",
       select_choices = unique(fis_noaa_catch$rgn_name),
       select_label = "Select region",
-      source_text = "Source: National Ocean and Atmospheric Administration",
+      box_width = 12
+    )
+  ),
+  
+  fluidRow(
+    ## stock assessment data ##
+    card_ui(
+      id = "fis_stock_ass",
+      title_text = "Stock assessment data",
+      sub_title_text = "",
+      select_type = "drop_down",
+      select_location = "above",
+      select_choices = unique(fis_stock_assessment$stock),
+      select_label = "Select stock",
       box_width = 12
     )
   )
@@ -510,9 +514,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("all farmed seafood is sustainable")
-      ), width = 12)),
+      h4("TARGET:", tags$em("sustainabile farmed seafood production is growing by 4% annually")),
+     width = 12)),
   
   fluidRow(
     box(
@@ -533,7 +536,25 @@ tabItem(
     card_ui(
       id = "mar_scores"
     )
+  ),
+  
+  fluidRow(
+    ## Production data ##
+    card_ui(
+      id = "mar_production",
+      title_text = "Aquaculture species production",
+      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see individual scores.",
+      select_type = "drop_down",
+      select_location = "above",
+      select_choices = unique(mar_production$Region),
+      select_label = "Select region"
+    ),
+    ## Species sustainability table
+    box(
+      DT::dataTableOutput("mar_spp_sust_table")
+    )
   )
+  
 ),
 
 ## Livelihoods & Economies -----
@@ -557,9 +578,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("All coastal dependent livelihoods and economies are growing through time")
-      ), width = 12)),
+      h4("TARGET:", tags$em("All coastal dependent livelihoods and economies are growing through time")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -623,9 +643,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("Annual growth for ocean-dependent jobs meets or exceeds national growth & wages grow by 3.5% annually")
-      ), width = 12)),
+      h4("TARGET:", tags$em("Annual growth for ocean-dependent jobs meets or exceeds national growth & wages grow by 3.5% annually")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -717,9 +736,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%")
-      ), width = 12)),
+      h4("TARGET:", tags$em("Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -809,9 +827,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("Jobs in coastal tourism sectors are growing (reflecting overall growth in tourism participation) and coastal recreation is not inhibited by beach closures")
-      ), width = 12)),
+      h4("TARGET:", tags$em("Jobs in coastal tourism sectors are growing (reflecting overall growth in tourism participation), coastal recreation is not inhibited by beach closures and each mile of coastline has a public access point")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -846,17 +863,21 @@ tabItem(
     card_ui(
       id = "tr_jobs",
       title_text = "Jobs in Tourism",
-      sub_title_text = "",
-      source_text = "Source: National Ocean Economics Program"
+      sub_title_text = ""
     ),
     
     ## Beach Closures ##
     card_ui(
       id = "tr_beach",
-      title_text = "Average proportion of swim season with beach closures",
-      sub_title_text = "This layer reports the average proportion of a swim season with beaches closed to recreation.",
-      source_text = "Source: EPA Beacon"
-    )
+      title_text = "Beach Closures",
+      sub_title_text = "This layer reports the average proportion of a swim season with beaches closed to recreation."
+    )),
+    
+  fluidRow(
+    ## Coastal access ##
+    card_ui(id = "tr_coastal",
+            title_text = "Coastal Access",
+            sub_title_text = "Proportion of publically accessible coastline")
     
   )
 ),
@@ -883,9 +904,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("No marine species are at risk of extinction and all habitats that support biodiversity are in good condition")
-      ), width = 12)),
+      h4("TARGET:", tags$em("No marine species are at risk of extinction and all habitats that support biodiversity are in good condition")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -960,9 +980,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("All species identified as present in the region are not at risk of extinction and are classified as of Least Concern by IUCN criteria")
-      ), width = 12)),
+      h4("TARGET:", tags$em("All species identified as present in the region are not at risk of extinction and are classified as of Least Concern by IUCN criteria")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -989,6 +1008,15 @@ tabItem(
     width = 12
   )),
   
+  ## Species by region and status ##
+  fluidRow(
+  card_ui(
+    id = "spp_rgn_count",
+    title_text = "Species by region and status",
+    sub_title_text = "Species status scores range from 0 (Extinct) to 1 (Least Concern)",
+    box_width = 12
+  )),
+
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
@@ -1018,9 +1046,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("No loss of salt marsh habitats from historical estimates, all eelgrass habitats have good water quality condition, and all seabed habitats are undisturbed from fishing activity")
-      ), width = 12)),
+      h4("TARGET:", tags$em("No loss of salt marsh habitats from historical estimates, all eelgrass habitats have good water quality condition, and all seabed habitats are undisturbed from fishing activity")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -1066,31 +1093,29 @@ tabItem(
     card_ui(
       id = "hab_raw_data",
       title_text = "Habitat data",
-      sub_title_text = "",
+      sub_title_text = "Eelgrass and Salt Marsh layers indicate loss in habitat extent compared to a historic reference point. The seabed habitats layer measures impact to habitats from fishing.",
       select_type = "radio",
       select_location = "above",
       select_choices = list(
-        "Eelgrass" = "eelgrass",
-        "Salt Marsh" = "salt_marsh",
-        "Offshore habitats" = "offshore"
-      ),
-      source_text = "Source: "
+        "Eelgrass (% loss)" = "eelgrass",
+        "Salt Marsh (% loss)" = "salt_marsh",
+        "Seabed habitats (fishing impacts; 0 = lowest, 1 = highest)" = "offshore"
+      )
     ),
     
     
     ## Habitat layer scores b/w 0 and 100 ##
     card_ui(
       id = "hab_layer_scores",
-      title_text = "Habitat layer scores between 0 and 100",
-      sub_title_text = "",
+      title_text = "Habitat layer scores",
+      sub_title_text = "Data layers are translated into 0-100 scores for 2005-2017",
       select_type = "radio",
       select_location = "above",
       select_choices = list(
         "Eelgrass" = "eelgrass",
         "Salt Marsh" = "salt_marsh",
-        "Offshore habitats" = "offshore"
-      ),
-      source_text = ""
+        "Seabed habitats" = "offshore"
+      )
     )
   ),
   
@@ -1131,9 +1156,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("Areas of importance are protected as lasting special places and iconic species are not threatened")
-      ), width = 12)),
+      h4("TARGET:", tags$em("Areas of importance are protected as lasting special places and iconic species are not threatened")),
+     width = 12)),
   
   fluidRow(
     box(
@@ -1179,14 +1203,23 @@ tabItem(
 
   fluidRow(box(
     h1("LASTING SPECIAL PLACES"),
-    width = 12
+    width = 9
+  ),
+  
+  infoBox(
+    "",
+    tags$p(filter(lsp_map, region_id == 0)$score,
+           style = "font-size: 250%;"),
+    icon = icon("home"),
+    color = "orange",
+    fill = TRUE,
+    width = 3
   )),
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("At least 30% of coastal waters are protected")
-      ), width = 12)),
+      h4("TARGET:", tags$em("At least 10% of coastal waters are protected and 17% of land within 1km of the coast is protected")),
+     width = 12)),
   
   fluidRow(
     box(
@@ -1250,14 +1283,23 @@ tabItem(
   
   fluidRow(box(
     h1("ICONIC SPECIES"),
-    width = 12
+    width = 9
+  ),
+  
+  infoBox(
+    "",
+    tags$p(filter(ico_map, region_id == 0)$score,
+           style = "font-size: 250%;"),
+    icon = icon("home"),
+    color = "orange",
+    fill = TRUE,
+    width = 3
   )),
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("All iconic species have a conservation status of Least Concern")
-      ), width = 12)),
+      h4("TARGET:", tags$em("All iconic species have a conservation status of Least Concern")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -1323,9 +1365,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("")
-      ), width = 12)),
+      h4("TARGET:", tags$em("The average gas to wage ratio does not increase over time, each mile of coastline has a public access point, and all fish stocks are sustainably managed")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -1346,21 +1387,43 @@ tabItem(
     card_ui(
       id = "rao_scores"
     )
-  )
+  ),
   
-  # fluidRow(
-  #   ## Economic access ##
-  #   card_ui(id = "rao_econ",
-  #           title_text = "Economic Access (gas to wage ratio)",
-  #           sub_title_text = "",
-  #           source_text = ""),
-  #
-  #   ## FSSI ##
-  #   card_ui(id = "rao_fssi",
-  #           title_text = "Fish stock sustainability index (FSSI)",
-  #           sub_title_text = "",
-  #           source_text = "Source: NOAA FSSI")
-  #   )
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("rao_datatable"),
+    width = 12
+  )),
+  
+  fluidRow(
+    ## Economic access ##
+    card_ui(id = "rao_econ",
+            title_text = "Economic Access",
+            sub_title_text = "Ratio of gas ($/barrel) to wages"),
+
+   
+    ## Coastal access ##
+    card_ui(id = "rao_coastal",
+            title_text = "Coastal Access",
+            sub_title_text = "Proportion of publically accessible coastline")
+    ),
+  
+  fluidRow(
+    ## FSSI ##
+    card_ui(id = "rao_fssi",
+            title_text = "Fish Resource Access",
+            sub_title_text = "Measured by the fish stock sustainability index (FSSI)",
+            select_type = "drop_down",
+            select_location = "above",
+            select_choices = unique(rao_fisheries$rgn_name),
+            selected = "Connecticut",
+            select_label = "Select region"),
+    
+    ## avg FSSI ##
+    card_ui(id = "rao_avg_fssi",
+            title_text = "Average Fish stock sustainability index (FSSI)",
+            sub_title_text = "")
+  )
 ),
 
 
@@ -1386,9 +1449,8 @@ tabItem(
   
   fluidRow(
     box(
-      h3("TARGET:"),
-      h4(tags$em("All biogenic habitats that support carbon storage and coastal protection are in good condition")
-      ), width = 12)),
+      h4("TARGET:", tags$em("All biogenic habitats that support carbon storage and coastal protection are in good condition")),
+      width = 12)),
   
   fluidRow(
     box(
@@ -1435,18 +1497,16 @@ tabItem(
     ## Coastal Protection ##
     card_ui(
       id = "coastal_protection",
-      title_text = "Coastal Protection scores",
-      sub_title_text = "",
-      source_text = "Source: "
+      title_text = "Coastal Protection",
+      sub_title_text = "The Coastal Protection sub-goal measures the health of habitats that contribute to coastal protection from storm surge, flooding and sea level rise. In the Northeast, this includes Salt Marsh and Eelgrass habitats. We use data on habitat health and extent in the same manner as Biodiversity: Habitat sub-goal. Since these habitats vary in their ability to protect against coastal storm surge so we apply a weighting scheme where salt marsh is four times more protective than eelgrass."
     ),
     
     
     ## Carbon Storage ##
     card_ui(
       id = "carbon_storage",
-      title_text = "Carbon Storage scores",
-      sub_title_text = "",
-      source_text = "Source: "
+      title_text = "Carbon Storage",
+      sub_title_text = "The Carbon Storage sub-goal measures the health of carbon storing marine habitats. In the Northeast, this includes Salt Marsh and Eelgrass habitats. We use data on habitat health and extent in the same manner as Biodiversity: Habitat sub-goal. Both of these habitats are able to capture carbon at a near equal rate, so we don’t include carbon storage weights. Instead we simply average the health of the habitats across each region to get a sense of how well this habitat service is doing."
     )
   )
 ),

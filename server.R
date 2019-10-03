@@ -198,7 +198,7 @@ function(input, output, session) {
     "fis_noaa_catch",
     df = fis_noaa_catch,
     x = "year",
-    y = "catch",
+    y = "mean_catch_times_prop",
     color_group = "display_name",
     filter_field = "rgn_name",
     plot_type = "scatter",
@@ -208,7 +208,7 @@ function(input, output, session) {
       "Species:",
       display_name,
       "<br>Pounds:",
-      catch,
+      mean_catch_times_prop,
       "<br>Year:",
       year,
       sep = " "
@@ -1286,21 +1286,6 @@ function(input, output, session) {
                                    "<br>Year:", year, sep=" "),
              xaxis_label = "",
              yaxis_label = "Ratio of gas ($/barrel) to mean wage")
-  
-  ##RAO fish stock sustainability ##
-  callModule(card_plot, "rao_fssi",
-             df = rao_fisheries,
-             x = "year",
-             y = "FSSI",
-             color_group = "stock",
-             filter_field = "rgn_name",
-             plot_type = "scatter",
-             mode = "lines+markers",
-             tooltip_text = ~paste("Species:", stock,
-                                   "<br>FSSI Score:", FSSI,
-                                   "<br>Year:", year, sep=" "),
-             xaxis_label = "",
-             yaxis_label = "Fish Stock Sustainability Index (0-4)")
   
   ##RAO average fish stock sustainability ##
   callModule(card_plot, "rao_avg_fssi",

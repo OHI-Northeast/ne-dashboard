@@ -18,7 +18,7 @@ dashboardPage(
         menuItem(
           "Food Provision",
           tabName = "fp",
-          startExpanded = FALSE,
+          startExpanded = TRUE,
           menuSubItem("Wild-Caught Fisheries", tabName = "fis"),
           menuSubItem("Aquaculture", tabName = "mar")
         ),
@@ -28,7 +28,7 @@ dashboardPage(
         menuItem(
           "Livelihoods & Economies",
           tabName = "liveco",
-          startExpanded = FALSE,
+          startExpanded = TRUE,
           menuSubItem("Livelihoods", tabName = "liv"),
           menuSubItem("Economies", tabName = "eco")
         ),
@@ -39,7 +39,7 @@ dashboardPage(
         menuItem(
           "Biodiversity",
           tabName = "bio",
-          startExpanded = FALSE,
+          startExpanded = TRUE,
           menuSubItem("Species", tabName = "spp"),
           menuSubItem("Habitats", tabName = "hab")
         ),
@@ -49,7 +49,7 @@ dashboardPage(
         menuItem(
           "Sense of Place",
           tabName = "sop",
-          startExpanded = FALSE,
+          startExpanded = TRUE,
           menuSubItem("Lasting Special Places", tabName = "lsp"),
           menuSubItem("Iconic Species", tabName = "ico")
         ),
@@ -1099,11 +1099,11 @@ tabItem(
     card_ui(
       id = "hab_raw_data",
       title_text = "Habitat data",
-      sub_title_text = "Eelgrass and Salt Marsh layers indicate loss in habitat extent compared to a historic reference point. The seabed habitats layer measures impact to habitats from fishing.",
+      sub_title_text = "Eelgrass layer is respresented by a proxy dataset that looks at water quality at sites located within a current or previous eelgrass bed. Salt Marsh layer indicates loss in habitat extent compared to a historic reference point. The seabed habitats layer measures impact to habitats from fishing.",
       select_type = "radio",
       select_location = "above",
       select_choices = list(
-        "Eelgrass (% loss)" = "eelgrass",
+        "Eelgrass (water quality index proxy)" = "eelgrass",
         "Salt Marsh (% loss)" = "salt_marsh",
         "Seabed habitats (fishing impacts; 0 = lowest, 1 = highest)" = "offshore"
       )
@@ -1428,19 +1428,11 @@ tabItem(
   
   fluidRow(
     ## FSSI ##
-    card_ui(id = "rao_fssi",
-            title_text = "Fish Resource Access",
-            sub_title_text = "Measured by the fish stock sustainability index (FSSI)",
-            select_type = "drop_down",
-            select_location = "above",
-            select_choices = unique(rao_fisheries$rgn_name),
-            selected = "Connecticut",
-            select_label = "Select region"),
-    
-    ## avg FSSI ##
+  
     card_ui(id = "rao_avg_fssi",
             title_text = "Average Fish stock sustainability index (FSSI)",
-            sub_title_text = "")
+            sub_title_text = "",
+            box_width = 12)
   )
 ),
 

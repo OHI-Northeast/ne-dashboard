@@ -39,7 +39,8 @@ rgn_data <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/
 
 scores <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/scores.csv") %>%
   left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
-  mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name))
+  mutate(rgn_name = ifelse(is.na(rgn_name), "Northeast Region", rgn_name)) %>%
+  mutate(score = round(score, digits = 0))
 
 ## Index scores for entire region ----
 
@@ -67,9 +68,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   fis_scores_map <- filter(fis_scores, year == 2017)
 
  #catch aggregated to OHI regions
-  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/nmfs_spatial_catch_by_ohi_rgn.csv") %>% 
-    left_join(rgn_data) %>%
-    filter(species!= "CONFIDENTIAL SPECIES")
+  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fis_meancatch.csv") 
   fis_stock_assessment <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/stock_assessment_data_for_dashboard.csv")
   fis_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/fis_data_info.csv")
 

@@ -490,6 +490,39 @@ tabItem(
       select_label = "Select stock",
       box_width = 12
     )
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/fis#ocean-health-index---us-northeast-wild-caught-fisheries",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/fis/data",
+      box_width = 6
+    )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Stock assessments"),
+          ""
+        ),
+        tags$li(
+          tags$b("State catch data"),
+          ""
+        )
+      ),
+      width = 12
+    )
   )
 ),
 
@@ -559,8 +592,40 @@ tabItem(
     box(
       DT::dataTableOutput("mar_spp_sust_table")
     )
-  )
+  ),
   
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/mar#ocean-health-index---us-northeast-mariculture-sub-goal",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/mar/data",
+      box_width = 6
+    )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Production data"),
+          ""
+        ),
+        tags$li(
+          tags$b("Sustainability data"),
+          ""
+        )
+      ),
+      width = 12
+    )
+  )
 ),
 
 ## Livelihoods & Economies -----
@@ -718,6 +783,24 @@ tabItem(
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/liv/data",
       box_width = 6
     )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Seasonal data"),
+          ""
+        ),
+        tags$li(
+          tags$b("Sector switching"),
+          ""
+        )
+      ),
+      width = 12
+    )
   )
 ),
 
@@ -807,10 +890,22 @@ tabItem(
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/eco/data",
       box_width = 6
     )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b(""),
+          ""
+        )
+      ),
+      width = 12
+    )
   )
 ),
-
-
 
 ## Tourism & Recreation -----
 
@@ -885,6 +980,38 @@ tabItem(
             title_text = "Coastal Access",
             sub_title_text = "Proportion of publically accessible coastline")
     
+  ),
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/tr#ocean-health-index---us-northeast-tourism--recreation",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/tr/data",
+      box_width = 6
+    )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b(""),
+          ""
+        ),
+        tags$li(
+          tags$b(""),
+          ""
+        )
+      ),
+      width = 12
+    )
   )
 ),
 
@@ -1036,7 +1163,26 @@ tabItem(
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/spp/data",
       box_width = 6
     )
+  ),
+
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Species range maps"),
+          ""
+        ),
+        tags$li(
+          tags$b("Change in status over time"),
+          ""
+        )
+      ),
+      width = 12
+    )
   )
+  
 ),
 
 
@@ -1079,21 +1225,7 @@ tabItem(
     DT::dataTableOutput("hab_datatable"),
     width = 12
   )),
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#biodiversity",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "DATA PREP",
-      url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp#species-status",
-      box_width = 6
-    )
-  ),
-  
+
   fluidRow(
     ## Raw habitat data ##
     card_ui(
@@ -1129,7 +1261,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "CODE",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/hab",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/hab#ocean-health-index---us-northeast-habitats-sub-goal",
       box_width = 6
     ),
     
@@ -1137,6 +1269,20 @@ tabItem(
       title = "ACCESS LAYER DATA",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/hab/data",
       box_width = 6
+    )
+  ),
+
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Historical habitat data"),
+          ""
+        )
+      ),
+      width = 12
     )
   )
 ),
@@ -1276,7 +1422,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "CODE",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp#ocean-health-index---us-northeast-lasting-special-places-sub-goal",
       box_width = 6
     ),
     
@@ -1285,7 +1431,22 @@ tabItem(
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp/data",
       box_width = 6
     )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Survey of special places and their protection"),
+          ""
+        )
+      ),
+      width = 12
+    )
   )
+  
 ),
 
 ## Iconic Species------
@@ -1350,7 +1511,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "CODE",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico#ocean-health-index---us-northeast-iconic-species-sub-goal",
       box_width = 6
     ),
     
@@ -1358,6 +1519,20 @@ tabItem(
       title = "ACCESS LAYER DATA",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico/data",
       box_width = 6
+    )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("List of species"),
+          ""
+        )
+      ),
+      width = 12
     )
   )
 ),
@@ -1433,6 +1608,34 @@ tabItem(
             title_text = "Average Fish stock sustainability index (FSSI)",
             sub_title_text = "",
             box_width = 12)
+  ),
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/rao",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/rao/data",
+      box_width = 6
+    )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Better indicators of access"),
+          ""
+        )
+      ),
+      width = 12
+    )
   )
 ),
 
@@ -1486,23 +1689,7 @@ tabItem(
     DT::dataTableOutput("hs_datatable"),
     width = 12
   )),
-  
-  ## Text boxes with links ##
-  fluidRow(
-    text_links_default(
-      title = "HOW WE CALCULATE THIS GOAL",
-      url   = "http://ohi-science.org/goals/#biodiversity",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "DATA PREP",
-      url   = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp#species-status",
-      box_width = 6
-    )
-  ),
-  
-  
+
   fluidRow(
     ## Coastal Protection ##
     card_ui(
@@ -1517,6 +1704,35 @@ tabItem(
       id = "carbon_storage",
       title_text = "Carbon Storage",
       sub_title_text = "The Carbon Storage sub-goal measures the health of carbon storing marine habitats. In the Northeast, this includes Salt Marsh and Eelgrass habitats. We use data on habitat health and extent in the same manner as Biodiversity: Habitat sub-goal. Both of these habitats are able to capture carbon at a near equal rate, so we don’t include carbon storage weights. Instead we simply average the health of the habitats across each region to get a sense of how well this habitat service is doing."
+    )
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/hs#ocean-health-index---us-northeast-habitat-services-goal",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/hab/data",
+      box_width = 6
+    )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Gaps"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Historical habitat data"),
+          ""
+        )
+      ),
+      width = 12
     )
   )
 ),

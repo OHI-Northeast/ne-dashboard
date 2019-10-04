@@ -327,7 +327,7 @@ tabItem(
       sub_title_text = "",
       select_type = "drop_down",
       select_location = "above",
-      select_choices = unique(cw_scores$rgn_name),
+      select_choices = unique(cw_layers$rgn_name),
       selected = "Connecticut",
       select_label = "Select region",
       box_width = 12
@@ -351,7 +351,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -434,7 +434,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("TARGET:", tags$em("all wild-caught fisheries have a B/Bmsy between 0.8 and 1.2, and an F/Fmsy between 0.66 and 1.2")),
+      h4("TARGET:", tags$em("maximizing catch of sustainably managed stocks")),
       width = 12)),
   
   fluidRow(
@@ -509,7 +509,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -611,7 +611,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -681,7 +681,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -753,8 +753,7 @@ tabItem(
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(jobs_scores$rgn_name),
-      select_label = "Select region",
-      source_text = "Source: National Ocean Economics Program"
+      select_label = "Select region"
     ),
     
     ## Wages ##
@@ -765,8 +764,7 @@ tabItem(
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(wages_scores$rgn_name),
-      select_label = "Select region",
-      source_text = "Source: National Ocean Economics Program"
+      select_label = "Select region"
     )
   ),
 
@@ -787,7 +785,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -864,16 +862,14 @@ tabItem(
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(gdp$rgn_name),
-      select_label = "Select region",
-      source_text = "Source: National Ocean Economics Program"
+      select_label = "Select region"
     ),
     
     #wage scores by region between 0 and 1
     card_ui(
       id = "eco_gdp_scores",
       title_text = "GDP scores",
-      sub_title_text = "",
-      source_text = "Source: National Ocean Economics Program"
+      sub_title_text = ""
     )
   ),
   
@@ -894,7 +890,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -998,7 +994,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -1167,7 +1163,7 @@ tabItem(
 
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -1274,7 +1270,7 @@ tabItem(
 
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -1405,16 +1401,14 @@ tabItem(
     card_ui(
       id = "lsp_marine",
       title_text = "Proportion of area protected within state waters",
-      sub_title_text = "",
-      source_text = "Source: "
+      sub_title_text = ""
     ),
     
     ## Protected land in coastal 1km ##
     card_ui(
       id = "lsp_land",
       title_text = "Proportion of area protected on land within 1km of the coastline",
-      sub_title_text = "",
-      source_text = ""
+      sub_title_text = ""
     )
   ),
   
@@ -1435,7 +1429,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -1524,7 +1518,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -1626,7 +1620,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
@@ -1724,7 +1718,7 @@ tabItem(
   
   fluidRow(
     box(
-      h4("Data Gaps"),
+      h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(

@@ -141,7 +141,8 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     filter(goal == "CW",
            dimension == "status")
   cw_scores_map <- filter(cw_scores, year == 2017)
-  cw_layers     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv")
+  cw_layers     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv") %>%
+    filter(rgn_id > 4)
   cw_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/cw_data_info.csv")
   
 ## BIO data ----

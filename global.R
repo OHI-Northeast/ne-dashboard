@@ -5,6 +5,10 @@ library(shinydashboard)
 library(RColorBrewer)
 library(DT)
 
+#library(devtools)
+#devtools::install_github("nschiett/fishualize", force = TRUE)
+library(fishualize)
+
 ## source modules
 source("modules/chart_card.R")
 source("modules/map_card.R")
@@ -17,13 +21,14 @@ sapply(files.sources, source)
 options(scipen = 999,
         digits = 2)
 
-##color palette ---
-reds <-  grDevices::colorRampPalette(
-  c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"),
-  space="Lab")(85)
-blues <-  grDevices::colorRampPalette(
-  c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(15)
-myPalette <-  c(reds, blues)
+##color palette --- where 85 is the break between yellows and blues
+ reds <-  grDevices::colorRampPalette(
+   c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"),
+   space="Lab")(20)
+ blues <-  grDevices::colorRampPalette(
+   c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4"))(5)
+ myPalette <-  c(reds, blues)
+
 chart_colors <- viridis::viridis(n = 12)
 
 ## shapefile
@@ -82,9 +87,8 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     mutate(Year = as.numeric(Year)) %>%
     arrange(Year)
   mar_spp_sust <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/species_sust_scores.csv") %>%
-    rename(Species = species,
-           `Seafood Watch Score` = sustainabilityscore,
-           `Score (0-1)` = rescaled)
+    select(Species = species,
+           `Sustainability Score` = rescaled)
   mar_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/mar_data_info.csv")
   
 ## livelihoods----

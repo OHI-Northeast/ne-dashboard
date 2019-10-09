@@ -300,9 +300,9 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      "- This goal is only measured for coastal regions because the majority of people are in direct contact with the coastal ocean",
       br(),
-      "- Message 2:",
+      "- Clean water scores do not vary much from year to year but there is a downward trend over time",
       width = 12
     )
   ),
@@ -394,9 +394,9 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      "- Food provision includes both wild-caught fisheries and aquaculture. The final score is weighted by total production by each of sector",
       br(),
-      "- Message 2:",
+      "- This measures both the total amount of seafood produced and it's sustainability",
       width = 12
     )
   ),
@@ -434,15 +434,15 @@ tabItem(
   
   fluidRow(
     box(
-      h4("TARGET:", tags$em("maximizing catch of sustainably managed stocks")),
+      h4("TARGET:", tags$em("all stocks are fished at maximum sustainable yield")),
       width = 12)),
   
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      "- Bait fisheries, such as Atlantic herring & mackerel, are important in the Northeast. Only harvest meant for direct human consumption from these fisheries is included in the score.",
       br(),
-      "- Message 2:",
+      "- These scores reflect the status of fish where they are caught, not the port where they are landed.",
       width = 12
     )
   ),
@@ -553,9 +553,9 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
+      "- Scores for this goal are largely driven by reporting formats and standards which vary significantly across each state.",
       br(),
-      "- Message 2:",
+      "- Kelp or seaweed farming is a new but growing sector of the aquaculture industry in the northeast. It has not reached commercial scale and therefore is not included in these scores.",
       width = 12
     )
   ),
@@ -615,7 +615,7 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Production data"),
+          tags$b("Production data - Maine stopped reporting salmon in 2010"),
           ""
         ),
         tags$li(
@@ -655,9 +655,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "- Coastal livelihoods and economies have been increasing over time.",
       width = 12
     )
   ),
@@ -716,15 +714,6 @@ tabItem(
     box(
       h4("TARGET:", tags$em("Annual growth for ocean-dependent jobs meets or exceeds national growth & wages grow by 3.5% annually")),
       width = 12)),
-  
-  fluidRow(
-    box(
-      # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
-      width = 12
-    )),
 
   fluidRow(
     ## scores map
@@ -827,15 +816,6 @@ tabItem(
       width = 12)),
   
   fluidRow(
-    box(
-      # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
-      width = 12
-    )),
-  
-  fluidRow(
     ## scores map
     map_ui(
       id = "eco_scores_map"
@@ -930,9 +910,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "- Each data layer measures different aspects of tourism and recreation. The number of jobs in the tourism sector is used as a proxy for tourism growth while beach closures and lack of coastal access measure the publics ability to recreate on the coast.",
       width = 12
     )),
   
@@ -1039,9 +1017,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "- Biodiversity tries to measure the conservation status of all ocean-dependent species in the Northeast. Since not all species have been assessed, habitat health is also included as an indicator for species that rely on these habitats.",
       width = 12
     )),
   
@@ -1115,9 +1091,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "This sub-goal assesses the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a lower score. There are 732 species included in the biodiversity-species score.",
       width = 12
     )),
   
@@ -1200,9 +1174,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "- This score measures the health of three regional marine habitats that support biodiversity; salt marsh, eelgrass, and seabed habitats.",
       width = 12
     )),
   
@@ -1310,9 +1282,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "Sense of Places captures the aspects of the coastal and marine system that people value as part of their cultural identity.",
       width = 12
     )),
   
@@ -1372,9 +1342,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "- Lasting Special Places includes geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. Due to data limitations, these unique aspects can not be discretely measured. Therefore it is assumed that all coastal areas within 1 kilometer of the coast on land, and 3 nautical miles offshore, are special and total area protected is used to measure Lasting Special Places.",
       width = 12
     )),
   
@@ -1471,11 +1439,9 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value",
       width = 12
-    )),
+      )),
   
   ## scores map
   map_ui(
@@ -1558,9 +1524,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "- Access to coastal and ocean resources is inherently difficult to measure, but is an important aspect of Ocean Health and is therefore included in the Index. The data used here is a best attempt to measure the ability for people to access the resources they desire.",
       width = 12
     )),
   
@@ -1662,9 +1626,7 @@ tabItem(
   fluidRow(
     box(
       # Key Messages
-      "- Message 1: These will be brief summaries of results or patterns identified for this goal",
-      br(),
-      "- Message 2:",
+      "- Habitat Services measures two equally important components: Coastal Protection and Carbon Storage. Coastal Protection assess the amount of protection provided by marine and coastal habitats against flooding and erosion to coastal areas. Carbon storage is the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions. ",
       width = 12
     )),
   

@@ -61,14 +61,14 @@ indx_scores_map <- filter(indx_scores, year == 2017)
 ## Food Provision data ----
 fp_scores <- scores %>% 
   filter(goal == "FP",
-         dimension == "status")
+         dimension == "score")
 
 fp_scores_map <- filter(fp_scores, year == 2017)
 
 ## FIS data ----
   fis_scores <- scores %>% 
     filter(goal == "FIS",
-           dimension == "status")
+           dimension == "score")
 
   fis_scores_map <- filter(fis_scores, year == 2017)
 
@@ -80,7 +80,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## Aquaculture data ----
   mar_scores <- scores %>% 
     filter(goal == "MAR",
-           dimension == "status")
+           dimension == "score")
   
   mar_scores_map <- filter(mar_scores, year == 2017)
   mar_production <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/production_clean.csv") %>%
@@ -94,7 +94,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## livelihoods----
   liv_scores <- scores %>% 
     filter(goal == "LIV",
-           dimension == "status")
+           dimension == "score")
   liv_scores_map <- filter(liv_scores, year == 2017)
   
   ### jobs data ###
@@ -112,7 +112,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## Economies data ----
   eco_scores <- scores %>% 
     filter(goal == "ECO",
-           dimension == "status")
+           dimension == "score")
   eco_scores_map <- filter(eco_scores, year == 2017)
   gdp            <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/liv/data/gdp_sector.csv")
   gdp_scores     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/eco/data/gdp_scores.csv")
@@ -122,7 +122,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   le_scores <- scores %>% 
     filter(goal == "LE",
-           dimension == "status")
+           dimension == "score")
   le_scores_map <- filter(le_scores, year == 2017)
   le_data_info  <- bind_rows(liv_data_info, eco_data_info)
   
@@ -130,7 +130,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 
   tr_scores <- scores %>% 
     filter(goal == "TR",
-           dimension == "status")
+           dimension == "score")
   tr_scores_map <- filter(tr_scores, year == 2017)
   tr_jobs       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/tr_jobs.csv")
   tr_beaches    <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/tr/data/proportion_closed_by_rgn.csv")
@@ -143,7 +143,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## CW data ----
   cw_scores <- scores %>%
     filter(goal == "CW",
-           dimension == "status")
+           dimension == "score")
   cw_scores_map <- filter(cw_scores, year == 2017)
   cw_layers     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/cw/data/region_layer_scores.csv") %>%
     filter(rgn_id > 4)
@@ -152,7 +152,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## BIO data ----
   bio_scores <- scores %>%
     filter(goal == "BD",
-           dimension == "status")
+           dimension == "score")
   
   bio_scores_map <- filter(bio_scores, year == 2017)
   bio_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/bio_data_info.csv")
@@ -160,7 +160,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## SPP data ----
   spp_scores <- scores %>%
     filter(goal == "SPP",
-           dimension == "status")
+           dimension == "score")
   
   spp_scores_map <- filter(spp_scores, year == 2017)
   spp_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/spp_data_info.csv")
@@ -169,7 +169,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## HAB data ----
   hab_scores <- scores %>%
     filter(goal == "HAB",
-           dimension == "status")
+           dimension == "score")
   
   hab_scores_map <- filter(hab_scores, year == 2017)
   salt_marsh     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/salt_marsh_percent_change.csv") 
@@ -182,7 +182,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   hs_scores <- scores %>%
     filter(goal == "HS",
-           dimension == "status")
+           dimension == "score")
   
   hs_scores_map      <- filter(hs_scores, year == 2017)
   coastal_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/hs_coastal_protection.csv")
@@ -192,14 +192,14 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 ## Sense of Place ----
   sop_scores <- scores %>%
     filter(goal == "SP",
-           dimension == "status")
+           dimension == "score")
   
   sop_map <- filter(sop_scores, year == 2017)
   
 ## Lasting Special Places ----
   lsp_scores <- scores %>%
     filter(goal == "LSP",
-           dimension == "status")
+           dimension == "score")
   
   lsp_map <- filter(lsp_scores, year == 2017)
   
@@ -212,7 +212,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   ico_scores <- scores %>%
     filter(goal == "ICO",
-           dimension == "status")
+           dimension == "score")
   
   ico_map <- filter(ico_scores, year == 2017)
   
@@ -233,7 +233,7 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   rao_scores <- scores %>%
     filter(goal == "RAO",
-           dimension == "status")
+           dimension == "score")
   
   rao_scores_map <- filter(rao_scores, year == 2017)
   

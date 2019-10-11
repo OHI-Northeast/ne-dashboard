@@ -3,9 +3,13 @@ function(input, output, session) {
 ## Overall Index ----
   
   output$flowerplot <- renderUI({
-    tags$img(src = "https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/flower_USNortheast.png",
-             height = 400,
-             width  = 550)
+    
+    image <- paste0("https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_", input$img_region,".png")
+    
+    # div(tags$img(src = "https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_USNortheast.png",
+    #          width  = 400), style = "text-align: center;")
+    
+    div(tags$img(src = image, width  = 400), style = "text-align: center;")
   })
   
   ## Scores time series chart ##

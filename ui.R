@@ -102,16 +102,23 @@ dashboardPage(
         tabName = "welcome",
         
         fluidRow(
-          box(
+          box(width = 12,
             h1("Ocean Health Dashboard for the US Northeast"),
-            "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations. Ocean Health Index assessments use the best-available data to measure progress toward target conditions for benefits provided by a region's marine ecosystems, resulting in benefit-specific and overall health scores on a scale of 0 to 100.", 
-            br(),
-            h4(
-              a("Dive Deeper", href = "#shiny-tab-index", "data-toggle" = "tab")),
-            width = 12
+            "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations." 
           )
         ),
         
+      fluidRow(
+          box(width = 6,
+              title = "Overall Index score",
+              "",
+              status = "primary",
+              div(img(src="https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_USNortheast.png", 
+                  width=400), style = "text-align: center;"),
+              br(),
+              (a("Click here to dive deeper into regional scores", href = "#shiny-tab-index", "data-toggle" = "tab"))
+            ),
+ 
         # infoBoxes with goal scores for Northeast region
         fluidRow(
           tags$div(
@@ -142,6 +149,19 @@ dashboardPage(
             )
           ),
           tags$div(
+            href = "#shiny-tab-rao",
+            "data-toggle" = "tab",
+            infoBox(
+              "Resource Access Opportunities",
+              tags$p(filter(rao_scores_map, region_id == 0)$score,
+                     style = "font-size: 200%;"),
+              icon = icon("ship"),
+              color = "fuchsia",
+              fill = TRUE,
+              width = 3
+            )
+          ),
+          tags$div(
             href = "#shiny-tab-liveco",
             "data-toggle" = "tab",
             infoBox(
@@ -156,34 +176,6 @@ dashboardPage(
             )
           ),
           tags$div(
-            href = "#shiny-tab-sop",
-            "data-toggle" = "tab",
-            infoBox(
-              "Sense of Place",
-              tags$p(filter(sop_map, region_id == 0)$score,
-                     style = "font-size: 200%;"),
-              icon = icon("home"),
-              color = "green",
-              fill = TRUE,
-              width = 3
-            )
-          )
-          ),
-        fluidRow(
-          tags$div(
-            href = "#shiny-tab-rao",
-            "data-toggle" = "tab",
-            infoBox(
-              "Resource Access Opportunities",
-              tags$p(filter(rao_scores_map, region_id == 0)$score,
-                     style = "font-size: 200%;"),
-              icon = icon("ship"),
-              color = "fuchsia",
-              fill = TRUE,
-              width = 3
-            )
-          ),
-          tags$div(
             href = "#shiny-tab-fp",
             "data-toggle" = "tab",
             infoBox(
@@ -193,6 +185,19 @@ dashboardPage(
                      style = "font-size: 200%;"),
               icon = icon("utensils"),
               color = "purple",
+              fill = TRUE,
+              width = 3
+            )
+          ),
+          tags$div(
+            href = "#shiny-tab-sop",
+            "data-toggle" = "tab",
+            infoBox(
+              "Sense of Place",
+              tags$p(filter(sop_map, region_id == 0)$score,
+                     style = "font-size: 200%;"),
+              icon = icon("home"),
+              color = "green",
               fill = TRUE,
               width = 3
             )
@@ -223,7 +228,8 @@ dashboardPage(
               width = 3
             )
           )
-        ),
+        )
+      ),
         
         fluidRow(
           box(
@@ -257,11 +263,26 @@ tabItem(tabName = "index",
           ),
           
           box(h4("Goal Scores for 2017"),
-              "Ocean Health Index scores are calculated for individual goals separately and then combined to get an overall score on a scale of 0-100. Individual goal scores are represented by the length of the petals in a flower plot below, and the overall 2017 Index score for the entire Northeast is in the center. You can dig into the data and scores for each individual goal by clicking on the goal titles in the main menu at the left of your screen.",
-              
-          uiOutput("flowerplot")
+              "Ocean Health Index scores are calculated for individual goals separately and then combined to get an overall score on a scale of 0-100. Individual goal scores are represented by the length of the petals in a flower plot below, and the overall 2017 Index score for the region is in the center. You can dig into the data and scores for each individual goal by clicking on the goal titles in the main menu at the left of your screen.",
+              br(),
+          
+        selectInput("img_region", "",
+          c("Northeast" = "USNortheast",
+            "Offshore"  = "Offshore",
+            "Rhode Island" = "RhodeIsland",
+            "New York" = "NewYork",
+            "New Hampshire" = "NewHampshire",
+            "Mid-Atlantic Bight" = "Mid-AtlanticBight",
+            "Massachusetts-South" = "Massachusetts-South",
+            "Massachusetts-North" = "Massachusetts-North",
+            "Maine" = "Maine",
+            "Gulf of Maine" = "GulfofMaine",
+            "George's Bank" = "GeorgesBank",
+            "Connecticut" = "Connecticut")),
+        
+        uiOutput("flowerplot")
         )
-        ),
+      ),
         
         fluidRow(
           ## scores through time

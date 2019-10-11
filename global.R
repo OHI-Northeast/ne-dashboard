@@ -4,6 +4,7 @@ library(tidyverse)
 library(shinydashboard)
 library(RColorBrewer)
 library(DT)
+library(magick)
 
 #library(devtools)
 #devtools::install_github("nschiett/fishualize", force = TRUE)

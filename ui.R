@@ -51,7 +51,8 @@ dashboardPage(
           tabName = "sop",
           startExpanded = TRUE,
           menuSubItem("Lasting Special Places", tabName = "lsp"),
-          menuSubItem("Iconic Species", tabName = "ico")
+          menuSubItem("Iconic Species", tabName = "ico"),
+          menuSubItem("Fishing Engagement", tabName = "spfis")
         ),
         tabName = "sop"
       ),
@@ -341,7 +342,7 @@ tabItem(
       select_location = "above",
       select_choices = unique(cw_layers$rgn_name),
       selected = "Connecticut",
-      select_label = "Select region",
+      select_label = "",
       box_width = 12
     )
   ),
@@ -423,6 +424,21 @@ tabItem(
     ## scores through time
     card_ui(
       id = "fp_scores"
+    )
+  ),
+  
+  fluidRow(
+    ## FP layers ##
+    card_ui(
+      id = "fp_layers",
+      title_text = "Sub-goal scores",
+      sub_title_text = "",
+      select_type = "drop_down",
+      select_location = "above",
+      select_choices = unique(fp_layers$rgn_name),
+      selected = "Connecticut",
+      select_label = "",
+      box_width = 12
     )
   )
 ),
@@ -603,11 +619,12 @@ tabItem(
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(mar_production$Region),
-      select_label = "Select region"
+      box_width = 9
     ),
     ## Species sustainability table
     box(
-      DT::dataTableOutput("mar_spp_sust_table")
+      DT::dataTableOutput("mar_spp_sust_table"),
+      width = 3
     )
   ),
   
@@ -632,12 +649,12 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Production data - Maine stopped reporting salmon in 2010"),
-          ""
+          tags$b("Maine salmon production: "),
+          "lacks information beyond 2010. According to Maine's Department of Marine Resources,Atlantic salmon production data from 2011 - present cannot be reported at this time due to confidentiality reasons. All Atlantic salmon production data was gapfilled for Maine using the 2010 reported numbers for all following years."
         ),
         tags$li(
-          tags$b("Sustainability data"),
-          ""
+          tags$b("Farmed species sustainability: "),
+          "was difficult to measure due to lack of farm-specific data on what species are farmed and sustainability measures. The Monterey Bay Aquarium Seafood Watch data lacks spatial resolution but includes all farmed species in the region."
         )
       ),
       width = 12
@@ -692,6 +709,21 @@ tabItem(
     DT::dataTableOutput("le_datatable"),
     width = 12
   )),
+  
+  fluidRow(
+    ## LE layers ##
+    card_ui(
+      id = "le_layers",
+      title_text = "Sub-goal scores",
+      sub_title_text = "",
+      select_type = "drop_down",
+      select_location = "above",
+      select_choices = unique(le_layers$rgn_name),
+      selected = "Connecticut",
+      select_label = "",
+      box_width = 12
+    )
+  ),
   
   fluidRow(
     box(
@@ -1065,18 +1097,17 @@ tabItem(
   )),
   
   fluidRow(
-    ## Species sub-goal scores##
+    ## BIO layers ##
     card_ui(
-      id = "bio_spp_scores",
-      title_text = "Species sub-goal scores",
-      sub_title_text = ""
-    ),
-    
-    ## Habitat sub-goal scores##
-    card_ui(
-      id = "bio_hab_scores",
-      title_text = "Habitat sub-goal scores",
-      sub_title_text = ""
+      id = "bio_layers",
+      title_text = "Sub-goal scores",
+      sub_title_text = "",
+      select_type = "drop_down",
+      select_location = "above",
+      select_choices = unique(bio_layers$rgn_name),
+      selected = "Connecticut",
+      select_label = "",
+      box_width = 12
     )
   ),
   
@@ -1315,7 +1346,7 @@ tabItem(
   
   fluidRow(
     box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Areas of importance are protected as lasting special places and iconic species are not threatened")),
+        h3("Areas of importance are protected as lasting special places, iconic species are not threatened and fishing engagement is high for coastal communities")),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
         tags$ul(
@@ -1337,21 +1368,21 @@ tabItem(
     id = "sop_scores"
   )
 ),
-  
-  fluidRow(
-    #lasting special places scores
-    card_ui(
-      id = "sop_lsp_scores",
-      title_text = "Lasting Special Places subgoal",
-      sub_title_text = "Explore scores for each region over time"
-    ),
-    
-    card_ui(
-      id = "sop_ico_scores",
-      title_text = "Iconic Species subgoal",
-      sub_title_text = ""
-    )
+
+fluidRow(
+  ## SOP layers ##
+  card_ui(
+    id = "sop_layers",
+    title_text = "Sub-goal scores",
+    sub_title_text = "",
+    select_type = "drop_down",
+    select_location = "above",
+    select_choices = unique(sop_layers$rgn_name),
+    selected = "Connecticut",
+    select_label = "",
+    box_width = 12
   )
+)
 ),
 
 ## Lasting Special Places -----
@@ -1538,6 +1569,109 @@ tabItem(
   )
 ),
 
+## Fishing Engagement  -----
+
+tabItem(
+  tabName = "spfis",
+  
+  fluidRow(box(
+    h1("FISHING ENGAGEMENT"),
+    width = 9
+  ),
+  
+  valueBox(
+    tags$p(filter(spfis_map, region_id == 0)$score,
+           style = "font-size: 150%;"),
+    "",
+    icon = icon("home"),
+    color = "lime",
+    width = 3
+  )),
+  
+  
+  fluidRow(
+    box(title = "Target", status = "primary", solidHeader = TRUE,
+        h3("Coastal communities have high levels of commercial fishing engagement and recreational fishing reliance")),
+    
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
+        tags$ul(
+          tags$li(
+            h4(
+              "Fishing Engagement is one of three subgoals of Sense of Place and is measured using two distinct layers, Commercial Fishing Engagement and Recreational Fishing Reliance.")),
+          tags$li(
+            h4(
+              "Commercial fishing engagement measures the presence of commercial fishing through fishing activity as shown through permits and vessel landings. A high rank indicates more engagement.")),
+          tags$li(
+            h4(
+              "Recreational fishing reliance measures the presence of recreational fishing in relation to the population of a community. A high rank indicates increased reliance."))
+        )
+    )
+  ),
+  
+  fluidRow(
+    ## scores map
+    map_ui(
+      id = "spfis_scores_map"
+    ),
+    
+    ## scores through time
+    card_ui(
+      id = "spfis_scores"
+    )
+  ),
+  
+  ## Data layers and targets
+  fluidRow(box(
+    DT::dataTableOutput("spfis_datatable"),
+    width = 12
+  )),
+  
+  fluidRow(
+    ## Protected marine areas ##
+    card_ui(
+      id = "spfis_commercial",
+      title_text = "Commercial fishing engagement",
+      sub_title_text = ""
+    ),
+    
+    ## Protected land in coastal 1km ##
+    card_ui(
+      id = "spfis_rec",
+      title_text = "Recreational reliance",
+      sub_title_text = ""
+    )
+  ),
+  
+  ## Text boxes with links ##
+  fluidRow(
+    text_links_default(
+      title = "CODE",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/fishing_engagement",
+      box_width = 6
+    ),
+    
+    text_links_default(
+      title = "ACCESS LAYER DATA",
+      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/fishing_engagement/data",
+      box_width = 6
+    )
+  ),
+  
+  fluidRow(
+    box(
+      h4("Data Considerations & Potential Improvements"),
+      "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      tags$ul(
+        tags$li(
+          tags$b("Temporal availability:"),
+          "The NOAA Social Vulnerability Index has only been conducted for years 2009 to 2016 so we do not have data previous to 2009. All years 2005 - 2009 were gapfilled using the 2009 data."
+        )
+      ),
+      width = 12
+    )
+  )
+  
+),
 ## Resource Access Opportunities------
 
 tabItem(

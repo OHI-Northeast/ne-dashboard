@@ -160,6 +160,25 @@ function(input, output, session) {
     yaxis_label = "Score"
   )
   
+  ## FP layers chart
+  callModule(
+    card_plot,
+    "fp_layers",
+    df = fp_layers,
+    x = "year",
+    y = "score",
+    color_group = "goal_name",
+    filter_field = "rgn_name",
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste("Score:", score,
+                           "<br>Layer:", goal_name,
+                           "<br>Year:", year, sep = " "),
+    xaxis_label = "",
+    yaxis_label = "Sub-goal Score",
+    legend_or = NULL
+  )
+  
 ## Wild-Caught Fisheries ----
   
   ## FIS Score map ##
@@ -381,6 +400,26 @@ function(input, output, session) {
               rownames = FALSE,
               escape = FALSE)
   })
+  
+  ## LE layers chart
+  callModule(
+    card_plot,
+    "le_layers",
+    df = le_layers,
+    x = "year",
+    y = "score",
+    color_group = "goal_name",
+    filter_field = "rgn_name",
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste("Score:", score,
+                           "<br>Layer:", goal_name,
+                           "<br>Year:", year, sep = " "),
+    xaxis_label = "",
+    yaxis_label = "Sub-goal Score",
+    legend_or = NULL
+  )
+  
 ## Livelihoods ----
   
   ## Liv Score map ##
@@ -749,55 +788,8 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
+
   
-  ### species sub-goal scores ###
-  callModule(
-    card_plot,
-    "bio_spp_scores",
-    df = spp_scores,
-    x = "year",
-    y = "score",
-    color_group = "rgn_name",
-    colors = chart_colors_all_rgns,
-    plot_type = "scatter",
-    mode = "lines+markers",
-    tooltip_text = ~ paste(
-      "Sub-goal score:",
-      score,
-      "<br>Region:",
-      rgn_name,
-      "<br>Year:",
-      year,
-      sep = " "
-    ),
-    xaxis_label = "",
-    yaxis_label = "Score"
-  )
-  
-  ### habitats sub-goal scores ###
-  
-  callModule(
-    card_plot,
-    "bio_hab_scores",
-    df = hab_scores,
-    x = "year",
-    y = "score",
-    color_group = "rgn_name",
-    colors = chart_colors_all_rgns,
-    plot_type = "scatter",
-    mode = "lines+markers",
-    tooltip_text = ~ paste(
-      "Sub-goal score:",
-      score,
-      "<br>Region:",
-      rgn_name,
-      "<br>Year:",
-      year,
-      sep = " "
-    ),
-    xaxis_label = "",
-    yaxis_label = "Score"
-  )
   ## BIO Data Table
   output$bio_datatable = renderDataTable({
     datatable(bio_data_info,
@@ -805,6 +797,25 @@ function(input, output, session) {
               rownames = FALSE,
               escape = FALSE)
   })
+  
+  ## BIO layers chart
+  callModule(
+    card_plot,
+    "bio_layers",
+    df = bio_layers,
+    x = "year",
+    y = "score",
+    color_group = "goal_name",
+    filter_field = "rgn_name",
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste("Score:", score,
+                           "<br>Layer:", goal_name,
+                           "<br>Year:", year, sep = " "),
+    xaxis_label = "",
+    yaxis_label = "Sub-goal Score",
+    legend_or = NULL
+  )
 ## Species ----
   
   ### SPP Score map ###
@@ -1057,51 +1068,24 @@ function(input, output, session) {
     xaxis_label = "",
     yaxis_label = "Score"
   )
-  
-  ##SOP LSP scores
+
+  ###SOP layers chart
   callModule(
     card_plot,
-    "sop_lsp_scores",
-    df = lsp_scores,
+    "sop_layers",
+    df = sop_layers,
     x = "year",
     y = "score",
-    color_group = "rgn_name",
+    color_group = "goal_name",
+    filter_field = "rgn_name",
     plot_type = "scatter",
     mode = "lines+markers",
-    tooltip_text = ~ paste(
-      "Sub-goal score:",
-      score,
-      "<br>Region:",
-      rgn_name,
-      "<br>Year:",
-      year,
-      sep = " "
-    ),
+    tooltip_text = ~ paste("Score:", score,
+                           "<br>Layer:", goal_name,
+                           "<br>Year:", year, sep = " "),
     xaxis_label = "",
-    yaxis_label = "Score"
-  )
-  
-  ##SOP ICO Scores
-  callModule(
-    card_plot,
-    "sop_ico_scores",
-    df = ico_scores,
-    x = "year",
-    y = "score",
-    color_group = "rgn_name",
-    plot_type = "scatter",
-    mode = "lines+markers",
-    tooltip_text = ~ paste(
-      "Sub-goal score:",
-      score,
-      "<br>Region:",
-      rgn_name,
-      "<br>Year:",
-      year,
-      sep = " "
-    ),
-    xaxis_label = "",
-    yaxis_label = "Score"
+    yaxis_label = "Sub-goal Score",
+    legend_or = NULL
   )
   
 ## Lasting Special Places ----
@@ -1258,6 +1242,100 @@ function(input, output, session) {
       coord_cartesian(expand = FALSE) 
     
   })
+  
+  
+## Fishing Engagement ----
+  
+  ## spfis Score map ##
+  callModule(
+    card_map,
+    "spfis_scores_map",
+    data = spfis_map,
+    field = "score",
+    popup_title = "Score:",
+    popup_add_field = "rgn_name",
+    popup_add_field_title = ""
+  )
+  
+  ## Scores time series chart ##
+  callModule(
+    card_plot,
+    "spfis_scores",
+    df = spfis_scores,
+    x = "year",
+    y = "score",
+    color_group = "rgn_name",
+    colors = chart_colors_coastal,
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste(
+      "Goal score:",
+      score,
+      "<br>Region:",
+      rgn_name,
+      "<br>Year:",
+      year,
+      sep = " "
+    ),
+    xaxis_label = "",
+    yaxis_label = "Score"
+  )
+  
+  ## Data Table
+  
+  output$spfis_datatable = renderDataTable({
+    datatable(spfis_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
+  
+  ## commercial fishing engagement ##
+  callModule(
+    card_plot,
+    "spfis_commercial",
+    df = spfis_commercial,
+    x = "year",
+    y = "score",
+    color_group = "rgn_name",
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste(
+      "Score:",
+      score,
+      "<br>Region:",
+      rgn_name,
+      "<br>Year:",
+      year,
+      sep = " "
+    ),
+    xaxis_label = "",
+    yaxis_label = "Commercial fishing engagement score"
+  )
+  
+  ## recreational fishing reliance ##
+  callModule(
+    card_plot,
+    "spfis_rec",
+    df = spfis_rec,
+    x = "year",
+    y = "score",
+    color_group = "rgn_name",
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste(
+      "Score:",
+      score,
+      "<br>Region:",
+      rgn_name,
+      "<br>Year:",
+      year,
+      sep = " "
+    ),
+    xaxis_label = "",
+    yaxis_label = "Recreational fishing reliance"
+  )
+  
   
   
 ## Resource Access Opportunities ----

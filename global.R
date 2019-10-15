@@ -63,6 +63,14 @@ fp_scores <- scores %>%
 
 fp_scores_map <- filter(fp_scores, year == 2017)
 
+fp_layers <- scores %>%
+  filter(goal %in% c("MAR", "FIS"),
+         dimension == "score") %>%
+  mutate(goal_name = case_when(
+    goal == "FIS" ~ "Wild-Caught Fisheries",
+    goal == "MAR" ~ "Aquaculture"
+  ))
+
 ## FIS data ----
   fis_scores <- scores %>% 
     filter(goal == "FIS",
@@ -127,6 +135,14 @@ fp_scores_map <- filter(fp_scores, year == 2017)
            dimension == "score")
   le_scores_map <- filter(le_scores, year == 2017)
   le_data_info  <- bind_rows(liv_data_info, eco_data_info)
+  le_layers <- scores %>%
+    filter(goal %in% c("LIV", "ECO"),
+           dimension == "score",
+           !is.na(score)) %>%
+    mutate(goal_name = case_when(
+      goal == "LIV" ~ "Livelihoods",
+      goal == "ECO" ~ "Economies"
+    ))
   
 ## TR data ----
 
@@ -158,6 +174,13 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   bio_scores_map <- filter(bio_scores, year == 2017)
   bio_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/bio_data_info.csv")
+  bio_layers <- scores %>%
+    filter(goal %in% c("SPP", "HAB"),
+           dimension == "score") %>%
+    mutate(goal_name = case_when(
+      goal == "SPP" ~ "Species",
+      goal == "HAB" ~ "Habitats"
+    ))
 
 ## SPP data ----
   spp_scores <- scores %>%
@@ -198,6 +221,16 @@ fp_scores_map <- filter(fp_scores, year == 2017)
   
   sop_map <- filter(sop_scores, year == 2017)
   
+  sop_layers <- scores %>%
+    filter(goal %in% c("LSP", "ICO", "SPFIS"),
+           dimension == "score",
+           !is.na(score)) %>%
+    mutate(goal_name = case_when(
+      goal == "ICO" ~ "Iconic Species",
+      goal == "LSP" ~ "Lasting Special Places",
+      goal == "SPFIS" ~ "Fishing Engagement"
+    ))
+  
 ## Lasting Special Places ----
   lsp_scores <- scores %>%
     filter(goal == "LSP",
@@ -231,6 +264,17 @@ fp_scores_map <- filter(fp_scores, year == 2017)
     mutate(Status = factor(Status, levels = order_status)) 
 
   ico_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/sop/ico/data/ico_data_info.csv")
+## Fishing Engagement ----
+  spfis_scores <- scores %>%
+    filter(goal == "SPFIS",
+           dimension == "score")
+  
+  spfis_map <- filter(spfis_scores, year == 2017)
+  
+  spfis_commercial <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/sop_comm_engagement.csv")
+  spfis_rec <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/sop_rec_reliance.csv")
+  
+  spfis_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/sop/fishing_engagement/data/spfis_data_info.csv")
 ## Resource Access Opportunities  -----
   
   rao_scores <- scores %>%

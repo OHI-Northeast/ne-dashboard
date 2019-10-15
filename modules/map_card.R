@@ -74,7 +74,7 @@ map_ui <- function(id,
                    select_choices = c(""),
                    select_label = NULL, 
                    selected = NULL,
-                   source_text = NULL) {
+                   source_text = "An empty region indicates this benefit was not relevant at that location and so no score was calculated") {
   
   ns <- NS(id)
   

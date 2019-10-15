@@ -997,7 +997,7 @@ tabItem(
     card_ui(
       id = "tr_jobs",
       title_text = "Jobs in Tourism",
-      sub_title_text = ""
+      sub_title_text = "Number of jobs in the tourism sector for coastal counties."
     ),
     
     ## Beach Closures ##
@@ -1035,12 +1035,8 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b(""),
-          ""
-        ),
-        tags$li(
-          tags$b(""),
-          ""
+          tags$b("An ideal tourism & recreation dataset "),
+          "would likely take the form of a survey that specifically targets both locals and visitors on their preference and attitudes towards ocean-related tourism and recreation activities. Some surveys have been done in the past, but an ideal dataset would be one that covers the entire region and is repeated consistently into the future to better track changes. For now, these layers act as proxy measures for Tourism & Recreation in the Northeast."
         )
       ),
       width = 12
@@ -1859,9 +1855,8 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Historical habitat data"),
-          ""
-        )
+          tags$b("Locations of current and past eelgrass beds"), 
+          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass beds past and present into a single spatial file. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage.")
       ),
       width = 12
     )

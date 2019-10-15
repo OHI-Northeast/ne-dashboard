@@ -4,11 +4,6 @@ library(tidyverse)
 library(shinydashboard)
 library(RColorBrewer)
 library(DT)
-library(magick)
-
-#library(devtools)
-#devtools::install_github("nschiett/fishualize", force = TRUE)
-library(fishualize)
 
 ## source modules
 source("modules/chart_card.R")
@@ -30,7 +25,9 @@ options(scipen = 999,
    c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4"))(5)
  myPalette <-  c(reds, blues)
 
-chart_colors <- viridis::viridis(n = 12)
+chart_colors_all_rgns <- c(viridis::viridis(n = 11)[1:9], "#FF00FF" ,"#BBDF27FF", "#FDE725FF")
+chart_colors_coastal <- c(viridis::viridis(n = 8)[1:6], "#FF00FF" , "#BBDF27FF")
+chart_colors <- viridis::viridis(n=12)
 
 ## shapefile
 rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%
@@ -75,7 +72,11 @@ fp_scores_map <- filter(fp_scores, year == 2017)
 
  #catch aggregated to OHI regions
   fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fis_meancatch.csv") 
-  fis_stock_assessment <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/stock_assessment_data_for_dashboard.csv")
+  fis_stock_assessment <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/stock_assessment_data_for_dashboard.csv") %>%
+    spread(indicator, value) %>%
+    mutate(MSY = 1) %>%
+    gather(indicator, value, -year, -stock)
+    
   fis_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/fis_data_info.csv")
 
 ## Aquaculture data ----

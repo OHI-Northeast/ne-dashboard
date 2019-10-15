@@ -6,9 +6,6 @@ function(input, output, session) {
     
     image <- paste0("https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_", input$img_region,".png")
     
-    # div(tags$img(src = "https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_USNortheast.png",
-    #          width  = 400), style = "text-align: center;")
-    
     div(tags$img(src = image, width  = 400), style = "text-align: center;")
   })
   
@@ -47,6 +44,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -83,6 +81,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -145,6 +144,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -181,6 +181,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -203,14 +204,15 @@ function(input, output, session) {
     df = fis_noaa_catch,
     x = "year",
     y = "mean_catch_times_prop",
-    color_group = "display_name",
+    color_group = "fixed_name",
+    colors = viridis::viridis(20),
     filter_field = "rgn_name",
     plot_type = "scatter",
     legend_or = NULL,
     mode = "lines+markers",
     tooltip_text = ~ paste(
       "Species:",
-      display_name,
+      fixed_name,
       "<br>Pounds:",
       mean_catch_times_prop,
       "<br>Year:",
@@ -229,6 +231,7 @@ function(input, output, session) {
     x = "year",
     y = "value",
     color_group = "indicator",
+    colors = c("#38598CFF", "#51C56AFF", "darkgray"),
     filter_field = "stock",
     plot_type = "scatter",
     legend_or = NULL,
@@ -275,6 +278,7 @@ function(input, output, session) {
     y = "score",
     yaxis_range = c(min(mar_scores$score), max(mar_scores$score)),
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -353,6 +357,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -397,6 +402,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -534,6 +540,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -625,6 +632,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -726,6 +734,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -749,6 +758,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -773,6 +783,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -815,6 +826,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -871,6 +883,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_all_rgns,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -954,6 +967,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -1028,6 +1042,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -1110,6 +1125,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -1203,6 +1219,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
@@ -1264,6 +1281,7 @@ function(input, output, session) {
     x = "year",
     y = "score",
     color_group = "rgn_name",
+    colors = chart_colors_coastal,
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(

@@ -104,7 +104,7 @@ dashboardPage(
         fluidRow(
           box(width = 12,
             h1("Ocean Health Dashboard for the US Northeast"),
-            "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations." 
+            "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations. Ocean Health Index assessments use the best-available data to measure progress toward target conditions for benefits provided by a region's marine ecosystems, resulting in benefit-specific and overall health scores on a scale of 0 to 100." 
           )
         ),
         
@@ -124,107 +124,99 @@ dashboardPage(
           tags$div(
             href = "#shiny-tab-hs",
             "data-toggle" = "tab",
-            infoBox(
-              "Habitat Services",
+            valueBox(
               tags$p(filter(hs_scores_map, region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Habitat Services",
               icon = icon("pagelines"),
               color = "maroon",
-              fill = TRUE,
               width = 3
             )
           ),
           tags$div(
             href = "#shiny-tab-tr",
             "data-toggle" = "tab",
-            infoBox(
-              "Tourism & Recreation",
+           valueBox(
               tags$p(filter(tr_scores_map,
                             region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Tourism & Recreation",
               icon = icon("umbrella-beach"),
               color = "red",
-              fill = TRUE,
               width = 3
             )
           ),
           tags$div(
             href = "#shiny-tab-rao",
             "data-toggle" = "tab",
-            infoBox(
-              "Resource Access Opportunities",
+            valueBox(
               tags$p(filter(rao_scores_map, region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Resource Access Opportunities",
               icon = icon("ship"),
               color = "fuchsia",
-              fill = TRUE,
               width = 3
             )
           ),
           tags$div(
             href = "#shiny-tab-liveco",
             "data-toggle" = "tab",
-            infoBox(
-              "Livelihoods & Economies",
+            valueBox(
               tags$p(filter(le_scores_map,
                             region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Livelihoods & Economies",
               icon = icon("money"),
               color = "orange",
-              fill = TRUE,
               width = 3
             )
           ),
           tags$div(
             href = "#shiny-tab-fp",
             "data-toggle" = "tab",
-            infoBox(
-              "Food Provision",
+            valueBox(
               tags$p(filter(fp_scores_map,
                             region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Food Provision",
               icon = icon("utensils"),
               color = "purple",
-              fill = TRUE,
               width = 3
             )
           ),
           tags$div(
             href = "#shiny-tab-sop",
             "data-toggle" = "tab",
-            infoBox(
-              "Sense of Place",
+            valueBox(
               tags$p(filter(sop_map, region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Sense of Place",
               icon = icon("home"),
               color = "green",
-              fill = TRUE,
               width = 3
             )
           ),
           tags$div(
             href = "#shiny-tab-bio",
             "data-toggle" = "tab",
-            infoBox(
-              "Biodiversity",
+            valueBox(
               tags$p(filter(bio_scores_map, region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Biodiversity",
               icon = icon("fish"),
               color = "light-blue",
-              fill = TRUE,
               width = 3
             )
           ),
           tags$div(
             href = "#shiny-tab-cw",
             "data-toggle" = "tab",
-            infoBox(
-              "Clean Waters",
+            valueBox(
               tags$p(filter(cw_scores_map, region_id == 0)$score,
-                     style = "font-size: 200%;"),
+                     style = "font-size: 100%;"),
+              "Clean Waters",
               icon = icon("tint"),
               color = "teal",
-              fill = TRUE,
               width = 3
             )
           )
@@ -301,13 +293,12 @@ tabItem(
   fluidRow(
     box(h1("CLEAN WATERS"),
         width = 9),
-    infoBox(
-      "",
+    valueBox(
       tags$p(filter(cw_scores_map, region_id == 0)$score,
-             style = "font-size: 250%;"),
+             style = "font-size: 150%;"),
+      "",
       icon = icon("tint"),
       color = "teal",
-      fill = TRUE,
       width = 3
     )
   ),
@@ -397,13 +388,12 @@ tabItem(
     h1("FOOD PROVISION"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(fp_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("utensils"),
     color = "purple",
-    fill = TRUE,
     width = 3
   )),
 
@@ -446,13 +436,12 @@ tabItem(
     width = 9
   ),
   
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(fis_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("utensils"),
     color = "blue",
-    fill = TRUE,
     width = 3
   )),
   
@@ -494,11 +483,10 @@ tabItem(
     card_ui(
       id = "fis_noaa_catch",
       title_text = "Landings",
-      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see individual scores.",
+      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see individual scores. The data displayed shows a three year rolling average of catch to account for any significant fluctuations in reporting.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(fis_noaa_catch$rgn_name),
-      select_label = "Select region",
       box_width = 12
     )
   ),
@@ -508,7 +496,7 @@ tabItem(
     card_ui(
       id = "fis_stock_ass",
       title_text = "Stock assessment data",
-      sub_title_text = "",
+      sub_title_text = "The target for both B/Bmsy and F/Fmsy is a value of one, represented by the gray line.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(fis_stock_assessment$stock),
@@ -560,13 +548,12 @@ tabItem(
     width = 9
   ),
   
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(mar_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("utensils"),
     color = "purple",
-    fill = TRUE,
     width = 3
   )),
   
@@ -666,13 +653,12 @@ tabItem(
     h1("LIVELIHOODS & ECONOMIES"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(le_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("money"),
     color = "orange",
-    fill = TRUE,
     width = 3
   )),
   
@@ -730,13 +716,12 @@ tabItem(
     width = 9
   ),
   
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(liv_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("money"),
     color = "orange",
-    fill = TRUE,
     width = 3
   )),
   
@@ -841,13 +826,12 @@ tabItem(
     width = 9
   ),
   
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(eco_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("money"),
     color = "yellow",
-    fill = TRUE,
     width = 3
   )),
   
@@ -934,13 +918,12 @@ tabItem(
     h1("TOURISM & RECREATION"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(tr_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("umbrella-beach"),
     color = "red",
-    fill = TRUE,
     width = 3
   )),
   
@@ -1043,13 +1026,12 @@ tabItem(
     h1("BIODIVERSITY"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(bio_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("fish"),
     color = "light-blue",
-    fill = TRUE,
     width = 3
   )),
   
@@ -1118,13 +1100,12 @@ tabItem(
     width = 9
   ),
   
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(spp_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("fish"),
     color = "light-blue",
-    fill = TRUE,
     width = 3
   )),
 
@@ -1212,13 +1193,12 @@ tabItem(
     h1("HABITATS"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(spp_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("pagelines"),
     color = "aqua",
-    fill = TRUE,
     width = 3
   )),
   
@@ -1324,13 +1304,12 @@ tabItem(
     h1("SENSE OF PLACE"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(sop_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("home"),
     color = "green",
-    fill = TRUE,
     width = 3
   )),
   
@@ -1385,13 +1364,12 @@ tabItem(
     width = 9
   ),
   
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(lsp_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("home"),
     color = "olive",
-    fill = TRUE,
     width = 3
   )),
   
@@ -1484,13 +1462,12 @@ tabItem(
     width = 9
   ),
   
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(ico_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("home"),
     color = "green",
-    fill = TRUE,
     width = 3
   )),
   
@@ -1570,13 +1547,12 @@ tabItem(
     h1("RESOURCE ACCESS OPPORTUNITIES"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(rao_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("ship"),
     color = "fuchsia",
-    fill = TRUE,
     width = 3
   )),
   
@@ -1673,13 +1649,12 @@ tabItem(
     h1("HABITAT SERVICES"),
     width = 9
   ),
-  infoBox(
-    "",
+  valueBox(
     tags$p(filter(hs_scores_map, region_id == 0)$score,
-           style = "font-size: 250%;"),
+           style = "font-size: 150%;"),
+    "",
     icon = icon("pagelines"),
     color = "maroon",
-    fill = TRUE,
     width = 3
   )),
   

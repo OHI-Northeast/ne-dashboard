@@ -1284,12 +1284,12 @@ tabItem(
     box(
       h4("Data Considerations & Potential Improvements"),
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      br(),
       tags$ul(
         tags$li(
-          tags$b("Historical habitat data"),
-          ""
-        )
-      ),
+          tags$b("Locations of current and past eelgrass beds"), 
+          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass beds past and present into a single spatial file. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage.")
+        ),
       width = 12
     )
   )

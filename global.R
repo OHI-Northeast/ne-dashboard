@@ -78,8 +78,15 @@ fp_layers <- scores %>%
 
   fis_scores_map <- filter(fis_scores, year == 2017)
 
- #catch aggregated to OHI regions
-  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fis_meancatch.csv") 
+ #catch aggregated to OHI regions. filter out species with less than 1000 pounds annual catch to improve data display
+  fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fis_meancatch.csv") %>%
+    group_by(rgn_id, year) %>%
+    mutate(total_catch = sum(mean_catch)) %>%
+    ungroup() %>%
+    rowwise() %>%
+    mutate(prop_catch = mean_catch/total_catch) %>%
+    filter(prop_catch >= 0.01) #only keep data points that are at least 1% of catch for the year.
+  
   fis_stock_assessment <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/stock_assessment_data_for_dashboard.csv") %>%
     spread(indicator, value) %>%
     mutate(MSY = 1) %>%

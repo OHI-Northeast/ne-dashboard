@@ -620,28 +620,6 @@ function(input, output, session) {
     yaxis_label = "Gross Domestic Product (2012 $USD)"
   )
   
-  ## Scores time series chart ##
-  callModule(
-    card_plot,
-    "eco_gdp_scores",
-    df = gdp_scores,
-    x = "scenario_year",
-    y = "status",
-    color_group = "rgn_name",
-    plot_type = "scatter",
-    mode = "lines+markers",
-    tooltip_text = ~ paste(
-      "GDP score:",
-      status,
-      "<br>Region:",
-      rgn_name,
-      "<br>Year:",
-      scenario_year,
-      sep = " "
-    ),
-    xaxis_label = "",
-    yaxis_label = "Score"
-  )
   ## ECO Data Table
   output$eco_datatable = renderDataTable({
     datatable(eco_data_info,
@@ -743,7 +721,8 @@ function(input, output, session) {
              tooltip_text = ~paste("Region:", rgn_name,
                                    "<br>Accessible coastline (%):", percent),
              xaxis_label = "",
-             yaxis_label = "Amount of accessible coastline (%)")
+             yaxis_label = "Amount of accessible coastline (%)",
+             show_legend = FALSE)
   
   ## TR Data Table
   output$tr_datatable = renderDataTable({
@@ -866,6 +845,7 @@ function(input, output, session) {
              x = "count",
              y = "rgn_name",
              color_group = "score",
+             colors = rev(chart_colors),
              plot_type = "bar",
              tooltip_text = ~paste("Region:", rgn_name,
                                    "<br>Status score:", score,
@@ -1406,15 +1386,15 @@ function(input, output, session) {
   ##RAO coastal access ##
   callModule(card_plot, "rao_coastal",
              df = rao_coastal,
-             x = "year",
+             x = "rgn_name",
              y = "percent",
              color_group = "rgn_name",
              plot_type = "bar",
              tooltip_text = ~paste("Region:", rgn_name,
-               "<br>Accessible coastline (%):", percent,
-                                   "<br>Year:", year, sep=" "),
+               "<br>Accessible coastline (%):", percent),
              xaxis_label = "",
-             yaxis_label = "Amount of accessible coastline (%)")
+             yaxis_label = "Amount of accessible coastline (%)",
+             show_legend = FALSE)
   
   ## RAO Data Table
   output$rao_datatable = renderDataTable({

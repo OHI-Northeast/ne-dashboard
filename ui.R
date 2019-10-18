@@ -8,51 +8,40 @@ dashboardPage(
 ## Dashboard sidebar-----
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Welcome", tabName = "welcome"),
-      menuItem(
-        "Index Scores",
-        tabName = "index"
-      ),
-      menuItem("Clean Waters", tabName = "cw"),
+      menuItem("Overview",        tabName = "overview"),
+      menuItem("Regional Scores", tabName = "index"),
+      menuItem("Clean Waters",    tabName = "cw"),
       convertMenuItem(
-        menuItem(
-          "Food Provision",
-          tabName = "fp",
+        menuItem("Food Provision", tabName = "fp",
           startExpanded = TRUE,
           menuSubItem("Wild-Caught Fisheries", tabName = "fis"),
-          menuSubItem("Aquaculture", tabName = "mar")
+          menuSubItem("Aquaculture",           tabName = "mar")
         ),
         tabName = "fp"
       ),
       convertMenuItem(
-        menuItem(
-          "Livelihoods & Economies",
-          tabName = "liveco",
+        menuItem("Livelihoods & Economies", tabName = "liveco",
           startExpanded = TRUE,
           menuSubItem("Livelihoods", tabName = "liv"),
-          menuSubItem("Economies", tabName = "eco")
+          menuSubItem("Economies",   tabName = "eco")
         ),
         tabName = "liveco"
       ),
       menuItem("Tourism & Recreation", tabName = "tr"),
       convertMenuItem(
-        menuItem(
-          "Biodiversity",
-          tabName = "bio",
+        menuItem("Biodiversity",  tabName = "bio",
           startExpanded = TRUE,
-          menuSubItem("Species", tabName = "spp"),
+          menuSubItem("Species",  tabName = "spp"),
           menuSubItem("Habitats", tabName = "hab")
         ),
         tabName = "bio"
       ),
       convertMenuItem(
-        menuItem(
-          "Sense of Place",
-          tabName = "sop",
+        menuItem("Sense of Place", tabName = "sop",
           startExpanded = TRUE,
           menuSubItem("Lasting Special Places", tabName = "lsp"),
-          menuSubItem("Iconic Species", tabName = "ico"),
-          menuSubItem("Fishing Engagement", tabName = "spfis")
+          menuSubItem("Iconic Species",         tabName = "ico"),
+          menuSubItem("Fishing Engagement",     tabName = "spfis")
         ),
         tabName = "sop"
       ),
@@ -64,7 +53,7 @@ dashboardPage(
     
     tags$footer(
       p(
-        "Dashboard developed by ",
+        "Developed by ",
         a(href = 'https://www.jamieafflerbach.com/', "Jamie Afflerbach.")
       ),
       br(),
@@ -77,7 +66,7 @@ dashboardPage(
                 position:absolute;
                 bottom:0;
                 width:100%;
-                height:120px; /* Height of the footer */
+                height:110px; /* Height of the footer */
                 color: white;
                 padding: 10px;
                 background-color: black;
@@ -100,7 +89,7 @@ dashboardPage(
       
 ## Welcome landing page ----
       tabItem(
-        tabName = "welcome",
+        tabName = "overview",
         
         fluidRow(
           box(width = 12,
@@ -111,7 +100,7 @@ dashboardPage(
         
       fluidRow(
           box(width = 6,
-              title = "Overall Index score",
+              title = "Ocean Health Index score",
               "",
               status = "primary",
               div(img(src="https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_USNortheast.png", 
@@ -227,11 +216,11 @@ dashboardPage(
         fluidRow(
           box(
             h3("About the Assessment"),
-            "The goal of this assessment is to serve regional ocean planning by providing a big picture perspective on ocean health based on data and priorities specific to the Northeast. The assessment was led by a team of scientists from the Ocean Health Index program at the National Center for Ecological Analysis and Synthesis (NCEAS). This team worked with the Northeast Regional Ocean Council (NROC) Ocean PLanning Committee to get stakeholder input from federal, state, and local governmnetal organizations, NGO's, and community members. More information can be found at ",
+            "The goal of this assessment is to serve regional ocean planning by providing a big picture perspective on ocean health based on data and priorities specific to the Northeast. The assessment was led by a team of scientists from the Ocean Health Index program at the National Center for Ecological Analysis and Synthesis (NCEAS). This team worked with the Northeast Regional Ocean Council (NROC) Ocean Planning Committee to get stakeholder input from federal, state, and local governmnetal organizations, NGO's, and community members. More information can be found at ",
             a(href = "http://www.ohi-northeast.org/", "ohi-northeast.org", "."),
             br(),
-            h3("Access Code & Data"),
-            "All code and data is made available on ",
+            br(),
+            "All code and data used in the assessment is made available on ",
             a(href = "https://github.com/OHI-Northeast/ne-prep", "GitHub"),
             width = 12
           )
@@ -239,11 +228,11 @@ dashboardPage(
       ),
       
             
-## Overall index scores------
+## Regional index scores------
 tabItem(tabName = "index",
         
         fluidRow(box(
-          h1("Index Scores"),
+          h1("Regional Scores"),
           "The Northeast Ocean Health Index uses social, economic, and environmental data to create a comprehensive picture of the state of ocean health from Maine to New York. Below you can explore the results of the assessment across the 11 reporting regions and 13 years of data (2005 - 2017) included in this assessment.",
           width = 12
         )),
@@ -350,7 +339,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw#ocean-health-index---us-northeast-clean-waters-goal",
       box_width = 6
     ),
@@ -368,8 +357,8 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Trash"),
-          ": the Ocean Conservancy’s International coastal cleanup day data is the most spatially and temporally representative data available for the Northeast region, however these data are only collected once a year by volunteers and thus may not be representative of the larger patterns occurring across time and space in the region. More comprehensive and consistent monitoring of floating trash, beach trash, and microplastics would allow for a more accurate assessment of the pollution derived from trash across the region."
+          tags$b("Trash:"),
+          " the Ocean Conservancy’s International coastal cleanup day data is the most spatially and temporally representative data available for the Northeast region, however these data are only collected once a year by volunteers and thus may not be representative of the larger patterns occurring across time and space in the region. More comprehensive and consistent monitoring of floating trash, beach trash, and microplastics would allow for a more accurate assessment of the pollution derived from trash across the region."
         ),
         tags$li(
           tags$b("Temporal availability"),
@@ -463,13 +452,13 @@ tabItem(
   
   fluidRow(
     box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("All stocks are fished at maximum sustainable yield")),
+        h3("All harvested stocks are neither overfished nor underfished but rather fished at maximum sustainable yield")),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
         tags$ul(
           tags$li(
             h4(
-              "Bait fisheries, such as Atlantic herring & mackerel, are important in the Northeast. Only harvest meant for direct human consumption from these fisheries is included in the score")),
+              "Bait fisheries, such as herring, skate & mackerel, are important in the Northeast. Only harvest meant for direct human consumption from these fisheries is included in the score")),
             tags$li(
               h4(
                 "These scores reflect the status of fish where they are caught, not the port where they are landed")
@@ -499,7 +488,7 @@ tabItem(
     card_ui(
       id = "fis_noaa_catch",
       title_text = "Landings",
-      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see individual scores. The data displayed shows a three year rolling average of catch to account for any significant fluctuations in reporting.",
+      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see individual scores. The data displayed shows a three year rolling average of catch to account for any significant fluctuations in reporting. Only stocks that contribute at least 1% of annual landings are displayed in the chart.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(fis_noaa_catch$rgn_name),
@@ -517,6 +506,7 @@ tabItem(
       select_location = "above",
       select_choices = unique(fis_stock_assessment$stock),
       select_label = "Select stock",
+      selected = "Connecticut",
       box_width = 12
     )
   ),
@@ -524,7 +514,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/fis#ocean-health-index---us-northeast-wild-caught-fisheries",
       box_width = 6
     ),
@@ -631,7 +621,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/mar#ocean-health-index---us-northeast-mariculture-sub-goal",
       box_width = 6
     ),
@@ -799,8 +789,7 @@ tabItem(
       sub_title_text = "",
       select_type = "drop_down",
       select_location = "above",
-      select_choices = unique(jobs_scores$rgn_name),
-      select_label = "Select region"
+      select_choices = unique(jobs_scores$rgn_name)
     ),
     
     ## Wages ##
@@ -810,15 +799,14 @@ tabItem(
       sub_title_text = "",
       select_type = "drop_down",
       select_location = "above",
-      select_choices = unique(wages_scores$rgn_name),
-      select_label = "Select region"
+      select_choices = unique(wages_scores$rgn_name)
     )
   ),
 
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/liv#ocean-health-index---us-northeast-livelihoods-sub-goal",
       box_width = 6
     ),
@@ -869,8 +857,16 @@ tabItem(
   
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE, width = 12,
-        h3("Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%"))
+    box(title = "Target", status = "primary", solidHeader = TRUE,
+        h3("Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%")),
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
+        tags$ul(
+          tags$li(
+            h4(
+              "A target of 3% annual growth aligns with widely accepted growth targets for GDP in the United States")
+              )
+            )
+        )
   ),
   
   fluidRow(
@@ -900,21 +896,15 @@ tabItem(
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(gdp$rgn_name),
-      select_label = "Select region"
-    ),
-    
-    #wage scores by region between 0 and 1
-    card_ui(
-      id = "eco_gdp_scores",
-      title_text = "GDP scores",
-      sub_title_text = ""
+      select_label = "Select region",
+      box_width = 12
     )
   ),
   
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/4e23384d1a5cbae09e97d34b87620f7e11e47c05/prep/eco#ocean-health-index---us-northeast-economies-sub-goal",
       box_width = 6
     ),
@@ -932,7 +922,7 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b(""),
+          tags$b("Data confidentiality policy limits the amount of data available for New Hampshire before 2009"),
           ""
         )
       ),
@@ -1017,7 +1007,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/tr#ocean-health-index---us-northeast-tourism--recreation",
       box_width = 6
     ),
@@ -1036,7 +1026,7 @@ tabItem(
       tags$ul(
         tags$li(
           tags$b("An ideal tourism & recreation dataset "),
-          "would likely take the form of a survey that specifically targets both locals and visitors on their preference and attitudes towards ocean-related tourism and recreation activities. Some surveys have been done in the past, but an ideal dataset would be one that covers the entire region and is repeated consistently into the future to better track changes. For now, these layers act as proxy measures for Tourism & Recreation in the Northeast."
+          "would likely take the form of a survey that specifically targets both locals and visitors and asks their preference and attitudes towards ocean-related tourism and recreation activities. Some surveys have been done in the past, but an ideal dataset would be one that covers the entire region and is repeated consistently into the future to better track changes. For now, these layers act as proxy measures for Tourism & Recreation in the Northeast."
         )
       ),
       width = 12
@@ -1110,7 +1100,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio#ocean-health-index---us-northeast-biodiversity-goal",
       box_width = 12
     )
@@ -1145,7 +1135,12 @@ tabItem(
         tags$ul(
           tags$li(
             h4(
-              "This sub-goal assesses the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a lower score. There are 732 species included in the biodiversity-species score"))
+              "This sub-goal assesses the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a lower score. There are 732 species included in the biodiversity-species score")
+            ),
+          tags$li(
+            h4(
+              "Scores are not weighted by the size of a species range. If a species is found in a region, it's conservation status is included in the region score.")
+          )
           )
     )
   ),
@@ -1178,7 +1173,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/spp",
       box_width = 6
     ),
@@ -1231,7 +1226,7 @@ tabItem(
   
   fluidRow(
     box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("No loss of salt marsh habitats from historical estimates, all eelgrass habitats have good water quality condition, and all seabed habitats are undisturbed from fishing activity")),
+        h3("No loss of salt marsh habitats from historical estimates, all eelgrass habitats have good water quality condition, and all seabed habitats have low levels of disturbance from fishing activity")),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
         tags$ul(
@@ -1295,7 +1290,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/hab#ocean-health-index---us-northeast-habitats-sub-goal",
       box_width = 6
     ),
@@ -1315,7 +1310,11 @@ tabItem(
       tags$ul(
         tags$li(
           tags$b("Locations of current and past eelgrass beds"), 
-          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass beds past and present into a single spatial file. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage.")
+          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass beds past and present into a single spatial file. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage."),
+        tags$li(
+          tags$b("There are no established region-wide targets for habitat health."),
+          "The targets used for these three habitats are based on the data that is available to measure them and input from regional habitat experts."
+        )
         ),
       width = 12
     )
@@ -1451,7 +1450,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp#ocean-health-index---us-northeast-lasting-special-places-sub-goal",
       box_width = 6
     ),
@@ -1531,14 +1530,17 @@ tabItem(
   fluidRow(
     box(
       plotOutput("ico_heatmap"),
-      width = 12)
+      width = 12,
+      (a("For more information on the IUCN Red List conservation status categories click here", 
+         href = "https://iucn-csg.org/red-list-categories/"))
+      )
   ),
 
   
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico#ocean-health-index---us-northeast-iconic-species-sub-goal",
       box_width = 6
     ),
@@ -1641,7 +1643,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/fishing_engagement",
       box_width = 6
     ),
@@ -1741,7 +1743,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/rao",
       box_width = 6
     ),
@@ -1837,7 +1839,7 @@ tabItem(
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
-      title = "CODE",
+      title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/hs#ocean-health-index---us-northeast-habitat-services-goal",
       box_width = 6
     ),

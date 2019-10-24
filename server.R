@@ -925,7 +925,8 @@ function(input, output, session) {
     filter_field = "habitat",
     plot_type = "scatter",
     mode = "lines+markers",
-    tooltip_text = ~ paste("Score:", score,
+    tooltip_text = ~ paste("Region:", rgn_name,
+                           "Score:", score,
                            "<br>Year:", year, sep = " "),
     xaxis_label = "",
     yaxis_label = "Layer Score"
@@ -984,7 +985,8 @@ function(input, output, session) {
     color_group = "rgn_name",
     plot_type = "scatter",
     mode = "lines+markers",
-    tooltip_text = ~ paste("Score:", cp_score,
+    tooltip_text = ~ paste("Region:", rgn_name,
+                           "Score:", cp_score,
                            "<br>Year:", year, sep = " "),
     xaxis_label = "",
     yaxis_label = "Score"
@@ -1000,7 +1002,8 @@ function(input, output, session) {
     color_group = "rgn_name",
     plot_type = "scatter",
     mode = "lines+markers",
-    tooltip_text = ~ paste("Score:", cs_score,
+    tooltip_text = ~ paste("Region:", rgn_name,
+                           "Score:", cs_score,
                            "<br>Year:", year, sep = " "),
     xaxis_label = "",
     yaxis_label = "Score"

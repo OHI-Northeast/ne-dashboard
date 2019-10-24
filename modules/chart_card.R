@@ -307,6 +307,7 @@ card_plot <- function(input,
              margin = list(b = xaxis_margin),
              legend = list(orientation = legend_or, size = 10),
              showlegend = show_legend) %>%
+      style(legendgroup = NULL) %>%
       config(displayModeBar = F)
     
     if (is.null(add_traces)) {

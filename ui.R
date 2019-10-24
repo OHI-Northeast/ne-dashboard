@@ -234,6 +234,13 @@ tabItem(tabName = "index",
         fluidRow(box(
           h1("Regional Scores"),
           "The Northeast Ocean Health Index uses social, economic, and environmental data to create a comprehensive picture of the state of ocean health from Maine to New York. Below you can explore the results of the assessment across the 11 reporting regions and 13 years of data (2005 - 2017) included in this assessment.",
+          br(),
+          br(),
+          h4("Region boundaries"),
+          "The assessment contains 11 regions including state waters out to three nautical miles, and four offshore regions out to the US Exclusive Economic Zone (EEZ). The Gulf of Maine, Georges Bank and Mid-Atlantic Bight regions represent the ", 
+          (a("Ecological Production Units", 
+         href = "https://www.nefsc.noaa.gov/program_review/2016a-review/background2016/6Ecosys%20D&PNew%20folder/Gamble/Gamble%20Ecological%20Production%20UnitsFin%20temp.pdf")),
+           " used by the Northeast Fisheries Science Center. The fourth Offshore region represents the remainder of the EEZ. All state waters are included as they are delineated, except for Massachusetts. A natural biogegraphic boundary separating the Gulf of Maine and Mid-Atlantic Bight marine ecoregions occurs at the southern end of Cape Cod and splits Massachusetts state waters into North and South.",
           width = 12
         )),
         
@@ -492,7 +499,8 @@ tabItem(
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(fis_noaa_catch$rgn_name),
-      box_width = 12
+      box_width = 12,
+      source_text = "Some species have multiple stocks and their stock location are represented by acronyms. Georges Bank (GB), Georges Bank East or West (GBE/W), Cape Cod (CC), Gulf of Maine (GOM), Southern New England (SNE), Mid-Atlantic (MA), Southern Georges Bank (SGB), Northern Georges Bank (NGB)"
     )
   ),
   
@@ -1310,7 +1318,7 @@ tabItem(
       tags$ul(
         tags$li(
           tags$b("Locations of current and past eelgrass beds"), 
-          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass beds past and present into a single spatial file. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage."),
+          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass bed locations, past and present, into a single dataset. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage."),
         tags$li(
           tags$b("There are no established region-wide targets for habitat health."),
           "The targets used for these three habitats are based on the data that is available to measure them and input from regional habitat experts."
@@ -1468,8 +1476,12 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Survey of special places and their protection"),
-          ""
+          tags$b("Improved protected areas database."),
+          "The USGS Protected Areas Database (PAD 2.0) contains some mismatches with a NOAA database, although they appear to be few and were accounted for when measuring protection. The database is rather comprehensive but the designations are not always clear. Some areas are designated as 'Closed Areas' or 'Closure Areas', without a clear difference between the two."
+        ),
+        tags$li(
+          tags$b("A list of all regionally important areas "),
+          "does not exist. Ideally, a regional survey would produce a list of all the places considered special for aesthetic, biological, historical, spiritual or other reasons. Those areas would then be assessed in how well they are protected relative to a desired state. If a survey of this type were to be conducted in the future, it's results could be incorporated into Lasting Special Places."
         )
       ),
       width = 12
@@ -1558,8 +1570,8 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("List of species"),
-          ""
+          tags$b("A regional list of agreed upon iconic species "),
+          "for the Northeast does not currently exist. It is unlikely that such a list will satisfy everyone in the Northeast given how people's attitudes and feelings towards local species can vary. If a more rigorous effort to develop such a list were to be completed in the future, it could be used to replace this Iconic Species list."
         )
       ),
       width = 12
@@ -1696,7 +1708,10 @@ tabItem(
         tags$ul(
           tags$li(
             h4(
-              "Access to coastal and ocean resources is inherently difficult to measure, but is an important aspect of Ocean Health and is therefore included in the Index. The data used here is a best attempt to measure the ability for people to access the resources they desire"))
+              "Access to coastal and ocean resources is inherently difficult to measure, but is an important aspect of Ocean Health and is therefore included in the Index. The data used here is a best attempt to measure the ability for people to access the resources they desire")),
+          tags$li(
+            h4("Economic access is measured using a ratio of gas prices to wages to represent ability to access the ocean via a gas powered boat. As the ratio increases, access becomes restricted due to increasing costs.")
+          )
         )
     )
   ),
@@ -1761,8 +1776,8 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Better indicators of access"),
-          ""
+          tags$b("Coastal accessibility"),
+          " is difficult to assess region-wide. Here, coastal access points identified by NOAA's Environmental Sensitivity Index were used to calculate access. This data is likely an incomplete picture of coastal access points. Additionally, information about fee versus free access, or state-wide regulation regarding coastal access, is not included but could improve this measure if available."
         )
       ),
       width = 12
@@ -1798,7 +1813,13 @@ tabItem(
         tags$ul(
           tags$li(
             h4(
-              "Habitat Services measures two equally important components: Coastal Protection and Carbon Storage. Coastal Protection assess the amount of protection provided by marine and coastal habitats against flooding and erosion to coastal areas. Carbon storage is the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions"))
+              "Habitat Services measures two equally important components: Coastal Protection and Carbon Storage")),
+          tags$li(
+            "Coastal Protection assess the amount of protection provided by marine and coastal habitats against flooding and erosion to coastal areas"
+          ),
+          tags$li(
+            "Carbon storage is the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions"
+          )
         )
     )
   ),
@@ -1858,7 +1879,7 @@ tabItem(
       tags$ul(
         tags$li(
           tags$b("Locations of current and past eelgrass beds"), 
-          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass beds past and present into a single spatial file. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage.")
+          " are not consistently available across the entire Northeast region. Some places, like the Great Bay Estuary in New Hampshire, have long term monitoring efforts that provide near annual estimates of eelgrass cover. But most areas where eelgrass beds exist or existed in the past do not have consistent monitoring datasets. Therefore in order to estimate eelgrass health, we combined all known eelgrass bed locations, past and present, into a single dataset. We then selected all EPA National Coastal Condition Assessment sample sites that were within 10 km of an eelgrass bed and used the Water Quality Index status of those sites to estimate the status of the eelgrass. A great improvement to this layer would be estimates of historical loss in eelgrass cover by region and a consistent monitoring effort across the entire region to track changes and compare with past coverage.")
       ),
       width = 12
     )

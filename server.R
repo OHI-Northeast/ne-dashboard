@@ -85,7 +85,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -148,7 +148,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -204,7 +204,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -301,7 +301,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -380,7 +380,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -445,7 +445,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -583,7 +583,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -653,7 +653,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -756,7 +756,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -820,7 +820,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -878,7 +878,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -888,30 +888,6 @@ function(input, output, session) {
     ),
     xaxis_label = "",
     yaxis_label = "Score"
-  )
-  
-  ### Habitat raw data line chart
-  callModule(
-    card_plot,
-    "hab_raw_data",
-    df = hab_data %>% filter(!is.na(raw_data)),
-    x = "year",
-    y = "raw_data",
-    color_group = "rgn_name",
-    filter_field = "habitat",
-    plot_type = "scatter",
-    mode = "lines+markers",
-    tooltip_text = ~ paste(
-      "Data:",
-      metric,
-      "<br>Value:",
-      raw_data,
-      "<br>Year:",
-      year,
-      sep = " "
-    ),
-    xaxis_label = "",
-    yaxis_label = ""
   )
   
   ### Habitat layer scores chart
@@ -963,7 +939,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -1040,7 +1016,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -1096,7 +1072,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -1190,7 +1166,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -1252,7 +1228,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,
@@ -1346,7 +1322,7 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Goal score:",
+      "Score:",
       score,
       "<br>Region:",
       rgn_name,

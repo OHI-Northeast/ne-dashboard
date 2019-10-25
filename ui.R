@@ -217,11 +217,11 @@ dashboardPage(
           box(
             h3("About the Assessment"),
             "The goal of this assessment is to serve regional ocean planning by providing a big picture perspective on ocean health based on data and priorities specific to the Northeast. The assessment was led by a team of scientists from the Ocean Health Index program at the National Center for Ecological Analysis and Synthesis (NCEAS). This team worked with the Northeast Regional Ocean Council (NROC) Ocean Planning Committee to get stakeholder input from federal, state, and local governmnetal organizations, NGO's, and community members. More information can be found at ",
-            a(href = "http://www.ohi-northeast.org/", "ohi-northeast.org", "."),
+            a(href = "http://www.ohi-northeast.org/", target="_blank", "ohi-northeast.org", "."),
             br(),
             br(),
             "All code and data used in the assessment is made available on ",
-            a(href = "https://github.com/OHI-Northeast/ne-prep", "GitHub"),
+            a(href = "https://github.com/OHI-Northeast/ne-prep", target="_blank", "GitHub"),
             width = 12
           )
         )
@@ -239,7 +239,7 @@ tabItem(tabName = "index",
           h4("Region boundaries"),
           "The assessment contains 11 regions including state waters out to three nautical miles, and four offshore regions out to the US Exclusive Economic Zone (EEZ). The Gulf of Maine, Georges Bank and Mid-Atlantic Bight regions represent the ", 
           (a("Ecological Production Units", 
-         href = "https://www.nefsc.noaa.gov/program_review/2016a-review/background2016/6Ecosys%20D&PNew%20folder/Gamble/Gamble%20Ecological%20Production%20UnitsFin%20temp.pdf")),
+         href = "https://www.nefsc.noaa.gov/program_review/2016a-review/background2016/6Ecosys%20D&PNew%20folder/Gamble/Gamble%20Ecological%20Production%20UnitsFin%20temp.pdf", target="_blank")),
            " used by the Northeast Fisheries Science Center. The fourth Offshore region represents the remainder of the EEZ. All state waters are included as they are delineated, except for Massachusetts. A natural biogegraphic boundary separating the Gulf of Maine and Mid-Atlantic Bight marine ecoregions occurs at the southern end of Cape Cod and splits Massachusetts state waters into North and South.",
           width = 12
         )),
@@ -308,10 +308,10 @@ tabItem(
       tags$ul(
         tags$li(
           h4(
-            "This goal is only measured for coastal regions because the majority of people are in direct contact with the coastal ocean")),
+            "The slight downward trend is largely driven by the Sediment Quality Index data layer for most regions")),
           tags$li(
             h4(
-              "Clean water scores do not vary much from year to year but there is a downward trend over time")
+              "This goal is only measured for coastal regions because the majority of people are in direct contact with the coastal ocean")
           ))
       )
     ),
@@ -509,7 +509,8 @@ tabItem(
     card_ui(
       id = "fis_stock_ass",
       title_text = "Stock assessment data",
-      sub_title_text = "The target for both B/Bmsy and F/Fmsy is a value of one, represented by the gray line.",
+      sub_title_text = "B/Bmsy is the ratio of available stock biomass in the water (B) compared to the amount of stock biomass needed to provide maximum sustainable yield (Bmsy). F/Fmsy is the ratio of fishing pressure (F) compared to that that gives the maximum sustainable yield in the long term (Fmsy). When B/Bmsy is below 1, the stock is overfished. When B/Bmsy is above 1, the stock is underfished. When F/Fmsy is below 1, the stock is experiencing underfishing, when F/Fmsy is over 1, the stock is experiencing overfishing. 
+      The target for both B/Bmsy and F/Fmsy is a value of one, represented by the gray line.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(fis_stock_assessment$stock),
@@ -540,12 +541,12 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Stock assessments"),
-          ""
+          tags$b("Stock assessments "),
+          "came from the National Marine Fisheries Service through a data request since the data is not publically available on the NMFS website."
         ),
         tags$li(
-          tags$b("State catch data"),
-          ""
+          tags$b("State landings data"),
+          " is not included. Wild-Caught fisheries scores are only accounting for catch reported by NOAA. State fisheries landings data could be included in future updates to the Index."
         )
       ),
       width = 12
@@ -763,11 +764,8 @@ tabItem(
         tags$ul(
           tags$li(
             h4(
-              "Bait fisheries, such as Atlantic herring & mackerel, are important in the Northeast. Only harvest meant for direct human consumption from these fisheries is included in the score")),
-          tags$li(
-            h4(
-              "These scores reflect the status of fish where they are caught, not the port where they are landed")
-          ))
+              ""))
+         )
     )
   ),
 
@@ -932,6 +930,10 @@ tabItem(
         tags$li(
           tags$b("Data confidentiality policy limits the amount of data available for New Hampshire before 2009"),
           ""
+        ),
+        tags$li(
+          tags$b("Coastal property value "),
+          "could be considered an additional indicator of coastal economy health. A dataset was not readily available to be included but if suitable information becomes available in the future it could be added to Coastal Economies."
         )
       ),
       width = 12
@@ -1239,11 +1241,8 @@ tabItem(
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
         tags$ul(
           tags$li(
-            h4(
-              "This score measures the health of three regional marine habitats that support biodiversity; salt marsh, eelgrass, and seabed habitats")),
-          tags$li(
-            h4(
-              "Data quality and availability varied across all 3 habitats. Seabed habitat health is measured using the fishing effects model, while eelgrass health is measured by proxy, using the EPA water quality index data in or around eelgrass beds."))
+            h4("The habitat score changes are largely driven by changes in seabed habitat impacts from fishing. Salt marsh and eelgrass scores remain near constant between 2005 and 2017")
+          )
           )
     )
   ),
@@ -1265,21 +1264,7 @@ tabItem(
   )),
 
   fluidRow(
-    ## Raw habitat data ##
-    card_ui(
-      id = "hab_raw_data",
-      title_text = "Habitat data",
-      sub_title_text = "Eelgrass layer is respresented by a proxy dataset that looks at water quality at sites located within a current or previous eelgrass bed. Salt Marsh layer indicates loss in habitat extent compared to a historic reference point. The seabed habitats layer measures impact to habitats from fishing.",
-      select_type = "radio",
-      select_location = "above",
-      select_choices = list(
-        "Eelgrass (water quality index proxy)" = "eelgrass",
-        "Salt Marsh (% loss)" = "salt_marsh",
-        "Seabed habitats (fishing impacts; 0 = lowest, 1 = highest)" = "offshore"
-      )
-    ),
-    
-    
+
     ## Habitat layer scores b/w 0 and 100 ##
     card_ui(
       id = "hab_layer_scores",
@@ -1291,7 +1276,8 @@ tabItem(
         "Eelgrass" = "eelgrass",
         "Salt Marsh" = "salt_marsh",
         "Seabed habitats" = "offshore"
-      )
+      ),
+      box_width = 12
     )
   ),
   

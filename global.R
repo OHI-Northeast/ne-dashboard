@@ -204,8 +204,6 @@ fp_layers <- scores %>%
            dimension == "score")
   
   hab_scores_map <- filter(hab_scores, year == 2017)
- # salt_marsh     <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/salt_marsh_percent_change.csv") 
- # eelgrass       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/eelgrass_score_rgn_gf.csv")
   hab_data       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/dashboard_habitat_data.csv") %>%
     mutate(score = ifelse(habitat == "offshore", score*100, score))
   hab_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/hab_data_info.csv")

@@ -347,7 +347,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw#ocean-health-index---us-northeast-clean-waters-goal",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/cw/description.md#clean-waters",
       box_width = 6
     ),
     
@@ -524,7 +524,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/fis#ocean-health-index---us-northeast-wild-caught-fisheries",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/fis/description.md#wild-caught-fisheries",
       box_width = 6
     ),
     
@@ -813,7 +813,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/liv#ocean-health-index---us-northeast-livelihoods-sub-goal",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/liv/description.md#livelihoods-and-economies",
       box_width = 6
     ),
     
@@ -911,7 +911,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/4e23384d1a5cbae09e97d34b87620f7e11e47c05/prep/eco#ocean-health-index---us-northeast-economies-sub-goal",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/liv/description.md#livelihoods-and-economies",
       box_width = 6
     ),
     
@@ -1018,7 +1018,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/tr#ocean-health-index---us-northeast-tourism--recreation",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/tr/description.md#tourism-and-recreation",
       box_width = 6
     ),
     
@@ -1111,7 +1111,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio#ocean-health-index---us-northeast-biodiversity-goal",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/bio/description.md#biodiversity",
       box_width = 12
     )
   )
@@ -1285,7 +1285,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/hab#ocean-health-index---us-northeast-habitats-sub-goal",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/hs/description.md#habitat-services",
       box_width = 6
     ),
     
@@ -1445,7 +1445,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp#ocean-health-index---us-northeast-lasting-special-places-sub-goal",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/sop/description.md#sense-of-place",
       box_width = 6
     ),
     
@@ -1539,7 +1539,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico#ocean-health-index---us-northeast-iconic-species-sub-goal",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/sop/description.md#sense-of-place",
       box_width = 6
     ),
     
@@ -1642,7 +1642,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/fishing_engagement",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/sop/description.md#sense-of-place",
       box_width = 6
     ),
     
@@ -1745,7 +1745,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/rao",
+      url = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/rao/description.md#resource-access-opportunities",
       box_width = 6
     ),
     

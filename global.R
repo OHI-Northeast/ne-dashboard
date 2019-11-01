@@ -56,21 +56,6 @@ ne_indx_scores <- indx_scores %>%
 
 indx_scores_map <- filter(indx_scores, year == 2017)
 
-## Food Provision data ----
-fp_scores <- scores %>% 
-  filter(goal == "FP",
-         dimension == "score")
-
-fp_scores_map <- filter(fp_scores, year == 2017)
-
-fp_layers <- scores %>%
-  filter(goal %in% c("MAR", "FIS"),
-         dimension == "score") %>%
-  mutate(goal_name = case_when(
-    goal == "FIS" ~ "Wild-Caught Fisheries",
-    goal == "MAR" ~ "Aquaculture"
-  ))
-
 ## FIS data ----
   fis_scores <- scores %>% 
     filter(goal == "FIS",
@@ -108,6 +93,22 @@ fp_layers <- scores %>%
            `Sustainability Score` = rescaled)
   mar_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/mar_data_info.csv")
   
+## Food Provision data ----
+  fp_scores <- scores %>% 
+    filter(goal == "FP",
+           dimension == "score")
+  
+  fp_scores_map <- filter(fp_scores, year == 2017)
+  
+  fp_layers <- scores %>%
+    filter(goal %in% c("MAR", "FIS"),
+           dimension == "score") %>%
+    mutate(goal_name = case_when(
+      goal == "FIS" ~ "Wild-Caught Fisheries",
+      goal == "MAR" ~ "Aquaculture"
+    ))
+  
+  fp_data_info <- bind_rows(fis_data_info, mar_data_info)
 ## livelihoods----
   liv_scores <- scores %>% 
     filter(goal == "LIV",

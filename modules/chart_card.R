@@ -69,7 +69,7 @@ library(assertthat)
 ## Card UI Function ##
 card_ui <- function(id, 
                     title_text = "Scores over time",
-                    sub_title_text = "Double click on a region in the legend to highlight just that line. Hover over the lines to see individual scores.",
+                    sub_title_text = "Hover over the lines to see individual scores. Double click on a region in the legend to highlight just that line and add additional regions for comparison by clicking on their names in the legend.",
                     select_type = c(NULL, "radio", "drop_down", "checkboxes"),
                     select_location = c(NULL, "above", "below"),
                     select_choices = c(""),
@@ -105,7 +105,7 @@ card_ui <- function(id,
                              inline = TRUE)
     } else if (select_type == "drop_down") {
       select <- selectInput(ns("select"),
-                            choices = select_choices,
+                            choices = sort(select_choices),
                             label = p(select_label),
                             selected = selected)
     } else if (select_type == "search") {

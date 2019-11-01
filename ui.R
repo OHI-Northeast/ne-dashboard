@@ -94,7 +94,7 @@ dashboardPage(
         fluidRow(
           box(width = 12,
             h1("Ocean Health Dashboard for the US Northeast"),
-            "The Ocean Health Index measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations. Ocean Health Index assessments use the best-available data to measure progress toward target conditions for benefits provided by a region's marine ecosystems, resulting in benefit-specific and overall health scores on a scale of 0 to 100." 
+            "The Ocean Health Index (OHI) measures what people value about oceans and provides a holistic picture on how to manage ocean benefits sustainably for future generations. The Northeast OHI assessment uses the best-available data to measure progress toward target conditions for benefits provided by the region's marine ecosystems, resulting in benefit-specific and overall health scores on a scale of 0 to 100." 
           )
         ),
         
@@ -302,18 +302,12 @@ tabItem(
   
   fluidRow(
     box(title = "Target", status = "primary", solidHeader = TRUE,
-      h3("Zero water pollution from pathogens and trash in coastal waters, and sediment and water quality levels meet EPA threshold values")),
-    
+      "Zero water pollution from pathogens and trash in coastal waters, and sediment and water quality levels meet EPA threshold values",
+      style = "font-size: 18px"),
+  
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-      tags$ul(
-        tags$li(
-          h4(
-            "The slight downward trend is largely driven by the Sediment Quality Index data layer for most regions")),
-          tags$li(
-            h4(
-              "This goal is only measured for coastal regions because the majority of people are in direct contact with the coastal ocean")
-          ))
-      )
+          "The slight downward trend is largely driven by the Sediment Quality Index data layer for most regions",
+            style = "font-size: 18px")
     ),
   
   fluidRow(## scores map
@@ -322,22 +316,30 @@ tabItem(
     ## scores through time
     card_ui(id = "cw_scores")),
   
-  ## Data layers and targets
-  fluidRow(box(
-    DT::dataTableOutput("cw_datatable"),
-    width = 12
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                 "This goal is only measured for coastal regions because the majority of people are in direct contact with the coastal ocean")),
+                 style = "font-size: 18px",
+                 width = 12
     )),
+  
+  ## Data layers and targets
+ fluidRow(box(title = "Data layers",
+   DT::dataTableOutput("cw_datatable"),
+   width = 12)
+    ),
   
   fluidRow(
     ## CW layers ##
     card_ui(
       id = "cw_layers",
-      title_text = "Data Layers",
-      sub_title_text = "",
+      title_text = "Data layer scores",
+      sub_title_text = "Each data layer is scored on a 0 to 100 scale. Missing data for Water and Sediment Quality is gapfilled by taking the most recent datapoint and carrying it forward. The final Clean Waters scores are calculated using a geometric mean of these four data layers.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(cw_layers$rgn_name),
-      selected = "Connecticut",
       select_label = "",
       box_width = 12
     )
@@ -364,7 +366,7 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Trash:"),
+          tags$b("Trash data:"),
           " the Ocean Conservancy’s International coastal cleanup day data is the most spatially and temporally representative data available for the Northeast region, however these data are only collected once a year by volunteers and thus may not be representative of the larger patterns occurring across time and space in the region. More comprehensive and consistent monitoring of floating trash, beach trash, and microplastics would allow for a more accurate assessment of the pollution derived from trash across the region."
         ),
         tags$li(
@@ -394,37 +396,54 @@ tabItem(
     width = 3
   )),
 
+  ### Target and Key Messages----
   fluidRow(
     box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Maximize the amount of sustainable seafood produced from wild-caught fisheries and aquaculture")),
+        "Maximize the amount of sustainable seafood produced from wild-caught fisheries and aquaculture",
+        style = "font-size: 18px"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
         tags$ul(
           tags$li(
-            h4(
-              "Food provision includes both wild-caught fisheries and aquaculture. The final score is weighted by total production by each of sector")),
-            tags$li(
-              h4(
-                "This measures both the total amount of seafood produced and it's sustainability")
-            ))
+            "The decrease in scores from some regions around 2012 is largely due to a decrease in Atlantic herring catch"),
+          tags$li("Some regions produce more seafood from aquaculture than wild-caught fisheries")),
+        style = "font-size: 18px"
         )
     ),
   
-  
-  
+  ### Scores map and chart ----
   fluidRow(
-    ## scores map
     map_ui(
       id = "fp_scores_map"
     ),
-    ## scores through time
     card_ui(
       id = "fp_scores"
     )
   ),
   
+  ### Key Information----
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Food provision includes both wild-caught fisheries and aquaculture. The final score is weighted by total production by each of sector"),
+                 tags$li(
+                   "This measures both the total amount of seafood produced and it's sustainability"
+                 )),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
+  ### Data layers and targets----
+  fluidRow(box(title = "Data layers",
+               DT::dataTableOutput("fp_datatable"),
+               width = 12)
+  ),
+  
+  
+  ### Sub-goal scores----
   fluidRow(
-    ## FP layers ##
+
     card_ui(
       id = "fp_layers",
       title_text = "Sub-goal scores",
@@ -457,41 +476,50 @@ tabItem(
     width = 3
   )),
   
+  ### Target and Key Messages----
   fluidRow(
     box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("All harvested stocks are neither overfished nor underfished but rather fished at maximum sustainable yield")),
+        "All harvested stocks are neither overfished nor underfished but rather fished at maximum sustainable yield",
+        style = "font-size: 18px"
+        ),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Bait fisheries, such as herring, skate & mackerel, are important in the Northeast. Only harvest meant for direct human consumption from these fisheries is included in the score")),
-            tags$li(
-              h4(
-                "These scores reflect the status of fish where they are caught, not the port where they are landed")
-            ))
+        "The decrease in scores from some regions around 2012 is largely due to a decrease in Atlantic herring catch",
+        style = "font-size: 18px"
         )
   ),
-
+  
+  ### Scores map and chart----
   fluidRow(
-    ## scores map
     map_ui(
       id = "fis_scores_map"
     ),
-    ## scores through time
     card_ui(
       id = "fis_scores"
     )
   ),
-  
-  ## Data layers and targets
-  fluidRow(box(
+
+  ### Key Information ---- 
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Bait fisheries, such as herring, skate & mackerel, are important in the Northeast. Only harvest meant for direct human consumption from these fisheries is included in the score"),
+                 tags$li(
+                   "These scores reflect the status of fish where they are caught, not the port where they are landed")
+               ),
+               style = "font-size: 18px",
+               width = 12
+  )),
+
+  ### Data layers and targets----
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("fis_datatable"),
     width = 12
   )),
   
+  ### NOAA Landings chart ----
   fluidRow(
-    ## NOAA landings ##
     card_ui(
       id = "fis_noaa_catch",
       title_text = "Landings",
@@ -504,8 +532,8 @@ tabItem(
     )
   ),
   
+  ### Stock assessment chart----
   fluidRow(
-    ## stock assessment data ##
     card_ui(
       id = "fis_stock_ass",
       title_text = "Stock assessment data",
@@ -520,7 +548,7 @@ tabItem(
     )
   ),
   
-  ## Text boxes with links ##
+  ### Text boxes with links ----
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
@@ -535,6 +563,7 @@ tabItem(
     )
   ),
   
+  ### Data Considerations & Potential Improvements ----
   fluidRow(
     box(
       h4("Data Considerations & Potential Improvements"),
@@ -574,23 +603,12 @@ tabItem(
   
   fluidRow(
     box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Sustainably farmed seafood production is growing by 4% annually")),
+        "Sustainably farmed seafood production is growing by 4% annually",
+        style = "font-size: 18px"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Scores for this goal are largely driven by reporting formats and standards which vary significantly across each state")),
-            tags$li(
-              h4(
-                "Kelp or seaweed farming is a new but growing sector of the aquaculture industry in the northeast. It has not reached commercial scale and therefore is not included in these scores")
-            ),
-          tags$li(
-            h4(
-              "There is one mussel farm located offshore but production is not yet included since it has not reached commercial scale. All other commercial farms are located within state waters"))
-        )
-    )
-    ),
+              "Regions with increasing production see higher scores over time",
+        style = "font-size: 18px")),
   
   fluidRow(
     ## scores map
@@ -603,8 +621,22 @@ tabItem(
     )
   ),
   
-  ## Data layers and targets
-  fluidRow(box(
+  ### Key Information
+  fluidRow(box(title = "Key Information",
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Scores for this goal are largely driven by reporting formats and standards which vary significantly across each state"),
+                 tags$li(
+                   "Kelp or seaweed farming is a new but growing sector of the aquaculture industry in the northeast. It has not reached commercial scale and therefore is not included in these scores"),
+                 tags$li(
+                   "There is one mussel farm located offshore but production is not yet included since it has not reached commercial scale. All other commercial farms are located within state waters")
+               ),
+               style = "font-size: 18px",
+               width = 12)),
+  
+  ### Data layers and targets
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("mar_datatable"),
     width = 12
   )),
@@ -679,19 +711,13 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("All coastal dependent livelihoods and economies are growing through time")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "All coastal dependent livelihoods and economies are growing through time"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
               "Coastal livelihoods and economies have been increasing over time")
-          )
-        )
-    )
-  ),
-  
+          ),
+
   fluidRow(
     ## scores map
     map_ui(
@@ -703,8 +729,18 @@ tabItem(
     )
   ),
   
+  ## Key information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "This goal measures Livelihoods and Economies separately, with the final score equal to a simple average of the two scores.")),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("le_datatable"),
     width = 12
   )),
@@ -757,16 +793,11 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Annual growth for ocean-dependent jobs meets or exceeds national growth & wages grow by 3.5% annually")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "Annual growth for ocean-dependent jobs meets or exceeds national growth & wages grow by 3.5% annually"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              ""))
-         )
-    )
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+              "Low scores for Massachusetts-South are due to decreased employment and wages in the Living Resources and Transportation sectors between 2009 and 2013")
   ),
 
   fluidRow(
@@ -781,8 +812,18 @@ tabItem(
     )
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "")),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("liv_datatable"),
     width = 12
   )),
@@ -863,17 +904,10 @@ tabItem(
   
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%")),
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "A target of 3% annual growth aligns with widely accepted growth targets for GDP in the United States")
-              )
-            )
-        )
-  ),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%"),
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+              "")),
   
   fluidRow(
     ## scores map
@@ -887,8 +921,17 @@ tabItem(
     )
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "A target of 3% annual growth aligns with widely accepted growth targets for GDP in the United States")),
+               style = "font-size: 18px",
+               width = 12)),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("eco_datatable"),
     width = 12
   )),
@@ -961,17 +1004,11 @@ tabItem(
   
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Jobs in coastal tourism sectors are growing (reflecting overall growth in tourism participation), coastal recreation is not inhibited by beach closures and each mile of coastline has a public access point")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "Jobs in coastal tourism sectors are growing (reflecting overall growth in tourism participation), coastal recreation is not inhibited by beach closures and each mile of coastline has a public access point"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Each data layer measures different aspects of tourism and recreation. The number of jobs in the tourism sector is used as a proxy for tourism growth while beach closures and lack of coastal access measure the publics ability to recreate on the coast"))
-          )
-    )
-  ),
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+          "")),
   
   fluidRow(
     
@@ -986,8 +1023,17 @@ tabItem(
     )
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "")),
+               style = "font-size: 18px",
+               width = 12)),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("tr_datatable"),
     width = 12
   )),
@@ -1064,18 +1110,12 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("No marine species are at risk of extinction and all habitats that support biodiversity are in good condition")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "No marine species are at risk of extinction and all habitats that support biodiversity are in good condition"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Biodiversity tries to measure the conservation status of all ocean-dependent species in the Northeast. Since not all species have been assessed, habitat health is also included as an indicator for species that rely on these habitats"))
-          )
-    )
-  ),
-  
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+              "")),
+
   ## scores map
   map_ui(
     id = "bio_scores_map"
@@ -1086,8 +1126,18 @@ tabItem(
     id = "bio_scores"
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Biodiversity tries to measure the conservation status of all ocean-dependent species in the Northeast. Since not all species have been assessed, habitat health is also included as an indicator for species that rely on these habitats")),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("bio_datatable"),
     width = 12
   )),
@@ -1138,22 +1188,11 @@ tabItem(
 
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("All species identified as present in the region are not at risk of extinction and are classified as of Least Concern by IUCN criteria")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "All species identified as present in the region are not at risk of extinction and are classified as of Least Concern by IUCN criteria"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "This sub-goal assesses the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a lower score. There are 732 species included in the biodiversity-species score")
-            ),
-          tags$li(
-            h4(
-              "Scores are not weighted by the size of a species range. If a species is found in a region, it's conservation status is included in the region score.")
-          )
-          )
-    )
-  ),
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "")),
   
   ## scores map
   map_ui(
@@ -1165,8 +1204,26 @@ tabItem(
     id = "spp_scores"
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "There are 732 species included in the biodiversity-species score"
+                 ),
+                 tags$li(
+                     "Species scores represent the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a lower score."
+                 ),
+                 tags$li(
+                     "Scores are not weighted by the size of a species range. If a species is found in a region, it's conservation status is included in the region score."
+                 )
+               ),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("spp_datatable"),
     width = 12
   )),
@@ -1235,17 +1292,11 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("No loss of salt marsh habitats from historical estimates, all eelgrass habitats have good water quality condition, and all seabed habitats have low levels of disturbance from fishing activity")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "No loss of salt marsh habitats from historical estimates, all eelgrass habitats have good water quality condition, and all seabed habitats have low levels of disturbance from fishing activity"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4("The habitat score changes are largely driven by changes in seabed habitat impacts from fishing. Salt marsh and eelgrass scores remain near constant between 2005 and 2017")
-          )
-          )
-    )
-  ),
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+            "The habitat score changes are largely driven by changes in seabed habitat impacts from fishing")),
   
   ## scores map
   map_ui(
@@ -1257,8 +1308,18 @@ tabItem(
     id = "hab_scores"
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "")),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("hab_datatable"),
     width = 12
   )),
@@ -1334,16 +1395,11 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Areas of importance are protected as lasting special places, iconic species are not threatened and fishing engagement is high for coastal communities")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "Areas of importance are protected as lasting special places, iconic species are not threatened and fishing engagement is high for coastal communities"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Sense of Places captures the aspects of the coastal and marine system that people value as part of their cultural identity"))
-        )
-    )
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+              "")
   ),
   
   fluidRow(
@@ -1357,6 +1413,15 @@ tabItem(
     id = "sop_scores"
   )
 ),
+
+fluidRow(box(title = "Key Information", 
+             background = "light-blue",
+             tags$ul(
+               tags$li(
+                 "Sense of Places captures the aspects of the coastal and marine system that people value as part of their cultural identity")),
+             style = "font-size: 18px",
+             width = 12
+)),
 
 fluidRow(
   ## SOP layers ##
@@ -1395,16 +1460,11 @@ tabItem(
   
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("At least 10% of coastal waters are protected and 17% of land within 1km of the coast is protected")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "At least 10% of coastal waters are protected and 17% of land within 1km of the coast is protected"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Lasting Special Places includes geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. Due to data limitations, these unique aspects can not be discretely measured. Therefore it is assumed that all coastal areas within 1 kilometer of the coast on land, and 3 nautical miles offshore, are special and total area protected is used to measure Lasting Special Places"))
-        )
-    )
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+              "")
   ),
   
   fluidRow(
@@ -1419,8 +1479,18 @@ tabItem(
   )
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Lasting Special Places includes geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. Due to data limitations, these unique aspects can not be discretely measured. Therefore it is assumed that all coastal areas within 1 kilometer of the coast on land, and 3 nautical miles offshore, are special and total area protected is used to measure Lasting Special Places")),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("lsp_datatable"),
     width = 12
   )),
@@ -1496,16 +1566,11 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("All iconic species have a conservation status of Least Concern")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "All iconic species have a conservation status of Least Concern"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value"))
-        )
-    )
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+              "")
   ),
   
   ## scores map
@@ -1518,8 +1583,17 @@ tabItem(
     id = "ico_scores"
   ),
   
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value")),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(tutle = "Data layers",
     DT::dataTableOutput("ico_datatable"),
     width = 12
   )),
@@ -1586,21 +1660,11 @@ tabItem(
   
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("Coastal communities have high levels of commercial fishing engagement and recreational fishing reliance")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "Coastal communities have high levels of commercial fishing engagement and recreational fishing reliance"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Fishing Engagement is one of three subgoals of Sense of Place and is measured using two distinct layers, Commercial Fishing Engagement and Recreational Fishing Reliance.")),
-          tags$li(
-            h4(
-              "Commercial fishing engagement measures the presence of commercial fishing through fishing activity as shown through permits and vessel landings. A high rank indicates more engagement.")),
-          tags$li(
-            h4(
-              "Recreational fishing reliance measures the presence of recreational fishing in relation to the population of a community. A high rank indicates increased reliance."))
-        )
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+    ""
     )
   ),
   
@@ -1616,8 +1680,22 @@ tabItem(
     )
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Fishing Engagement is one of three subgoals of Sense of Place and is measured using two distinct layers, Commercial Fishing Engagement and Recreational Fishing Reliance."),
+                 tags$li(
+                   "Commercial fishing engagement measures the presence of commercial fishing through fishing activity as shown through permits and vessel landings. A high rank indicates more engagement."),
+                 tags$li(
+                   "Recreational fishing reliance measures the presence of recreational fishing in relation to the population of a community. A high rank indicates increased reliance.")),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("spfis_datatable"),
     width = 12
   )),
@@ -1687,18 +1765,11 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("The average gas to wage ratio does not increase over time, each mile of coastline has a public access point, and all fish stocks are sustainably managed")),
+    box(title = "Target", status = "primary", solidHeader = TRUE,  style = "font-size: 18px",
+        "The average gas to wage ratio does not increase over time, each mile of coastline has a public access point, and all fish stocks are sustainably managed"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Access to coastal and ocean resources is inherently difficult to measure, but is an important aspect of Ocean Health and is therefore included in the Index. The data used here is a best attempt to measure the ability for people to access the resources they desire")),
-          tags$li(
-            h4("Economic access is measured using a ratio of gas prices to wages to represent ability to access the ocean via a gas powered boat. As the ratio increases, access becomes restricted due to increasing costs.")
-          )
-        )
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE,  style = "font-size: 18px",
+        ""
     )
   ),
   
@@ -1714,8 +1785,21 @@ tabItem(
     )
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Access to coastal and ocean resources is inherently difficult to measure, but is an important aspect of Ocean Health and is therefore included in the Index. The data used here is a best attempt to measure the ability for people to access the resources they desire"),
+                 tags$li("Economic access is measured using a ratio of gas prices to wages to represent ability to access the ocean via a gas powered boat. As the ratio increases, access becomes restricted due to increasing costs."
+                 )
+               ),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("rao_datatable"),
     width = 12
   )),
@@ -1792,21 +1876,11 @@ tabItem(
   )),
   
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        h3("All biogenic habitats that support carbon storage and coastal protection are in good condition")),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "All biogenic habitats that support carbon storage and coastal protection are in good condition"),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        tags$ul(
-          tags$li(
-            h4(
-              "Habitat Services measures two equally important components: Coastal Protection and Carbon Storage")),
-          tags$li(
-            "Coastal Protection assess the amount of protection provided by marine and coastal habitats against flooding and erosion to coastal areas"
-          ),
-          tags$li(
-            "Carbon storage is the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions"
-          )
-        )
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+       ""
     )
   ),
   
@@ -1820,8 +1894,25 @@ tabItem(
     id = "hs_scores"
   ),
   
+  ## Key Information
+  fluidRow(box(title = "Key Information", 
+               background = "light-blue",
+               tags$ul(
+                 tags$li(
+                   "Habitat Services measures two equally important components: Coastal Protection and Carbon Storage"),
+                 tags$li(
+                   "Coastal Protection assess the amount of protection provided by marine and coastal habitats against flooding and erosion to coastal areas"
+                 ),
+                 tags$li(
+                   "Carbon storage is the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions"
+                 )
+               ),
+               style = "font-size: 18px",
+               width = 12
+  )),
+  
   ## Data layers and targets
-  fluidRow(box(
+  fluidRow(box(title = "Data layers",
     DT::dataTableOutput("hs_datatable"),
     width = 12
   )),

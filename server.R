@@ -160,6 +160,16 @@ function(input, output, session) {
     yaxis_label = "Score"
   )
   
+  
+  ## FP Data Table
+  
+  output$fp_datatable = renderDataTable({
+    datatable(fp_data_info,
+              options = list(dom = 't'),
+              rownames = FALSE,
+              escape = FALSE)
+  })
+  
   ## FP layers chart
   callModule(
     card_plot,
@@ -848,10 +858,10 @@ function(input, output, session) {
              colors = rev(chart_colors),
              plot_type = "bar",
              tooltip_text = ~paste("Region:", rgn_name,
-                                   "<br>Status score:", score,
+                                   "<br>Species status score:", score,
                                    "<br>Num. Species:", count, sep=" "),
-             xaxis_label = "",
-             yaxis_label = "Number of species")
+             xaxis_label = "Number of species",
+             yaxis_label = "")
   
 ## Habitats ----
   

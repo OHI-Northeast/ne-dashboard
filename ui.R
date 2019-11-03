@@ -300,20 +300,20 @@ tabItem(
     )
   ),
   
+  ### Target and Key Messages ----
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-      "Zero water pollution from pathogens and trash in coastal waters, and sediment and water quality levels meet EPA threshold values",
-      style = "font-size: 18px"),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+      "Zero water pollution from pathogens and trash in coastal waters, and sediment and water quality levels meet EPA threshold values"),
   
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-          "The slight downward trend is largely driven by the Sediment Quality Index data layer for most regions",
-            style = "font-size: 18px")
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+          "The slight downward trend is largely driven by the Sediment Quality Index data layer for most regions")
     ),
   
-  fluidRow(## scores map
+  ### Scores map and chart ----
+  
+  fluidRow(
     map_ui(id = "cw_scores_map"),
     
-    ## scores through time
     card_ui(id = "cw_scores")),
   
   fluidRow(box(title = "Key Information", 
@@ -325,14 +325,14 @@ tabItem(
                  width = 12
     )),
   
-  ## Data layers and targets
+  ### Data layers and targets ----
  fluidRow(box(title = "Data layers",
    DT::dataTableOutput("cw_datatable"),
    width = 12)
     ),
   
+  ### Clean Water Data Layers chart ----
   fluidRow(
-    ## CW layers ##
     card_ui(
       id = "cw_layers",
       title_text = "Data layer scores",
@@ -345,7 +345,7 @@ tabItem(
     )
   ),
   
-  ## Text boxes with links ##
+  ### Text boxes with links ----
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
@@ -360,10 +360,13 @@ tabItem(
     )
   ),
   
+ 
+  ### Data Considerations and Potential Improvements ----
   fluidRow(
-    box(
-      h4("Data Considerations & Potential Improvements"),
+    box(title = "Data Considerations & Potential Improvements",
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
+      br(),
+      br(),
       tags$ul(
         tags$li(
           tags$b("Trash data:"),
@@ -405,7 +408,7 @@ tabItem(
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
         tags$ul(
           tags$li(
-            "The decrease in scores from some regions around 2012 is largely due to a decrease in Atlantic herring catch"),
+            "The decrease in scores for some regions around 2012 is largely due to a decrease in Atlantic herring catch"),
           tags$li("Some regions produce more seafood from aquaculture than wild-caught fisheries")),
         style = "font-size: 18px"
         )
@@ -484,7 +487,7 @@ tabItem(
         ),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        "The decrease in scores from some regions around 2012 is largely due to a decrease in Atlantic herring catch",
+        "The decrease in scores for some regions around 2012 is largely due to a decrease in Atlantic herring catch",
         style = "font-size: 18px"
         )
   ),
@@ -601,27 +604,28 @@ tabItem(
     width = 3
   )),
   
+  ### Target and Key Messages ----
   fluidRow(
-    box(title = "Target", status = "primary", solidHeader = TRUE,
-        "Sustainably farmed seafood production is growing by 4% annually",
-        style = "font-size: 18px"),
+    box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+        "Sustainably farmed seafood production is growing by 4% annually"
+        ),
     
-    box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-              "Regions with increasing production see higher scores over time",
-        style = "font-size: 18px")),
+    box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
+              "Regions with increasing production see higher scores over time")),
   
+  ### Scores map and chart ----
   fluidRow(
-    ## scores map
+
     map_ui(
       id = "mar_scores_map"
     ),
-    ## scores through time
+
     card_ui(
       id = "mar_scores"
     )
   ),
   
-  ### Key Information
+  ### Key Information ----
   fluidRow(box(title = "Key Information",
                background = "light-blue",
                tags$ul(
@@ -635,14 +639,15 @@ tabItem(
                style = "font-size: 18px",
                width = 12)),
   
-  ### Data layers and targets
+  ### Data layers and targets ----
   fluidRow(box(title = "Data layers",
     DT::dataTableOutput("mar_datatable"),
     width = 12
   )),
   
+  ### Production data and sustainability table ----
   fluidRow(
-    ## Production data ##
+
     card_ui(
       id = "mar_production",
       title_text = "Aquaculture species production",
@@ -652,14 +657,15 @@ tabItem(
       select_choices = unique(mar_production$Region),
       box_width = 9
     ),
-    ## Species sustainability table
+    
+    ### Species sustainability table
     box(
       DT::dataTableOutput("mar_spp_sust_table"),
       width = 3
     )
   ),
   
-  ## Text boxes with links ##
+  ### Text boxes with links ----
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
@@ -674,6 +680,7 @@ tabItem(
     )
   ),
   
+  ### Data Considerations & Potential Improvements ----
   fluidRow(
     box(
       h4("Data Considerations & Potential Improvements"),
@@ -797,8 +804,9 @@ tabItem(
         "Annual growth for ocean-dependent jobs meets or exceeds national growth & wages grow by 3.5% annually"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-              "Low scores for Massachusetts-South are due to decreased employment and wages in the Living Resources and Transportation sectors between 2009 and 2013")
-  ),
+        tags$ul(
+          tags$li("Nearly all regions are experiencing growth in GDP from ocean-related sectors"),
+          tags$li("Low scores for Massachusetts-South between 2009 and 2013 are due to decreased employment and wages in the Living Resources and Transportation sectors")))),
 
   fluidRow(
     ## scores map
@@ -817,7 +825,7 @@ tabItem(
                background = "light-blue",
                tags$ul(
                  tags$li(
-                   "")),
+                   "There is some data suppression in the National Ocean Economics Program dataset due to confidentiality statutes. If data suppression in earlier years suddenly becomes expressed, it will show up as a large increase in Jobs or Wages. This can be seen in New Hampshire's Transportation sector in 2011.")),
                style = "font-size: 18px",
                width = 12
   )),
@@ -871,18 +879,16 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Seasonal data"),
-          ""
+          tags$b("Sector switching "),
+          "is a common occurrence but is not captured in the employment dataset. If a person switches between fishing and aquaculture, for example, the Living Resources employment numbers should remain the same."
         ),
         tags$li(
-          tags$b("Sector switching"),
-          ""
+          tags$b("Data suppression "),
+          "in economic data is often due to confidentiality and privacy concerns for individuals and firms. This can limit the total amount of usable information about economic indicator such as jobs, wages and GDP, especially for small sectors or regions."
         )
       ),
       width = 12
-    )
-  )
-),
+))),
 
 ## Economies ------
 tabItem(
@@ -907,7 +913,9 @@ tabItem(
     box(title = "Target", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
         "Annual growth in ocean related sectors’ Gross Domestic Product is at least 3%"),
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-              "")),
+         tags$ul(
+           tags$li("Nearly all regions are experiencing growth in GDP from ocean-related sectors"),
+           tags$li("Low scores for Massachusetts-South between 2009 and 2013 are due to decreased GDP in the Living Resources and Transportation sectors")))),
   
   fluidRow(
     ## scores map
@@ -926,7 +934,8 @@ tabItem(
                background = "light-blue",
                tags$ul(
                  tags$li(
-                   "A target of 3% annual growth aligns with widely accepted growth targets for GDP in the United States")),
+                   "A target of 3% annual growth aligns with widely accepted growth targets for GDP in the United States"),
+                 tags$li("There is some data suppression in the National Ocean Economics Program dataset due to confidentiality statutes. If data suppression in earlier years suddenly becomes expressed, it will show up as a large increase in GDP. This can be seen in New Hampshire's Transportation sector in 2011")),
                style = "font-size: 18px",
                width = 12)),
   
@@ -971,8 +980,8 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Data confidentiality policy limits the amount of data available for New Hampshire before 2009"),
-          ""
+          tags$b("Data suppression "),
+          "in economic data is often due to confidentiality and privacy concerns for individuals and firms. This can limit the total amount of usable information about economic indicator such as jobs, wages and GDP, especially for small sectors or regions."
         ),
         tags$li(
           tags$b("Coastal property value "),
@@ -1008,7 +1017,9 @@ tabItem(
         "Jobs in coastal tourism sectors are growing (reflecting overall growth in tourism participation), coastal recreation is not inhibited by beach closures and each mile of coastline has a public access point"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-          "")),
+          tags$ul(
+            tags$li("Variation in scores over time is primarily due to changes in beach closures"),
+            tags$li("Coastal access ranges widely across the region")))),
   
   fluidRow(
     
@@ -1028,7 +1039,7 @@ tabItem(
                background = "light-blue",
                tags$ul(
                  tags$li(
-                   "")),
+                   "Coastal access is measured using access points identified by the NOAA Environmental Sensitivity Index. The access points include locations identifed as boat ramps, campgrounds, beaches, historical sites, access points, marinas, ferrys, ports and parks.")),
                style = "font-size: 18px",
                width = 12)),
   
@@ -1046,20 +1057,21 @@ tabItem(
       sub_title_text = "Number of jobs in the tourism sector for coastal counties."
     ),
     
+    ## Coastal access ##
+    card_ui(id = "tr_coastal",
+            title_text = "Coastal Access",
+            sub_title_text = "Proportion of publically accessible coastline")),
+    
+  fluidRow(
     ## Beach Closures ##
     card_ui(
       id = "tr_beach",
       title_text = "Beach Closures",
-      sub_title_text = "This layer reports the average proportion of a swim season with beaches closed to recreation."
-    )),
-    
-  fluidRow(
-    ## Coastal access ##
-    card_ui(id = "tr_coastal",
-            title_text = "Coastal Access",
-            sub_title_text = "Proportion of publically accessible coastline")
-    
+      sub_title_text = "This layer reports the average proportion of a swim season (~100 days) with beaches closed to recreation.",
+      box_width = 12
+    )
   ),
+  
   ## Text boxes with links ##
   fluidRow(
     text_links_default(
@@ -1083,12 +1095,15 @@ tabItem(
         tags$li(
           tags$b("An ideal tourism & recreation dataset "),
           "would likely take the form of a survey that specifically targets both locals and visitors and asks their preference and attitudes towards ocean-related tourism and recreation activities. Some surveys have been done in the past, but an ideal dataset would be one that covers the entire region and is repeated consistently into the future to better track changes. For now, these layers act as proxy measures for Tourism & Recreation in the Northeast."
-        )
+        ),
+        tags$li(
+          tags$b("Coastal accessibility"),
+          " is difficult to assess region-wide. Here, coastal access points identified by NOAA's Environmental Sensitivity Index were used to calculate access. This data is likely an incomplete picture of coastal access points. Additionally, information about fee versus free access, or state-wide regulation regarding coastal access, is not included but could improve this measure if available."
+      )
       ),
       width = 12
     )
-  )
-),
+)),
 
 
 ## Biodiversity ------
@@ -1114,7 +1129,9 @@ tabItem(
         "No marine species are at risk of extinction and all habitats that support biodiversity are in good condition"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-              "")),
+        tags$ul(
+          tags$li("Biodiversity scores have been increasing over time for most regions"),
+          tags$li("Species conservation statuses rarely change over time so much of the variation in scores is due to changes in habitat health, specifically impact to seabed habitats.")))),
 
   ## scores map
   map_ui(
@@ -1131,7 +1148,7 @@ tabItem(
                background = "light-blue",
                tags$ul(
                  tags$li(
-                   "Biodiversity tries to measure the conservation status of all ocean-dependent species in the Northeast. Since not all species have been assessed, habitat health is also included as an indicator for species that rely on these habitats")),
+                   "Biodiversity tries to measure the conservation status of all ocean-dependent species in the Northeast. Since not all marine species have been assessed, habitat health is also included as an indicator for species that rely on these habitats")),
                style = "font-size: 18px",
                width = 12
   )),
@@ -1192,7 +1209,7 @@ tabItem(
         "All species identified as present in the region are not at risk of extinction and are classified as of Least Concern by IUCN criteria"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-        "")),
+        "Scores remain quite constant over time with no more than a 3 point variation")),
   
   ## scores map
   map_ui(
@@ -1216,7 +1233,9 @@ tabItem(
                  ),
                  tags$li(
                      "Scores are not weighted by the size of a species range. If a species is found in a region, it's conservation status is included in the region score."
-                 )
+                 ),
+                 tags$li(
+                   "Marine species conservation status' are updated infrequently, so changes in scores are due to pressures and resilience measures for species biodiversity")
                ),
                style = "font-size: 18px",
                width = 12
@@ -1258,12 +1277,12 @@ tabItem(
       "There is always opportunity to improve data quality and availability. Below we have identifed where improving these data could improve our understanding of ocean health",
       tags$ul(
         tags$li(
-          tags$b("Species range maps"),
-          ""
+          tags$b("Species range maps "),
+          "from the IUCN red list are often global in scale and not created specifically for the region. Maps from the data portal are modeled species ranges for the Northeast. All species maps are static and do not change over the time period. Any changes in species ranges are not currently captured in the way Species is calculated."
         ),
         tags$li(
-          tags$b("Change in status over time"),
-          ""
+          tags$b("Species' conservation status "),
+          "are not often updated. A comprehensive assessment of a species status requires dedicated resources and effort which limit the capacity to assess all species in an area. When available, conservation status for species varies by state and is incorporated in the score. For species without state-level conservation status, the score relies on either the status according to the United States Endangered Species Act or IUCN red list criteria."
         )
       ),
       width = 12

@@ -25,9 +25,9 @@ options(scipen = 999,
    c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4"))(5)
  myPalette <-  c(reds, blues)
 
-chart_colors_all_rgns <- c(viridis::viridis(n = 11)[1:9], "#FF00FF" ,"#BBDF27FF", "#FDE725FF")
-chart_colors_coastal <- c(viridis::viridis(n = 8)[1:6], "#FF00FF" , "#BBDF27FF")
-chart_colors <- viridis::viridis(n=12)
+chart_colors_all_rgns <- c(brewer.pal(n = 11,'Paired')[1:9], "#000000" ,"#6A3D9A", "#FFFF99")
+chart_colors_coastal <- c(brewer.pal(n = 8, 'Paired')[1:6], "#000000" , "#6A3D9A")
+chart_colors <- brewer.pal(n = 12, 'Paired')
 
 ## shapefile
 rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%

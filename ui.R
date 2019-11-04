@@ -83,8 +83,7 @@ dashboardPage(
     ),
     tags$script(HTML("$('body').addClass('fixed');")),
     #this locks side and top bars
-    
-  
+
     tabItems(
       
 ## Welcome landing page ----
@@ -233,11 +232,11 @@ tabItem(tabName = "index",
         
         fluidRow(box(
           h1("Regional Scores"),
-          "The Northeast Ocean Health Index uses social, economic, and environmental data to create a comprehensive picture of the state of ocean health from Maine to New York. Below you can explore the results of the assessment across the 11 reporting regions and 13 years of data (2005 - 2017) included in this assessment.",
-          br(),
-          br(),
-          h4("Region boundaries"),
-          "The assessment contains 11 regions including state waters out to three nautical miles, and four offshore regions out to the US Exclusive Economic Zone (EEZ). The Gulf of Maine, Georges Bank and Mid-Atlantic Bight regions represent the ", 
+          "The Northeast Ocean Health Index uses social, economic, and environmental data to create a comprehensive picture of the state of ocean health from Maine to New York. Below you can explore the results of the assessment across the 11 reporting regions and 13 years of data (2005 - 2017) included in this assessment.", width = 12)),
+        fluidRow(
+          box(
+            h4("Region boundaries"),
+               "The assessment contains 11 regions including state waters out to three nautical miles, and four offshore regions out to the US Exclusive Economic Zone (EEZ). The Gulf of Maine, Georges Bank and Mid-Atlantic Bight regions represent the ", 
           (a("Ecological Production Units", 
          href = "https://www.nefsc.noaa.gov/program_review/2016a-review/background2016/6Ecosys%20D&PNew%20folder/Gamble/Gamble%20Ecological%20Production%20UnitsFin%20temp.pdf", target="_blank")),
            " used by the Northeast Fisheries Science Center. The fourth Offshore region represents the remainder of the EEZ. All state waters are included as they are delineated, except for Massachusetts. A natural biogegraphic boundary separating the Gulf of Maine and Mid-Atlantic Bight marine ecoregions occurs at the southern end of Cape Cod and splits Massachusetts state waters into North and South.",
@@ -350,16 +349,9 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/cw_description.md#clean-waters",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/cw/data",
-      box_width = 6
+      box_width = 12
     )
   ),
-  
  
   ### Data Considerations and Potential Improvements ----
   fluidRow(
@@ -556,13 +548,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/fis_description.md#wild-caught-fisheries",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/fis/data",
-      box_width = 6
+      box_width = 12
     )
   ),
   
@@ -633,6 +619,7 @@ tabItem(
                    "Scores for this goal are largely driven by reporting formats and standards which vary significantly across each state"),
                  tags$li(
                    "Kelp or seaweed farming is a new but growing sector of the aquaculture industry in the northeast. It has not reached commercial scale and therefore is not included in these scores"),
+                 tags$li("There is significant opportunity to grow aquaculture in the Northeast, but there are no explicit targets for future production, therefore the target of a 4% annual growth rate was chosen by looking at historical growth across all species, as well as historical aquaculture growth trajectories in the United States."),
                  tags$li(
                    "There is one mussel farm located offshore but production is not yet included since it has not reached commercial scale. All other commercial farms are located within state waters")
                ),
@@ -670,12 +657,6 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/mar_description.md#aquaculture",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/mar/data",
       box_width = 6
     )
   ),
@@ -722,7 +703,9 @@ tabItem(
         "All coastal dependent livelihoods and economies are growing through time"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-              "Coastal livelihoods and economies have been increasing over time")
+          tags$ul(
+            tags$li("Coastal livelihoods and economies have been increasing over time"),
+            tags$li("Low scores for Massachusetts-South between 2009 and 2013 are due to decreased employment, wages and GDP in the Living Resources and Transportation sectors")))
           ),
 
   fluidRow(
@@ -863,13 +846,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/liv_eco_description.md#livelihoods-and-economies",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/liv/data",
-      box_width = 6
+      box_width = 12
     )
   ),
   
@@ -964,13 +941,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/liv_eco_description.md#livelihoods-and-economies",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/eco/data",
-      box_width = 6
+      box_width = 12
     )
   ),
   
@@ -1077,13 +1048,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/tr_description.md#tourism-and-recreation",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/tr/data",
-      box_width = 6
+      box_width = 12
     )
   ),
   
@@ -1261,13 +1226,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.md#biodiversity",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/spp/data",
-      box_width = 6
+      box_width = 12
     )
   ),
 
@@ -1366,13 +1325,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.md#biodiversity",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/hab/data",
-      box_width = 6
+      box_width = 12
     )
   ),
 
@@ -1418,7 +1371,7 @@ tabItem(
         "Areas of importance are protected as lasting special places, iconic species are not threatened and fishing engagement is high for coastal communities"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-              "")
+              "While there is a large range in scores between regions, Sense of Place scores remain relatively consistent over time in each region")
   ),
   
   fluidRow(
@@ -1455,6 +1408,15 @@ fluidRow(
     select_label = "",
     box_width = 12
   )
+),
+
+## Text boxes with links ##
+fluidRow(
+  text_links_default(
+    title = "Click here for detailed methods",
+    url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#sense-of-place",
+    box_width = 12
+  )
 )
 ),
 
@@ -1483,7 +1445,7 @@ tabItem(
         "At least 10% of coastal waters are protected and 17% of land within 1km of the coast is protected"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-              "")
+              "The amount of protected area in state waters has not changed over the time period, so all increases in scores are due to increased protection of coastal land area")
   ),
   
   fluidRow(
@@ -1502,6 +1464,7 @@ tabItem(
   fluidRow(box(title = "Key Information", 
                background = "light-blue",
                tags$ul(
+                 tags$li("There are no explicit targets for the Northeast in regards to marine and coastal land protection so the chosen targets (10% of marine area, 17% of land area) come from Aichi Target 11"),
                  tags$li(
                    "Lasting Special Places includes geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. Due to data limitations, these unique aspects can not be discretely measured. Therefore it is assumed that all coastal areas within 1 kilometer of the coast on land, and 3 nautical miles offshore, are special and total area protected is used to measure Lasting Special Places")),
                style = "font-size: 18px",
@@ -1534,14 +1497,8 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#sense-of-place",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/lsp/data",
-      box_width = 6
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#lasting-special-places",
+      box_width = 12
     )
   ),
   
@@ -1589,7 +1546,7 @@ tabItem(
         "All iconic species have a conservation status of Least Concern"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-              "")
+              "Since species status and range maps are not often updated, the fluctuation in scores are driven by external pressures such as climate change, habitat destruction, water pollution, and more")
   ),
   
   ## scores map
@@ -1632,14 +1589,8 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#sense-of-place",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/ico/data",
-      box_width = 6
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#iconic-species",
+      box_width = 12
     )
   ),
   
@@ -1683,7 +1634,7 @@ tabItem(
         "Coastal communities have high levels of commercial fishing engagement and recreational fishing reliance"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-    ""
+    "Fishing engagement has remained relatively stable over time with some regions experiencing increases. Recreational fishing reliance tends to score lower than commercial fishing engagement."
     )
   ),
   
@@ -1708,7 +1659,8 @@ tabItem(
                  tags$li(
                    "Commercial fishing engagement measures the presence of commercial fishing through fishing activity as shown through permits and vessel landings. A high rank indicates more engagement."),
                  tags$li(
-                   "Recreational fishing reliance measures the presence of recreational fishing in relation to the population of a community. A high rank indicates increased reliance.")),
+                   "Recreational fishing reliance measures the presence of recreational fishing in relation to the population of a community. A high rank indicates increased reliance."),
+                 tags$li("The target of 10% higher than the highest regional score was chosen under the assumption that there is capacity for improvement and increases in both commercial fishing engagement and recreational fishing reliance")),
                style = "font-size: 18px",
                width = 12
   )),
@@ -1739,14 +1691,8 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#sense-of-place",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/sop/fishing_engagement/data",
-      box_width = 6
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#fishing-engagement",
+      box_width = 12
     )
   ),
   
@@ -1788,7 +1734,7 @@ tabItem(
         "The average gas to wage ratio does not increase over time, each mile of coastline has a public access point, and all fish stocks are sustainably managed"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,  style = "font-size: 18px",
-        ""
+        "Access to fish stocks is improving due to improved stock status, but steep spikes and dips in the ratio of gas prices to wages drive large changes in the overall score"
     )
   ),
   
@@ -1849,13 +1795,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/rao_description.md#resource-access-opportunities",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/rao/data",
-      box_width = 6
+      box_width = 12
     )
   ),
   
@@ -1899,7 +1839,7 @@ tabItem(
         "All biogenic habitats that support carbon storage and coastal protection are in good condition"),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
-       ""
+       "Carbon Storage scores better than Coastal Protection for most, but not all, regions"
     )
   ),
   
@@ -1923,7 +1863,7 @@ tabItem(
                    "Coastal Protection assess the amount of protection provided by marine and coastal habitats against flooding and erosion to coastal areas"
                  ),
                  tags$li(
-                   "Carbon storage is the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions"
+                   "Carbon Storage is the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions"
                  )
                ),
                style = "font-size: 18px",
@@ -1958,13 +1898,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/hs_description.md#habitat-services",
-      box_width = 6
-    ),
-    
-    text_links_default(
-      title = "ACCESS LAYER DATA",
-      url = "https://github.com/OHI-Northeast/ne-prep/tree/gh-pages/prep/bio/hab/data",
-      box_width = 6
+      box_width = 12
     )
   ),
   

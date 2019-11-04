@@ -234,7 +234,7 @@ function(input, output, session) {
     x = "year",
     y = "mean_catch_times_prop",
     color_group = "fixed_name",
-    colors = viridis::viridis(20),
+    colors = chart_colors,
     filter_field = "rgn_name",
     plot_type = "scatter",
     legend_or = NULL,

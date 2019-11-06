@@ -65,11 +65,13 @@ indx_scores_map <- filter(indx_scores, year == 2017)
 
  #catch aggregated to OHI regions. filter out species with less than 1000 pounds annual catch to improve data display
   fis_noaa_catch <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fis_meancatch.csv") %>%
+    select(-X1) %>%
     group_by(rgn_id, year) %>%
-    mutate(total_catch = sum(mean_catch)) %>%
+    mutate(total_catch = sum(mean_catch), 0) %>%
     ungroup() %>%
     rowwise() %>%
-    mutate(prop_catch = mean_catch/total_catch) %>%
+    mutate(prop_catch = mean_catch/total_catch,
+           mean_catch_times_prop = round(mean_catch_times_prop, 0)) %>%
     filter(prop_catch >= 0.01) #only keep data points that are at least 1% of catch for the year.
   
   fis_stock_assessment <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/stock_assessment_data_for_dashboard.csv") %>%
@@ -109,7 +111,14 @@ indx_scores_map <- filter(indx_scores, year == 2017)
     ))
   
   fp_data_info <- bind_rows(fis_data_info, mar_data_info)
-## livelihoods----
+  
+  production_weights <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/fp_wildcaught_weight.csv") %>% 
+    select(region_id, year, Aquaculture = total_production, Fisheries = total_catch) %>%
+    left_join(rgn_data, by = c("region_id" = "rgn_id")) %>%
+    gather(key = "type", value = "Pounds", -region_id, -year, -rgn_name) %>%
+    mutate(Pounds = round(Pounds, 0))
+
+  ## livelihoods----
   liv_scores <- scores %>% 
     filter(goal == "LIV",
            dimension == "score")

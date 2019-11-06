@@ -247,11 +247,11 @@ tabItem(tabName = "index",
           ## scores map
           map_ui(
             id = "indx_scores_map",
-            sub_title_text = "Overall OHI Scores for all regions from the most recently assessed year (2017). Click on a region to see the score. Areas with no color indicate regions that were not evaluated"
+            sub_title_text = "Overall OHI Scores for all regions from the most recently assessed year (2017). Click on a region to see the score."
           ),
           
           box(h4("Goal Scores for 2017"),
-              "Ocean Health Index scores are calculated for individual goals separately and then combined to get an overall score on a scale of 0-100. Individual goal scores are represented by the length of the petals in a flower plot below, and the overall 2017 Index score for the region is in the center. You can dig into the data and scores for each individual goal by clicking on the goal titles in the main menu at the left of your screen.",
+              "Ocean Health Index scores are calculated for individual goals separately and then combined to get an overall score on a scale of 0-100. Individual goal scores are represented by the length of the petals in a flower plot below, and the overall 2017 Index score for the region is in the center.",
               br(),
           
         selectInput("img_region", "",
@@ -442,13 +442,23 @@ tabItem(
     card_ui(
       id = "fp_layers",
       title_text = "Sub-goal scores",
-      sub_title_text = "",
+      sub_title_text = "Food Provision includes two sub-goals, Wild-Caught Fisheries and Aquaculture. The final score for Food Provision is a production-weighted average of these two scores.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(fp_layers$rgn_name),
       selected = "Connecticut",
-      select_label = "",
-      box_width = 12
+      box_width = 6
+    ),
+    
+    card_ui(
+      id = "fp_weights",
+      title_text = "Annual Seafood Production",
+      sub_title_text = "Total production in pounds produced by aquaculture and wild-caught fisheries. The proportional production from each sector is used to weight each sub-goal when calculating Food Provision goal scores",
+      select_type = "drop_down",
+      select_location = "above",
+      select_choices = unique(production_weights$rgn_name),
+      selected = "Connecticut",
+      box_width = 6
     )
   )
 ),
@@ -619,6 +629,7 @@ tabItem(
                    "Scores for this goal are largely driven by reporting formats and standards which vary significantly across each state"),
                  tags$li(
                    "Kelp or seaweed farming is a new but growing sector of the aquaculture industry in the northeast. It has not reached commercial scale and therefore is not included in these scores"),
+                 tags$li("Both Massachusetts North and South regions have the same score. Without farm level location and production data, these regions can not be assessed separately."),
                  tags$li("There is significant opportunity to grow aquaculture in the Northeast, but there are no explicit targets for future production, therefore the target of a 4% annual growth rate was chosen by looking at historical growth across all species, as well as historical aquaculture growth trajectories in the United States."),
                  tags$li(
                    "There is one mussel farm located offshore but production is not yet included since it has not reached commercial scale. All other commercial farms are located within state waters")
@@ -638,17 +649,19 @@ tabItem(
     card_ui(
       id = "mar_production",
       title_text = "Aquaculture species production",
-      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see individual scores.",
+      sub_title_text = "Double click on a species in the legend to highlight just that line. Hover over the lines to see point data.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(mar_production$Region),
-      box_width = 9
+      box_width = 8
     ),
     
     ### Species sustainability table
     box(
       DT::dataTableOutput("mar_spp_sust_table"),
-      width = 3
+      width = 4,
+      br(),
+      "The sustainability scores are scaled from 0 (lowest) to 1 (highest)."
     )
   ),
   
@@ -657,7 +670,7 @@ tabItem(
     text_links_default(
       title = "Click here for detailed methods",
       url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/mar_description.md#aquaculture",
-      box_width = 6
+      box_width = 12
     )
   ),
   
@@ -670,6 +683,14 @@ tabItem(
         tags$li(
           tags$b("Maine salmon production: "),
           "lacks information beyond 2010. According to Maine's Department of Marine Resources,Atlantic salmon production data from 2011 - present cannot be reported at this time due to confidentiality reasons. All Atlantic salmon production data was gapfilled for Maine using the 2010 reported numbers for all following years."
+        ),
+        tags$li(
+          tags$b("Connecticut oyster production: "),
+          "has not been reported since 2010. We gapfill this missing data by carrying the most recent reported production forward to 2017."
+        ),
+        tags$li(
+          tags$b("Massachusetts production data: "),
+          "comes from the Department of Marine Fisheries annual reports. The oldest report is from 2011, therefore production data previous to 2010 is not available."
         ),
         tags$li(
           tags$b("Farmed species sustainability: "),
@@ -739,8 +760,8 @@ tabItem(
     ## LE layers ##
     card_ui(
       id = "le_layers",
-      title_text = "Sub-goal scores",
-      sub_title_text = "",
+      title_text = "Livelihoods and Economies sub-goal scores",
+      sub_title_text = "Livelihoods & Economies includes two sub-goals, Livelihoods and Economies. The final score is an un-weighted average of these two scores",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(le_layers$rgn_name),
@@ -1128,8 +1149,8 @@ tabItem(
     ## BIO layers ##
     card_ui(
       id = "bio_layers",
-      title_text = "Sub-goal scores",
-      sub_title_text = "",
+      title_text = "Species and Habitats scores",
+      sub_title_text = "Biodiversity scores are calculated as an un-weighted average of the Species and Habitats scores.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(bio_layers$rgn_name),
@@ -1191,7 +1212,7 @@ tabItem(
                background = "light-blue",
                tags$ul(
                  tags$li(
-                   "There are 732 species included in the biodiversity-species score"
+                   "There are 691 species included in the biodiversity-species score"
                  ),
                  tags$li(
                      "Species scores represent the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a lower score."
@@ -1218,7 +1239,8 @@ tabItem(
     id = "spp_rgn_count",
     title_text = "Species by region and status",
     sub_title_text = "Species status scores range from 0 (Extinct) to 1 (Least Concern)",
-    box_width = 12
+    box_width = 12,
+    source_text = a("Click here for a full list of the species by region", href = "https://github.com/OHI-Northeast/ne-prep/blob/gh-pages/prep/bio/spp/data/species_list_by_rgn.csv", target = "_blank")
   )),
 
   ## Text boxes with links ##
@@ -1400,7 +1422,7 @@ fluidRow(
   card_ui(
     id = "sop_layers",
     title_text = "Sub-goal scores",
-    sub_title_text = "",
+    sub_title_text = "Sense of Place includes three sub-goals, Coastal Access, Fishing Engagement and Fisheries Sustainability. The final score is an un-weighted average of these three sub-goal scores.",
     select_type = "drop_down",
     select_location = "above",
     select_choices = unique(sop_layers$rgn_name),
@@ -1580,7 +1602,7 @@ tabItem(
       plotOutput("ico_heatmap"),
       width = 12,
       (a("For more information on the IUCN Red List conservation status categories click here", 
-         href = "https://iucn-csg.org/red-list-categories/"))
+         href = "https://iucn-csg.org/red-list-categories/", target = "_blank"))
       )
   ),
 

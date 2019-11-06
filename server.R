@@ -185,8 +185,25 @@ function(input, output, session) {
                            "<br>Layer:", goal_name,
                            "<br>Year:", year, sep = " "),
     xaxis_label = "",
-    yaxis_label = "Sub-goal Score",
-    legend_or = NULL
+    yaxis_label = "Sub-goal Score"
+  )
+  
+  ## Production and Catch bar chart
+  
+  callModule(
+    card_plot,
+    "fp_weights",
+    df = production_weights,
+    x = "year",
+    y = "Pounds",
+    color_group = "type",
+    plot_type = "bar",
+    filter_field = "rgn_name",
+    tooltip_text = ~ paste("Pounds:", Pounds,
+                           "<br>Sector:", type,
+                           "<br>Year:", year),
+    xaxis_label = "",
+    yaxis_label = "Pounds"
   )
   
 ## Wild-Caught Fisheries ----
@@ -855,7 +872,7 @@ function(input, output, session) {
              x = "count",
              y = "rgn_name",
              color_group = "score",
-             colors = rev(chart_colors),
+             colors = brewer.pal(10, "Spectral"),
              plot_type = "bar",
              tooltip_text = ~paste("Region:", rgn_name,
                                    "<br>Species status score:", score,

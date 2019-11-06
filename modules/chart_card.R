@@ -64,7 +64,7 @@ library(assertthat)
 #' additional notes need to be added beyond data source information below the chart 
 #' they can be added by passing a list or html elements to this function 
 #' (e.g. source_text = list(p("Note 1), p("Note 2"), p("Data Source: 2010 Census")))
-#' 
+#' @param box_width numeric, optional. Sets width of the box.
 
 ## Card UI Function ##
 card_ui <- function(id, 
@@ -159,7 +159,7 @@ card_ui <- function(id,
 #'   case df = "input" and we will get the correct dataframe based on the user selection.}
 #'   \item{There is a select input that involves subsetting a column in the dataframe. In this
 #'   case we pass the name of the dataframe to df (e.g. df = pop_per_neighborhood) and we use
-#'   @param filter_field to delcare the column we are filtering (e.g. filter_field = "Neighborhood")}
+#'   @param filter_field to delcare the column we are filtering (e.g. filter_field = "rgn_name")}
 #' }
 #' @param x character, name of the field containing data to be plotted on the x-axis. 
 #' @param y character, name of the field containing data to be plotted on the y-axis. 
@@ -180,6 +180,7 @@ card_ui <- function(id,
 #' (e.g. tooltip_text = ~paste("Year:", year, "<br>Neighborhood:", neighborhood, sep = " "))
 #' @param xaxis_label character, text for x-axis label.
 #' @param yaxis_label character, text for y-axis label.
+#' @param xaxis_range vector, optional. Vector defining max and min of x-axis (e.g. xaxis_rance = c(2005,2017))
 #' @param yaxis_range vector, optional. Vector defining max and min of y-axis (e.g. yaxis_range = c(0,100))
 #' @param tick_suffix character, optional. Text symbol for y-axis tick suffix (e.g. tick_suffix = "%")
 #' @param tick_prefix character, optional. Text symbol for y-axis tick prefix (e.g. tick_suffix = "$")
@@ -190,7 +191,8 @@ card_ui <- function(id,
 #' @param add_traces list, optional. Allows user to pass list of pre-defined traces to the plot. Multiple
 #' traces can be added to the list and the function will iterate through them and add each to the plot.
 #' Traces require their own set of parameters outlined here: \url{https://plot.ly/r/reference/}
-#' 
+#' @param legend_or character, optional. Sets orientation of the legend to horizontal ("h") or vertical (NULL).
+#' @param show_legend logical, optional. Allows user to show or hide plot legend.
 
 ## Card Server Function ##
 card_plot <- function(input,

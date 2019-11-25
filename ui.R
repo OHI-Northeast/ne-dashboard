@@ -102,7 +102,7 @@ dashboardPage(
               title = "Ocean Health Index score",
               "",
               status = "primary",
-              div(img(src="https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_USNortheast.png", 
+              div(img(src="https://raw.github.com/OHI-Northeast/ne-scores/master/region/reports/figures/trimmed_flower_Northeast.png", 
                   width=400), style = "text-align: center;"),
               br(),
               (a("Click here to dive deeper into regional scores", href = "#shiny-tab-index", "data-toggle" = "tab"))
@@ -255,7 +255,7 @@ tabItem(tabName = "index",
               br(),
           
         selectInput("img_region", "",
-          c("Northeast" = "USNortheast",
+          c("Northeast" = "Northeast",
             "Offshore"  = "Offshore",
             "Rhode Island" = "RhodeIsland",
             "New York" = "NewYork",

@@ -76,8 +76,10 @@ indx_scores_map <- filter(indx_scores, year == 2017)
   
   fis_stock_assessment <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/stock_assessment_data_for_dashboard.csv") %>%
     spread(indicator, value) %>%
+    filter(year > 1999) %>%
     mutate(MSY = 1) %>%
-    gather(indicator, value, -year, -stock)
+    gather(indicator, value, -year, -stock) %>%
+    mutate(value = round(value, 2))
     
   fis_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/fis/data/fis_data_info.csv")
 
@@ -88,7 +90,8 @@ indx_scores_map <- filter(indx_scores, year == 2017)
   
   mar_scores_map <- filter(mar_scores, year == 2017)
   mar_production <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/production_clean.csv") %>%
-    mutate(Year = as.numeric(Year)) %>%
+    mutate(Year = as.numeric(Year),
+           pounds = round(pounds, 0)) %>%
     arrange(Year)
   mar_spp_sust <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/mar/data/species_sust_scores.csv") %>%
     select(Species = species,
@@ -215,7 +218,7 @@ indx_scores_map <- filter(indx_scores, year == 2017)
   
   hab_scores_map <- filter(hab_scores, year == 2017)
   hab_data       <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/hab/data/dashboard_habitat_data.csv") %>%
-    mutate(score = ifelse(habitat == "offshore", score*100, score))
+    mutate(score = ifelse(habitat == "offshore", round(score*100, 0), round(score,0)))
   hab_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/bio/data/hab_data_info.csv")
   
 ## Habitat Services (HS) Data ----
@@ -254,9 +257,11 @@ indx_scores_map <- filter(indx_scores, year == 2017)
   lsp_map <- filter(lsp_scores, year == 2017)
   
   land_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/lsp_protected_land.csv") %>% 
-    left_join(rgn_data)
+    left_join(rgn_data) %>%
+    mutate(perc_area = prop_area*100)
   marine_protection <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-scores/master/region/layers/lsp_protected_marine.csv") %>% 
-    left_join(rgn_data)
+    left_join(rgn_data)%>%
+    mutate(perc_area = prop_area*100)
   lsp_data_info <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/sop/lsp/data/lsp_data_info.csv")
 ## Iconic Species  ----
   

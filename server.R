@@ -726,8 +726,8 @@ function(input, output, session) {
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Proportion closed:",
-      perc_closed,
+      "Percent closed:",
+      perc_closed, "%",
       "<br>Region:",
       rgn_name,
       "<br>Year:",
@@ -735,7 +735,7 @@ function(input, output, session) {
       sep = " "
     ),
     xaxis_label = "",
-    yaxis_label = "Average proportion (%) of swim season closed"
+    yaxis_label = "Average percentage (%) of swim season closed"
   )
   
   ##TR coastal access ##
@@ -1126,13 +1126,13 @@ function(input, output, session) {
     "lsp_marine",
     df = marine_protection,
     x = "year",
-    y = "prop_area",
+    y = "perc_area",
     color_group = "rgn_name",
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Proportion protected:",
-      prop_area,
+      "Amount protected:",
+      perc_area, "%",
       "<br>Region:",
       rgn_name,
       "<br>Year:",
@@ -1140,7 +1140,7 @@ function(input, output, session) {
       sep = " "
     ),
     xaxis_label = "",
-    yaxis_label = "Proportion of area protected (0 to 1)"
+    yaxis_label = "Amount (%) of total marine area protected"
   )
   
   ## land protected area ##
@@ -1149,13 +1149,13 @@ function(input, output, session) {
     "lsp_land",
     df = land_protection,
     x = "year",
-    y = "prop_area",
+    y = "perc_area",
     color_group = "rgn_name",
     plot_type = "scatter",
     mode = "lines+markers",
     tooltip_text = ~ paste(
-      "Proportion protected:",
-      prop_area,
+      "Amount protected:",
+      perc_area, "%",
       "<br>Region:",
       rgn_name,
       "<br>Year:",
@@ -1163,7 +1163,7 @@ function(input, output, session) {
       sep = " "
     ),
     xaxis_label = "",
-    yaxis_label = "Proportion of area protected (0 to 1)"
+    yaxis_label = "Amount (%) of coastal land area protected"
   )
   
   
@@ -1222,8 +1222,7 @@ function(input, output, session) {
       geom_tile(aes(fill = Status))+ 
       scale_fill_viridis_d(direction = 1, na.value = "#e5e5e5") +
       theme_dark() +
-      theme(axis.text.x = element_text(angle = 45, hjust = 1),
-            axis.title = element_blank(),
+      theme(axis.title = element_blank(),
             panel.grid = element_blank()) +
       coord_cartesian(expand = FALSE) 
     

@@ -335,7 +335,9 @@ tabItem(
     card_ui(
       id = "cw_layers",
       title_text = "Data layer scores",
-      sub_title_text = "Each data layer is scored on a 0 to 100 scale. Missing data for Water and Sediment Quality is gapfilled by taking the most recent datapoint and carrying it forward. The final Clean Waters scores are calculated using a geometric mean of these four data layers.",
+      sub_title_text = "Each data layer is scored on a 0 to 100 scale. Missing data for Water and Sediment Quality is gapfilled by taking the most recent datapoint and carrying it forward. The final Clean Waters scores are calculated using a geometric mean of these four data layers.
+      
+      Hover over the lines to see individual scores. Double click on a region in the legend to highlight just that line and add additional regions for comparison by clicking on their names in the legend.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(cw_layers$rgn_name),
@@ -489,7 +491,7 @@ tabItem(
         ),
     
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
-        "The decrease in scores for some regions around 2012 is largely due to a decrease in Atlantic herring catch",
+        "The decrease in scores for some regions around 2012 is largely due to a decrease in Atlantic herring catch and an increase in Gulf of Maine Lobster catch",
         style = "font-size: 18px"
         )
   ),
@@ -761,7 +763,7 @@ tabItem(
     card_ui(
       id = "le_layers",
       title_text = "Livelihoods and Economies sub-goal scores",
-      sub_title_text = "Livelihoods & Economies includes two sub-goals, Livelihoods and Economies. The final score is an un-weighted average of these two scores",
+      sub_title_text = "Livelihoods & Economies includes two sub-goals, Livelihoods and Economies. The final score is an un-weighted average of these two scores. Hover over the lines to see individual scores. Double click on a sub-goal in the legend to highlight just that line.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(le_layers$rgn_name),
@@ -845,7 +847,7 @@ tabItem(
     card_ui(
       id = "liv_emp",
       title_text = "Employment",
-      sub_title_text = "",
+      sub_title_text = "Hover over the lines to see individual scores. Double click on a sector in the legend to highlight just that line and add additional sectors for comparison by clicking on their names in the legend.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(jobs_scores$rgn_name)
@@ -855,7 +857,7 @@ tabItem(
     card_ui(
       id = "liv_wages",
       title_text = "Average annual wages",
-      sub_title_text = "",
+      sub_title_text = "Hover over the lines to see individual scores. Double click on a sector in the legend to highlight just that line and add additional sectors for comparison by clicking on their names in the legend.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(wages_scores$rgn_name)
@@ -948,7 +950,7 @@ tabItem(
     card_ui(
       id = "eco_gdp",
       title_text = "Gross Domestic Product",
-      sub_title_text = "GDP in 2012 US Dollars",
+      sub_title_text = "GDP in 2012 US Dollars. Hover over the lines to see individual scores. Double click on a sector in the legend to highlight just that line and add additional sectors for comparison by clicking on their names in the legend.",
       select_type = "drop_down",
       select_location = "above",
       select_choices = unique(gdp$rgn_name),
@@ -1046,7 +1048,7 @@ tabItem(
     card_ui(
       id = "tr_jobs",
       title_text = "Jobs in Tourism",
-      sub_title_text = "Number of jobs in the tourism sector for coastal counties."
+      sub_title_text = "Number of jobs in the tourism sector for coastal counties. Hover over the lines to see individual scores. Double click on a sector in the legend to highlight just that line and add additional sectors for comparison by clicking on their names in the legend."
     ),
     
     ## Coastal access ##
@@ -1059,7 +1061,7 @@ tabItem(
     card_ui(
       id = "tr_beach",
       title_text = "Beach Closures",
-      sub_title_text = "This layer reports the average proportion of a swim season (~100 days) with beaches closed to recreation.",
+      sub_title_text = "This layer reports the average percentage of a swim season (~100 days) with beaches closed to recreation. Hover over the lines to see individual scores. Double click on a region in the legend to highlight just that line and add additional regions for comparison by clicking on their names in the legend.",
       box_width = 12
     )
   ),
@@ -1330,7 +1332,7 @@ tabItem(
     card_ui(
       id = "hab_layer_scores",
       title_text = "Habitat layer scores",
-      sub_title_text = "Data layers are translated into 0-100 scores for 2005-2017",
+      sub_title_text = "Data layers are translated into 0-100 scores for 2005-2017.\nEELGRASS BEDS: Scores are based on the EPA's Water Quality Index scores for sites sampled within 10km of current or past eelgrass beds.\nSALT MARSH: Scores are equal to the proportional loss of salt marsh habitat since the 1800's.\nSEABED HABITATS: Scores are equal to the percent disturbance from fishing.",
       select_type = "radio",
       select_location = "above",
       select_choices = list(
@@ -1503,15 +1505,15 @@ tabItem(
     ## Protected marine areas ##
     card_ui(
       id = "lsp_marine",
-      title_text = "Proportion of area protected within state waters",
-      sub_title_text = ""
+      title_text = "Marine area protected",
+      sub_title_text = "This data shows how much marine area (%) within state waters is protected. Hover over the lines to see individual scores. Double click on a region in the legend to highlight just that line and add additional regions for comparison by clicking on their names in the legend."
     ),
     
     ## Protected land in coastal 1km ##
     card_ui(
       id = "lsp_land",
-      title_text = "Proportion of area protected on land within 1km of the coastline",
-      sub_title_text = ""
+      title_text = "Coastal land protected",
+      sub_title_text = "This data shows how much land (%) within 1 kilometer of the coastline is protected. Hover over the lines to see individual scores. Double click on a region in the legend to highlight just that line and add additional regions for comparison by clicking on their names in the legend."
     )
   ),
   
@@ -1698,14 +1700,14 @@ tabItem(
     card_ui(
       id = "spfis_commercial",
       title_text = "Commercial fishing engagement",
-      sub_title_text = ""
+      sub_title_text = "Hover over the lines to see individual scores. Double click on a region in the legend to highlight just that line and add additional regions for comparison by clicking on their names in the legend."
     ),
     
     ## Protected land in coastal 1km ##
     card_ui(
       id = "spfis_rec",
       title_text = "Recreational reliance",
-      sub_title_text = ""
+      sub_title_text = "Hover over the lines to see individual scores. Double click on a region in the legend to highlight just that line and add additional regions for comparison by clicking on their names in the legend."
     )
   ),
   

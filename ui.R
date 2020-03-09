@@ -402,7 +402,7 @@ tabItem(
     box(title = "Key Messages", status = "primary", solidHeader = TRUE,
         tags$ul(
           tags$li(
-            "The decrease in scores for some regions around 2012 is largely due to a decrease in Atlantic herring catch"),
+            "The decrease in scores for some regions around 2012 is largely due to a decrease in Atlantic herring catch and an increase in Gulf of Maine Lobster catch"),
           tags$li("Some regions produce more seafood from aquaculture than wild-caught fisheries")),
         style = "font-size: 18px"
         )
@@ -1315,7 +1315,7 @@ tabItem(
                background = "light-blue",
                tags$ul(
                  tags$li(
-                   "")),
+                   "Seabed habitat disturbance is the only habitat data layer with annual information. The health and trajectory of Salt Marsh and Eelgrass Beds are more difficult to calculate with limited data.")),
                style = "font-size: 18px",
                width = 12
   )),
@@ -1797,13 +1797,13 @@ tabItem(
     ## Economic access ##
     card_ui(id = "rao_econ",
             title_text = "Economic Access",
-            sub_title_text = "Ratio of gas ($/barrel) to wages"),
+            sub_title_text = "Ratio of gas ($/barrel) to wages."),
 
    
     ## Coastal access ##
     card_ui(id = "rao_coastal",
             title_text = "Coastal Access",
-            sub_title_text = "Proportion of publically accessible coastline")
+            sub_title_text = "Proportion of publically accessible coastline.")
     ),
   
   fluidRow(
@@ -1811,7 +1811,7 @@ tabItem(
   
     card_ui(id = "rao_avg_fssi",
             title_text = "Average Fish stock sustainability index (FSSI)",
-            sub_title_text = "",
+            sub_title_text = "NOAA's FSSI measures stock sustainability on a 0 (unsustainable) to 4 (sustainable).",
             box_width = 12)
   ),
   ## Text boxes with links ##

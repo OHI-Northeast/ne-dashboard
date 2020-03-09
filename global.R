@@ -28,6 +28,7 @@ options(scipen = 999,
 chart_colors_all_rgns <- c(brewer.pal(n = 11,'Paired')[1:9], "#000000" ,"#6A3D9A", "#FFFF99")
 chart_colors_coastal <- c(brewer.pal(n = 8, 'Paired')[1:6], "#000000" , "#6A3D9A")
 chart_colors <- brewer.pal(n = 12, 'Paired')
+rgn_goal_colors <- c("#3C8DBC", "#38CCCC", "#605CA8", "#D81B60", "black", "#FF851C", "#F011BE" , "#00A65A", "#DD4B39")#for the regional scores bottom chart. matching the rainbow colors to this chart
 
 ## shapefile
 rgns_leaflet <- sf::st_read("shapefile", "ne_ohi_rgns_simp", quiet = T) %>%
@@ -55,6 +56,23 @@ ne_indx_scores <- indx_scores %>%
   filter(region_id == 0)
 
 indx_scores_map <- filter(indx_scores, year == 2017)
+
+## Region goal scores
+
+rgn_goal_scores <- scores %>%
+  filter(dimension == "score",
+         goal %in% c("BD", "CW", "FP", "HS", "Index", "LE", "RAO", "SP", "TR")) %>%
+  mutate(goal = case_when(
+    goal == "BD" ~ "Biodiversity",
+    goal == "CW" ~ "Clean Waters",
+    goal == "FP" ~ "Food Provision",
+    goal == "HS" ~ "Habitat Services",
+    goal == "Index" ~ "Index",
+    goal == "LE" ~ "Livelioods & Economies",
+    goal == "RAO" ~ "Resource Access Opportunities",
+    goal == "SP" ~ "Sense of Place",
+    goal == "TR" ~ "Tourism & Recreation"
+  ))
 
 ## FIS data ----
   fis_scores <- scores %>% 

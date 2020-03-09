@@ -60,6 +60,32 @@ function(input, output, session) {
     yaxis_label = "Score"
   )
   
+  ## Region goal scores over time ##
+  callModule(
+    card_plot,
+    "rgn_goal_scores",
+    df = rgn_goal_scores,
+    x = "year",
+    y = "score",
+    color_group = "goal",
+    filter_field = "rgn_name",
+    colors = rgn_goal_colors,
+    legend_or = NULL,
+    plot_type = "scatter",
+    mode = "lines+markers",
+    tooltip_text = ~ paste(
+      "Index score:",
+      score,
+      "<br>Goal:",
+      goal,
+      "<br>Year:",
+      year,
+      sep = " "
+    ),
+    xaxis_label = "",
+    yaxis_label = "Score"
+  )
+  
 ## Clean Waters ----
   
   ## CW Score map ##

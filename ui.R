@@ -279,7 +279,20 @@ tabItem(tabName = "index",
             box_width      = 12,
             title_text     = "OHI Region Scores over time"
           )
-        )), 
+        ),
+      
+      fluidRow(
+        ## scores through time
+        card_ui(
+          id             = "rgn_goal_scores",
+          box_width      = 12,
+          title_text     = "Goal scores by region",
+          sub_title_text = "Hover over the lines to see individual goal scores. Double click on a goal in the legend to highlight just that line and add additional goals for comparison by clicking on their names in the legend.",
+          select_type = "drop_down",
+          select_location = "above",
+          select_choices = unique(rgn_goal_scores$rgn_name),
+        )
+      )), 
 
 ## Clean Waters ---------
 

@@ -332,6 +332,7 @@ rgn_goal_scores <- scores %>%
     arrange(year)
   
   rao_avg_fssi <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/rao/data/avg_fssi_score_per_region_over_time.csv") %>%
-    mutate(score = average_fssi_score*4)
+    mutate(score = average_fssi_score*4) %>%
+    filter(rgn_id > 4)
   rao_data_info  <- read_csv("https://raw.githubusercontent.com/OHI-Northeast/ne-prep/gh-pages/prep/rao/data/rao_data_info.csv")
   

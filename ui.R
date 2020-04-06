@@ -54,7 +54,7 @@ dashboardPage(
     tags$footer(
       p(
         "Developed by ",
-        a(href = 'https://www.jamieafflerbach.com/', "Jamie Afflerbach.")
+        a(href = 'https://www.jamiecmontgomery.com/', "Jamie Montgomery.")
       ),
       br(),
       p(
@@ -215,7 +215,7 @@ dashboardPage(
         fluidRow(
           box(
             h3("About the Assessment"),
-            "The goal of this assessment is to serve regional ocean planning by providing a big picture perspective on ocean health based on data and priorities specific to the Northeast. The assessment was led by a team of scientists from the Ocean Health Index program at the National Center for Ecological Analysis and Synthesis (NCEAS). This team worked with the Northeast Regional Ocean Council (NROC) Ocean Planning Committee to get stakeholder input from federal, state, and local governmnetal organizations, NGO's, and community members. More information can be found at ",
+            "The goal of this assessment is to serve regional ocean planning by providing a big picture perspective on ocean health based on data and priorities specific to the Northeast. The assessment was led by a team of scientists from the Ocean Health Index program at the National Center for Ecological Analysis and Synthesis (NCEAS). This team worked with the Northeast Regional Ocean Council (NROC) Ocean Planning Committee to get stakeholder input from federal, state, and local governmental organizations, NGO's, and community members. More information can be found at ",
             a(href = "http://www.ohi-northeast.org/", target="_blank", "ohi-northeast.org", "."),
             br(),
             br(),

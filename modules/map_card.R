@@ -68,7 +68,7 @@ library(leaflet)
 ## Card UI Function ##
 map_ui <- function(id, 
                    title_text = "OHI Region Scores for 2017",
-                   sub_title_text = "Scores for all regions from the most recently assessed year (2017). Click on a region to see the score. Areas with no color indicate regions that were not evaluated",
+                   sub_title_text = "Scores for all regions from the most recently assessed year (2017). Click on a region to see the score.",
                    select_type = c(NULL, "radio", "drop_down", "checkboxes"),
                    select_location = c(NULL, "above", "below"),
                    select_choices = c(""),

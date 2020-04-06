@@ -78,7 +78,7 @@ dashboardPage(
   ### Dashboard Body
   dashboardBody(
     #adding this tag to make header longer, from here:https://rstudio.github.io/shinydashboard/appearance.html#long-titles
-    tags$head(
+    tags$head(includeHTML(("google-analytics.html")),
       tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
     ),
     tags$script(HTML("$('body').addClass('fixed');")),

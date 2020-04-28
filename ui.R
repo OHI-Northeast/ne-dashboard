@@ -741,6 +741,7 @@ tabItem(
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
           tags$ul(
             tags$li("Coastal livelihoods and economies have been increasing over time"),
+            tags$li("New Hampshire's early low scores are due to a 25% decrease in GDP in 2008 (measured in the Economies subgoal)"),
             tags$li("Low scores for Massachusetts-South between 2009 and 2013 are due to decreased employment, wages and GDP in the Living Resources and Transportation sectors")))
           ),
 
@@ -760,7 +761,8 @@ tabItem(
                background = "light-blue",
                tags$ul(
                  tags$li(
-                   "This goal measures Livelihoods and Economies separately, with the final score equal to a simple average of the two scores.")),
+                   "This goal measures Livelihoods and Economies separately, with the final score equal to a simple average of the two scores."),
+                 tags$li("Job, wage and GDP growth are compared to the average of the three previous years. Since the NOEP dataset begins in 2005, all scores from 2008 are used to backfill 2005-2007 values.")),
                style = "font-size: 18px",
                width = 12
   )),
@@ -843,8 +845,9 @@ tabItem(
   fluidRow(box(title = "Key Information", 
                background = "light-blue",
                tags$ul(
+                 tags$li("Job, wage and GDP growth are compared to the average of the three previous years. Since the NOEP dataset begins in 2005, all scores from 2008 are used to backfill 2005-2007 values."),
                  tags$li(
-                   "There is some data suppression in the National Ocean Economics Program dataset due to confidentiality statutes. If data suppression in earlier years suddenly becomes expressed, it will show up as a large increase in Jobs or Wages. This can be seen in New Hampshire's Transportation sector in 2011.")),
+                   "There is some data suppression in the National Ocean Economics Program dataset due to confidentiality statutes. This is accounted for in calculating the Index and impacts of data suppression are removed.")),
                style = "font-size: 18px",
                width = 12
   )),
@@ -928,6 +931,7 @@ tabItem(
     box(title = "Key Messages", status = "primary", solidHeader = TRUE, style = "font-size: 18px",
          tags$ul(
            tags$li("Nearly all regions are experiencing growth in GDP from ocean-related sectors"),
+           tags$li("New Hampshire's early low scores are due to a 25% decrease in GDP in 2008"),
            tags$li("Low scores for Massachusetts-South between 2009 and 2013 are due to decreased GDP in the Living Resources and Transportation sectors")))),
   
   fluidRow(
@@ -946,9 +950,10 @@ tabItem(
   fluidRow(box(title = "Key Information", 
                background = "light-blue",
                tags$ul(
-                 tags$li(
-                   "A target of 3% annual growth aligns with widely accepted growth targets for GDP in the United States"),
-                 tags$li("There is some data suppression in the National Ocean Economics Program dataset due to confidentiality statutes. If data suppression in earlier years suddenly becomes expressed, it will show up as a large increase in GDP. This can be seen in New Hampshire's Transportation sector in 2011")),
+                 tags$li("A target of 3% annual growth aligns with widely accepted growth targets for GDP in the United States"),
+                 tags$li("If a region experiences 30% or greater annual loss in GDP they score a 0"),
+                 tags$li("Job, wage and GDP growth are compared to the average of the three previous years. Since the NOEP dataset begins in 2005, all scores from 2008 are used to backfill 2005-2007 values."),
+                 tags$li("There is some data suppression in the National Ocean Economics Program dataset due to confidentiality statutes. This is accounted for in calculating the Index and impacts of data suppression are removed.")),
                style = "font-size: 18px",
                width = 12)),
   
@@ -1345,7 +1350,7 @@ tabItem(
     card_ui(
       id = "hab_layer_scores",
       title_text = "Habitat layer scores",
-      sub_title_text = "Data layers are translated into 0-100 scores for 2005-2017.\nEELGRASS BEDS: Scores are based on the EPA's Water Quality Index scores for sites sampled within 10km of current or past eelgrass beds.\nSALT MARSH: Scores are equal to the proportional loss of salt marsh habitat since the 1800's.\nSEABED HABITATS: Scores are equal to the percent disturbance from fishing.",
+      sub_title_text = "Data layers are translated into 0-100 scores for 2005-2017.\nEELGRASS BEDS: Scores are based on the EPA's Water Quality Index scores for sites sampled within 10km of current or past eelgrass beds.\nSALT MARSH: Scores are equal to the proportional loss of salt marsh habitat since the 1800's.\nSEABED HABITATS: Scores are equal to the inverse of the percent disturbance from fishing (e.g. 5% disturbance is assigned a score of 95).",
       select_type = "radio",
       select_location = "above",
       select_choices = list(

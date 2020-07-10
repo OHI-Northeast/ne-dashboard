@@ -363,7 +363,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/cw_description.md#clean-waters",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/cw_description.pdf",
       box_width = 12
     )
   ),
@@ -475,9 +475,16 @@ tabItem(
       selected = "Connecticut",
       box_width = 6
     )
-  )
-),
+  ),
 
+  ### Text boxes with links ----
+fluidRow(
+  text_links_default(
+    title = "Click here for detailed methods",
+    url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/fp_description.pdf",
+    box_width = 12
+  )
+)),
 ## Fisheries ----
 tabItem(
   tabName = "fis",
@@ -572,7 +579,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/fis_description.md#wild-caught-fisheries",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/fp_description.pdf",
       box_width = 12
     )
   ),
@@ -684,7 +691,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/mar_description.md#aquaculture",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/fp_description.pdf",
       box_width = 12
     )
   ),
@@ -884,7 +891,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/liv_eco_description.md#livelihoods-and-economies",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/liv_eco_description.pdf",
       box_width = 12
     )
   ),
@@ -981,7 +988,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/liv_eco_description.md#livelihoods-and-economies",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/liv_eco_description.pdf",
       box_width = 12
     )
   ),
@@ -1088,7 +1095,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/tr_description.md#tourism-and-recreation",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/tr_description.pdf",
       box_width = 12
     )
   ),
@@ -1184,7 +1191,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.md#biodiversity",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.pdf",
       box_width = 12
     )
   )
@@ -1267,7 +1274,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.md#biodiversity",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.pdf",
       box_width = 12
     )
   ),
@@ -1366,7 +1373,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.md#biodiversity",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/bio_description.pdf",
       box_width = 12
     )
   ),
@@ -1456,7 +1463,7 @@ fluidRow(
 fluidRow(
   text_links_default(
     title = "Click here for detailed methods",
-    url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#sense-of-place",
+    url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.pdf",
     box_width = 12
   )
 )
@@ -1539,7 +1546,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#lasting-special-places",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.pdf",
       box_width = 12
     )
   ),
@@ -1631,7 +1638,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#iconic-species",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.pdf",
       box_width = 12
     )
   ),
@@ -1733,7 +1740,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.md#fishing-engagement",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/sop_description.pdf",
       box_width = 12
     )
   ),
@@ -1836,7 +1843,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/rao_description.md#resource-access-opportunities",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/rao_description.pdf",
       box_width = 12
     )
   ),
@@ -1939,7 +1946,7 @@ tabItem(
   fluidRow(
     text_links_default(
       title = "Click here for detailed methods",
-      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/hs_description.md#habitat-services",
+      url = "https://github.com/OHI-Northeast/ne-scores/blob/master/metadata_documentation/ohi_model/goal_descriptions/hs_description.pdf",
       box_width = 12
     )
   ),
